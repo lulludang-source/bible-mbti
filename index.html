@@ -120,6 +120,11 @@
   .note{font-size:13px; color:#a99cb3; margin:20px 4px 0; line-height:1.5;}
   .rbtns{margin-top:16px;}
   .btn.ghost{background:#fff; color:var(--accent); box-shadow:0 6px 18px rgba(150,120,170,.16); margin-top:10px;}
+  .name-input{width:100%; max-width:320px; margin:0 auto 16px; display:block; box-sizing:border-box;
+    font-family:'Gowun Dodum'; font-size:17px; text-align:center; color:var(--ink);
+    border:2px solid #F0E4EE; border-radius:18px; padding:15px 18px; background:#fff; outline:none; transition:border-color .15s, box-shadow .15s;}
+  .name-input:focus{border-color:var(--coral); box-shadow:0 0 0 4px rgba(255,111,145,.12);}
+  .name-input::placeholder{color:#c3b6cd;}
 
   /* ===== STORY CARD ===== */
   .story{display:none; animation:pop .5s ease; max-width:360px; margin:0 auto;}
@@ -158,6 +163,7 @@
       <span class="badge">성경인물 성격 찾기 🎈</span>
       <h1>나랑 닮은 <span class="rainbow">성경인물</span>은<br>누구일까?</h1>
       <p>12개의 질문에 솔직하게 답해봐요.<br>학교랑 교회에서 나는 어떤 모습일까요? ✨</p>
+      <input id="nameInput" class="name-input" type="text" maxlength="8" placeholder="이름을 적어주세요 (예: 지민)" />
       <button class="btn" id="startBtn">시작하기 🚀</button>
     </section>
 
@@ -196,7 +202,7 @@
 
       <div class="rcard">
         <div class="rsec">
-          <h3>내 성격은요 💛</h3>
+          <h3 id="rtraitsTitle">내 성격은요 💛</h3>
           <ul id="rtraits"></ul>
         </div>
 
@@ -396,7 +402,18 @@ const optAtxt=optA.querySelector('span:last-child'), optBtxt=optB.querySelector(
 const count=document.getElementById('count'), fill=document.getElementById('fill'), backBtn=document.getElementById('backBtn');
 const qcard=document.getElementById('qcard');
 const storyEl=document.getElementById('story');
-let idx=0; const answers=[]; let order=[]; let currentType='ISFP';
+let idx=0; const answers=[]; let order=[]; let currentType='ISFP'; let userName='';
+
+/* 한글 받침 여부에 따라 조사를 붙여주는 도우미 */
+function hasBatchim(str){
+  if(!str) return false;
+  const c=str.charCodeAt(str.length-1);
+  if(c<0xAC00||c>0xD7A3) return false;
+  return (c-0xAC00)%28!==0;
+}
+function nameSubj(name){ return name + (hasBatchim(name)?'이는':'는'); }      // 지민이는 / 민수는
+function namePoss(name){ return name + (hasBatchim(name)?'이':'') ; }          // 지민이 / 민수
+function iyo(word){ return word + (hasBatchim(word)?'이에요':'예요'); }         // 친구예요 / 계획왕이에요
 
 function setAccent(c){document.documentElement.style.setProperty('--accent',c);}
 
@@ -441,7 +458,8 @@ function showResult(type){
   document.getElementById('pcFigure').innerHTML=figureFor(type);
   document.getElementById('rtype').textContent=type;
   document.getElementById('rname').textContent=r.n;
-  document.getElementById('rtag').textContent=r.g;
+  document.getElementById('rtag').textContent = userName ? (nameSubj(userName)+' '+iyo(r.g)+'!') : r.g;
+  document.getElementById('rtraitsTitle').textContent = (userName ? (namePoss(userName)+' 성격은요') : '내 성격은요') + ' 💛';
   const ul=document.getElementById('rtraits'); ul.innerHTML='';
   r.traits.forEach(t=>{const li=document.createElement('li'); li.textContent=t; ul.appendChild(li);});
   document.getElementById('goodEmoji').innerHTML=figureFor(r.good);
@@ -487,6 +505,7 @@ function restart(){
 }
 
 document.getElementById('startBtn').onclick=()=>{
+  userName=(document.getElementById('nameInput').value||'').trim();
   hero.style.display='none'; quizEl.style.display='block'; idx=0; answers.length=0;
   order=Q.map(()=>Math.random()<0.5?'ab':'ba');
   render();

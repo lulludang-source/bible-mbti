@@ -100,6 +100,24 @@
   .note{font-size:13px; color:#a99cb3; margin:20px 4px 0; line-height:1.5;}
   .rbtns{margin-top:22px;}
   .btn.ghost{background:#fff; color:var(--accent); box-shadow:0 6px 0 rgba(180,140,200,.2); margin-top:12px;}
+
+  /* ===== STORY CARD ===== */
+  .story{display:none; animation:pop .5s ease;}
+  .scard{background:var(--card); border-radius:34px; padding:0 0 30px; box-shadow:0 18px 40px rgba(120,90,140,.18); overflow:hidden;}
+  .stop{background:linear-gradient(135deg,var(--accent),var(--pink)); color:#fff; padding:26px 20px 22px; text-align:center;}
+  .stop .semoji{font-size:70px; filter:drop-shadow(0 6px 8px rgba(0,0,0,.18)); animation:boing .6s ease;}
+  .stop .stype{font-family:'Gaegu'; font-weight:700; font-size:18px; opacity:.95; margin-top:4px;}
+  .stop .sname{font-family:'Jua'; font-size:34px; line-height:1.2;}
+  .stop .stag{font-size:15px; opacity:.95; margin-top:4px;}
+  .ssec{text-align:left; padding:8px 24px 4px;}
+  .ssec h3{font-family:'Jua'; font-size:19px; color:var(--accent); margin:20px 0 10px;}
+  .ssec p{font-size:16px; line-height:1.7; margin:0; color:#5a4a63;}
+  .ssec.read{margin-top:6px;}
+  .ssec.read p{background:#FBF7FE; border-radius:16px; padding:14px 16px; font-family:'Gaegu'; font-weight:700; font-size:17px; color:var(--grape);}
+  .chips{display:flex; gap:8px;}
+  .chip{flex:1; background:#FBF7FE; border:2px solid #EFE7F6; border-radius:16px; padding:12px 6px; text-align:center;}
+  .chip .cl{font-family:'Jua'; font-size:26px; color:var(--accent); line-height:1;}
+  .chip .cw{font-size:12px; color:#8a7d92; margin-top:6px; line-height:1.3;}
 </style>
 </head>
 <body>
@@ -161,7 +179,44 @@
         <p class="note">※ 교회나 학교에서의 모습으로 만든 재미 테스트예요.<br>평소 성격이랑 조금 다를 수도 있어요! 😊</p>
       </div>
       <div class="rbtns">
-        <button class="btn" id="againBtn">다시 해보기 🔄</button>
+        <button class="btn" id="storyBtn">📖 인물 이야기 카드 보기</button>
+        <button class="btn ghost" id="againBtn">다시 해보기 🔄</button>
+      </div>
+    </section>
+
+    <!-- STORY CARD -->
+    <section class="story" id="story">
+      <div class="scard">
+        <div class="stop">
+          <div class="semoji" id="sEmoji">📖</div>
+          <div class="stype" id="sType">ISFP</div>
+          <div class="sname" id="sName">아담</div>
+          <div class="stag" id="sTag"></div>
+        </div>
+
+        <div class="ssec">
+          <h3>🧩 내 성격 4글자 풀이</h3>
+          <div class="chips" id="sChips"></div>
+        </div>
+
+        <div class="ssec">
+          <h3>📖 이 인물의 이야기</h3>
+          <p id="sStory"></p>
+        </div>
+
+        <div class="ssec">
+          <h3>💡 성격 해석 (이야기 + MBTI)</h3>
+          <p id="sInterp"></p>
+        </div>
+
+        <div class="ssec read">
+          <h3>🔍 성경에서 찾아보기</h3>
+          <p id="sRead"></p>
+        </div>
+      </div>
+      <div class="rbtns">
+        <button class="btn ghost" id="backToResult">← 결과로 돌아가기</button>
+        <button class="btn" id="againBtn2">다시 해보기 🔄</button>
       </div>
     </section>
   </div>
@@ -191,32 +246,75 @@ const COLORS = ["#FF6F91","#FFB454","#FFC75F","#6FD3A3","#3EC5A9","#56CCF2","#7A
 
 /* ---------- 결과 16종 (성경인물) ---------- */
 const R = {
-  ISTJ:{e:"🚢",n:"노아",g:"묵묵히 끝까지 해내는 친구",traits:["맡은 일은 끝까지 해내요 (방주를 완성한 노아처럼!)","약속과 규칙을 잘 지켜요","성실해서 어른들이 믿고 맡겨요"],good:"ESFJ",diff:"ENFP"},
-  ISFJ:{e:"🌾",n:"룻",g:"조용히 챙겨주는 다정한 친구",traits:["힘든 사람 곁을 지켜줘요 (룻이 시어머니를 끝까지 챙긴 것처럼)","티 안 나게 도와주는 걸 좋아해요","마음이 따뜻하고 착해요"],good:"ESTP",diff:"ENTP"},
-  INFJ:{e:"🧥",n:"요셉",g:"꿈을 꾸고 깊이 생각하는 친구",traits:["상상하고 꿈꾸는 걸 좋아해요 (꿈쟁이 요셉!)","친구 마음을 잘 알아채요","조용하지만 속이 깊어요"],good:"ENTJ",diff:"ESTP"},
-  INTJ:{e:"🦁",n:"다니엘",g:"흔들리지 않는 계획왕",traits:["미리 계획 세우는 걸 좋아해요","옳다고 믿으면 끝까지 지켜요 (사자굴 앞에서도!)","혼자서도 척척 잘해요"],good:"ESTJ",diff:"ESFP"},
-  ISTP:{e:"🔨",n:"브살렐",g:"뚝딱뚝딱 손재주꾼",traits:["손으로 만드는 걸 잘해요 (성막을 만든 최고의 장인!)","말보다 행동이 빨라요","고치고 만드는 게 제일 재밌어요"],good:"ESFP",diff:"ENFJ"},
+  ISTJ:{e:"⚕️",n:"누가",g:"꼼꼼하고 성실한 친구",traits:["무엇이든 정확하게 기록하고 정리해요 (꼼꼼한 의사이자 기록가 누가!)","약속과 규칙을 잘 지켜요","맡은 일은 끝까지 해내요"],good:"ESFJ",diff:"ENFP"},
+  ISFJ:{e:"🌷",n:"마리아",g:"조용하고 다정한 친구",traits:["마음이 따뜻하고 착해요 (아기 예수님을 품은 마리아처럼)","티 안 나게 곁에서 챙겨줘요","말없이 순종하고 잘 참아요"],good:"ESTP",diff:"ENTP"},
+  INFJ:{e:"💧",n:"예레미야",g:"마음이 깊은 친구",traits:["친구의 슬픔을 함께 느껴요 (예레미야는 '눈물의 선지자')","혼자 깊이 생각하는 걸 좋아해요","조용하지만 속이 단단해요"],good:"ENTJ",diff:"ESTP"},
+  INTJ:{e:"🚢",n:"노아",g:"흔들리지 않는 계획왕",traits:["미리 계획을 세워 척척 해내요 (거대한 방주를 완성한 노아!)","옳다고 믿으면 끝까지 지켜요","혼자서도 잘해요"],good:"ESTJ",diff:"ESFP"},
+  ISTP:{e:"🪢",n:"라합",g:"위기에 강한 지혜쟁이",traits:["급할 때 침착하게 방법을 찾아요 (라합은 지혜롭게 사람을 도왔어요)","말보다 행동이 빨라요","용감하고 손이 야무져요"],good:"ESFP",diff:"ENFJ"},
   ISFP:{e:"🍎",n:"아담",g:"마음이 여린 예술가",traits:["그림·노래·만들기를 좋아해요","싫은 소리를 잘 못 해요","조용히 봉사하는 걸 좋아해요"],good:"ENTP",diff:"ENTJ"},
-  INFP:{e:"💛",n:"요한",g:"사랑이 많은 꿈꾸는 친구",traits:["친구를 아끼고 잘 공감해요 (요한은 '사랑의 사도')","상상하고 이야기 만드는 걸 좋아해요","조용하지만 마음속엔 꿈이 가득해요"],good:"ENFJ",diff:"ESTJ"},
+  INFP:{e:"💛",n:"바나바",g:"다 위로해주는 다정한 친구",traits:["친구를 아끼고 힘을 줘요 (바나바는 '위로의 아들'!)","상상하고 마음에 공감하는 걸 좋아해요","조용하지만 마음속엔 꿈이 가득해요"],good:"ENFJ",diff:"ESTJ"},
   INTP:{e:"👑",n:"솔로몬",g:"궁금한 게 많은 지혜쟁이",traits:["\"왜 그럴까?\" 궁금한 게 많아요","곰곰이 생각해 지혜롭게 답을 찾아요 (솔로몬의 지혜!)","기발한 생각이 자주 떠올라요"],good:"ENFP",diff:"ESFJ"},
-  ESTP:{e:"💪",n:"삼손",g:"겁 없는 용감한 모험왕",traits:["몸으로 도전하는 걸 좋아해요 (힘이 최고 삼손!)","겁 없이 앞으로 나가요","친구들이랑 있으면 신나요"],good:"ISFJ",diff:"INFJ"},
-  ESFP:{e:"🥁",n:"미리암",g:"어디서나 인기쟁이",traits:["노래하고 춤추는 걸 좋아해요 (소고 치며 찬양한 미리암!)","함께 있으면 즐거워지는 친구예요","밝고 친구가 많아요"],good:"ISTP",diff:"INTJ"},
+  ESTP:{e:"🏺",n:"리브가",g:"행동이 빠른 모험가",traits:["결정하면 바로 움직여요 (리브가는 선뜻 나서서 도왔어요)","겁 없이 도전해요","친구들이랑 있으면 신나요"],good:"ISFJ",diff:"INFJ"},
+  ESFP:{e:"🪜",n:"야곱",g:"어디서나 인기쟁이",traits:["함께 있으면 즐거워지는 친구예요","새로운 걸 시도하고 활발해요","밝고 친구가 많아요 (사다리 꿈을 꾼 야곱!)"],good:"ISTP",diff:"INTJ"},
   ENFP:{e:"🎣",n:"베드로",g:"열정 넘치는 아이디어뱅크",traits:["하고 싶은 게 생기면 바로 도전해요 (열정 가득 베드로!)","새로운 아이디어가 팡팡 떠올라요","친구들 기분을 좋게 해줘요"],good:"INTP",diff:"ISTJ"},
-  ENTP:{e:"🛡️",n:"에훗",g:"재치있고 용감한 친구",traits:["재치있게 문제를 풀어요 (지혜로 나라를 구한 에훗!)","새로운 방법 찾는 걸 좋아해요","머리 회전이 빠르고 용감해요"],good:"ISFP",diff:"ISFJ"},
-  ESTJ:{e:"🧱",n:"느헤미야",g:"앞장서는 든든한 리더",traits:["모둠을 척척 이끌어요 (무너진 성벽을 다시 세운 느헤미야!)","계획대로 야무지게 해내요","책임감이 강해요"],good:"INTJ",diff:"INFP"},
-  ESFJ:{e:"🤝",n:"바나바",g:"다 챙기는 따뜻한 반장",traits:["친구를 잘 챙기고 위로해줘요 (바나바는 '위로의 아들'!)","분위기를 따뜻하게 만들어요","다 함께 잘 지내길 바라요"],good:"ISTJ",diff:"INTP"},
-  ENFJ:{e:"🌊",n:"모세",g:"친구들을 이끄는 따뜻한 대장",traits:["친구들을 잘 챙기고 이끌어요 (백성을 이끈 모세!)","말로 힘을 주는 걸 좋아해요","다 함께 잘되길 바라요"],good:"INFP",diff:"ISTP"},
+  ENTP:{e:"👸",n:"에스더",g:"재치있고 용감한 친구",traits:["재치있게 문제를 풀어요 (에스더는 지혜로 백성을 구했어요!)","새로운 방법 찾는 걸 좋아해요","머리 회전이 빠르고 용감해요"],good:"ISFP",diff:"ISFJ"},
+  ESTJ:{e:"⚖️",n:"드보라",g:"앞장서는 든든한 리더",traits:["모둠을 척척 이끌어요 (드보라는 나라를 이끈 지도자!)","규칙을 지키고 야무지게 해내요","책임감이 강해요"],good:"INTJ",diff:"INFP"},
+  ESFJ:{e:"🎶",n:"다윗",g:"노래하는 따뜻한 리더",traits:["친구를 잘 챙기고 함께 즐거워해요 (다윗은 하프 켜며 찬양했어요)","분위기를 밝고 따뜻하게 만들어요","사람들에게 인기가 많아요"],good:"ISTJ",diff:"INTP"},
+  ENFJ:{e:"🏹",n:"요나단",g:"의리 있는 따뜻한 대장",traits:["친구를 진심으로 아끼고 지켜줘요 (요나단은 다윗의 최고의 친구!)","친구들을 잘 이끌어요","다 함께 잘되길 바라요"],good:"INFP",diff:"ISTP"},
   ENTJ:{e:"✉️",n:"바울",g:"목표를 향해 달리는 대장",traits:["목표를 정하면 끝까지 해내요 (복음을 전한 바울!)","앞장서서 이끄는 걸 잘해요","자신감이 넘쳐요"],good:"INFJ",diff:"ISFP"}
 };
 
-/* ---------- 로직 ---------- */
+/* ---------- 성경인물 이야기 + 해석 ---------- */
+const STORY = {
+  ISTJ:{story:"누가는 예수님을 직접 따라다니지는 않았지만, 여러 사람을 만나 이야기를 하나하나 확인하며 예수님의 일을 꼼꼼하게 기록했어요. 그렇게 완성한 것이 바로 '누가복음'이에요.",
+        interp:"무엇이든 정확히 확인하고 차근차근 정리하는 ISTJ의 성실함이 누가의 기록 속에 그대로 담겨 있어요.", read:"누가복음 1장"},
+  ISFJ:{story:"천사가 마리아에게 아기 예수님의 엄마가 될 거라고 했을 때, 마리아는 놀랐지만 \"말씀대로 이루어지길 바라요\" 하고 조용히 순종했어요. 그리고 아기 예수님을 정성껏 돌봤어요.",
+        interp:"요란하지 않게 곁에서 돌보고 맡은 일에 충실한 ISFJ의 따뜻함이 마리아에게 있어요.", read:"누가복음 1~2장"},
+  INFJ:{story:"예레미야는 백성이 잘못된 길로 갈 때 함께 마음 아파하며, 눈물로 하나님의 말씀을 전했어요. 그래서 '눈물의 선지자'라고 불려요.",
+        interp:"다른 사람의 아픔을 깊이 느끼고 옳은 길을 조용히 지키는 INFJ의 마음이 예레미야에게 있어요.", read:"예레미야 1장"},
+  INTJ:{story:"세상에 큰 홍수가 올 거라는 말을 듣고, 노아는 오랜 시간 계획대로 거대한 방주를 만들었어요. 사람들이 비웃어도 흔들리지 않고 끝까지 완성했어요.",
+        interp:"먼 미래를 내다보고 계획을 세워 뚝심 있게 밀고 가는 INTJ의 모습이 노아에게 있어요.", read:"창세기 6~9장"},
+  ISTP:{story:"라합은 위험에 빠진 정탐꾼들을 재빠르게 숨겨주고, 붉은 줄을 이용해 지혜롭게 자기 가족을 구했어요.",
+        interp:"급한 순간에 침착하게 방법을 찾아 바로 행동으로 옮기는 ISTP의 지혜가 라합에게 있어요.", read:"여호수아 2장"},
+  ISFP:{story:"아담은 하나님이 지으신 첫 사람으로, 동물들에게 하나하나 이름을 지어주었어요. 하지만 아내의 권유에 마음이 약해져 선악과를 먹기도 했어요.",
+        interp:"부드럽고 다정하지만 싫은 소리를 잘 못 하는 ISFP의 모습이 아담에게 있어요.", read:"창세기 2~3장"},
+  INFP:{story:"바나바는 실수한 사람도 다시 믿어주고 곁에서 힘을 준 사람이라, '위로의 아들'이라는 별명을 얻었어요.",
+        interp:"따뜻한 마음으로 사람을 품고 응원하는 INFP의 다정함이 바나바에게 있어요.", read:"사도행전 4장, 11장"},
+  INTP:{story:"두 엄마가 한 아기를 두고 서로 자기 아이라며 다툴 때, 솔로몬은 기발한 방법으로 진짜 엄마를 찾아냈어요. 그만큼 지혜로웠어요.",
+        interp:"깊이 생각하고 똑똑한 답을 찾아내는 INTP의 지혜가 솔로몬에게 있어요.", read:"열왕기상 3장"},
+  ESTP:{story:"리브가는 낯선 나그네가 물을 청하자 선뜻 나서서 낙타에게까지 물을 길어다 주었어요. 그리고 망설임 없이 새로운 곳으로 떠나는 용기를 냈어요.",
+        interp:"결정하면 바로 행동하는 씩씩한 ESTP의 모습이 리브가에게 있어요.", read:"창세기 24장"},
+  ESFP:{story:"야곱은 돌베개를 베고 자다가 하늘까지 닿는 사다리 꿈을 꿨어요. 활기차고 사람들과 어울리기를 좋아한 인물이에요.",
+        interp:"밝고 활발하며 새로운 일을 즐기는 ESFP의 에너지가 야곱에게 있어요.", read:"창세기 27~28장"},
+  ENFP:{story:"베드로는 예수님이 \"물 위로 걸어와 보라\"고 하자 겁 없이 배에서 발을 내디뎠어요. 열정이 넘치고 늘 앞장서는 제자였어요.",
+        interp:"하고 싶은 게 생기면 바로 도전하는 열정 가득한 ENFP의 모습이 베드로에게 있어요.", read:"마태복음 4장, 14장"},
+  ENTP:{story:"에스더는 백성이 위험에 처하자, 목숨을 걸고 왕에게 나아가 지혜로운 방법으로 모두를 구했어요.",
+        interp:"재치있게 문제를 풀고 용감하게 도전하는 ENTP의 모습이 에스더에게 있어요.", read:"에스더 4장"},
+  ESTJ:{story:"드보라는 이스라엘을 이끈 지혜롭고 확신에 찬 지도자였어요. 사람들의 다툼을 판단해주고, 군대를 이끌어 나라를 구했어요.",
+        interp:"앞장서서 이끌고 책임감 있게 해내는 ESTJ의 리더십이 드보라에게 있어요.", read:"사사기 4장"},
+  ESFJ:{story:"다윗은 어린 목동이었지만 하프를 켜며 노래를 만들었고, 거인 골리앗 앞에서도 용감했어요. 사람들의 마음을 얻어 따뜻한 왕이 되었어요.",
+        interp:"사람을 챙기고 분위기를 밝게 만드는 ESFJ의 따뜻함이 다윗에게 있어요.", read:"사무엘상 16~17장"},
+  ENFJ:{story:"요나단은 왕자였지만, 친구 다윗을 진심으로 아끼고 위험에서 지켜주었어요. 자기 것을 내어줄 만큼 의리가 깊었어요.",
+        interp:"친구를 아끼고 이끄는 따뜻한 ENFJ의 우정이 요나단에게 있어요.", read:"사무엘상 18장, 20장"},
+  ENTJ:{story:"바울은 원래 예수님을 믿는 사람들을 괴롭혔지만, 예수님을 만난 뒤 완전히 변해서 세상 곳곳에 복음을 전하는 대장이 되었어요.",
+        interp:"목표를 향해 힘차게 나아가며 사람들을 이끄는 ENTJ의 추진력이 바울에게 있어요.", read:"사도행전 9장"}
+};
+
+/* MBTI 4글자 쉬운 풀이 */
+const LETTER = {
+  E:{t:"바깥으로",d:"사람들과 어울려요"}, I:{t:"안으로",d:"혼자가 편해요"},
+  S:{t:"꼼꼼이",d:"보이는 걸 봐요"},   N:{t:"상상이",d:"상상하고 꿈꿔요"},
+  T:{t:"똑부러",d:"옳고 그름을 따져요"}, F:{t:"마음이",d:"기분을 먼저 살펴요"},
+  J:{t:"계획러",d:"미리 정리해요"},     P:{t:"자유러",d:"그때그때 자유롭게"}
+};
 const hero=document.getElementById('hero'), quizEl=document.getElementById('quiz'), resultEl=document.getElementById('result');
 const qemoji=document.getElementById('qemoji'), qtext=document.getElementById('qtext');
 const optA=document.getElementById('optA'), optB=document.getElementById('optB');
 const optAtxt=optA.querySelector('span:last-child'), optBtxt=optB.querySelector('span:last-child');
 const count=document.getElementById('count'), fill=document.getElementById('fill'), backBtn=document.getElementById('backBtn');
 const qcard=document.getElementById('qcard');
-let idx=0; const answers=[]; let order=[];
+const storyEl=document.getElementById('story');
+let idx=0; const answers=[]; let order=[]; let currentType='ISFP';
 
 function setAccent(c){document.documentElement.style.setProperty('--accent',c);}
 
@@ -255,6 +353,7 @@ function finish(){
 }
 
 function showResult(type){
+  currentType=type;
   const r=R[type]; const good=R[r.good]; const diff=R[r.diff];
   setAccent(COLORS[Math.floor(Math.random()*COLORS.length)]);
   document.getElementById('ranimal').textContent=r.e;
@@ -270,7 +369,34 @@ function showResult(type){
   document.getElementById('diffName').textContent=diff.n;
   document.getElementById('diffType').textContent=r.diff;
   quizEl.style.display='none';
+  storyEl.style.display='none';
   resultEl.style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showStory(){
+  const type=currentType, r=R[type], s=STORY[type];
+  document.getElementById('sEmoji').textContent=r.e;
+  document.getElementById('sType').textContent=type;
+  document.getElementById('sName').textContent=r.n;
+  document.getElementById('sTag').textContent=r.g;
+  const chips=document.getElementById('sChips'); chips.innerHTML='';
+  type.split('').forEach(L=>{
+    const l=LETTER[L];
+    const d=document.createElement('div'); d.className='chip';
+    d.innerHTML='<div class="cl">'+L+'</div><div class="cw"><b>'+l.t+'</b><br>'+l.d+'</div>';
+    chips.appendChild(d);
+  });
+  document.getElementById('sStory').textContent=s.story;
+  document.getElementById('sInterp').textContent=s.interp;
+  document.getElementById('sRead').textContent="👉 "+s.read+"을(를) 펼쳐 보세요!";
+  resultEl.style.display='none';
+  storyEl.style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function restart(){
+  resultEl.style.display='none'; storyEl.style.display='none'; hero.style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -282,9 +408,10 @@ document.getElementById('startBtn').onclick=()=>{
 optA.onclick=()=>choose(optA.dataset.key);
 optB.onclick=()=>choose(optB.dataset.key);
 backBtn.onclick=()=>{ if(idx>0){ idx--; render(); } };
-document.getElementById('againBtn').onclick=()=>{
-  resultEl.style.display='none'; hero.style.display='block'; window.scrollTo({top:0,behavior:'smooth'});
-};
+document.getElementById('storyBtn').onclick=showStory;
+document.getElementById('backToResult').onclick=()=>{ storyEl.style.display='none'; resultEl.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); };
+document.getElementById('againBtn').onclick=restart;
+document.getElementById('againBtn2').onclick=restart;
 </script>
 </body>
 </html>

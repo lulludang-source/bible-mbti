@@ -81,13 +81,24 @@
 
   /* ===== RESULT ===== */
   .result{display:none; text-align:center; animation:pop .5s ease;}
-  .rcard{background:var(--card); border-radius:34px; padding:16px 24px 34px; box-shadow:0 18px 40px rgba(120,90,140,.18); position:relative; overflow:hidden;}
-  .rcard::before{content:""; position:absolute; top:0; left:0; right:0; height:120px; background:linear-gradient(135deg,var(--accent),var(--pink)); opacity:.9;}
-  .ranimal{font-size:96px; position:relative; margin-top:22px; animation:boing .6s ease; filter:drop-shadow(0 8px 10px rgba(0,0,0,.15));}
+  .rcard{background:var(--card); border-radius:34px; padding:8px 24px 34px; box-shadow:0 18px 40px rgba(120,90,140,.18); position:relative; overflow:hidden;}
+
+  /* ===== 4:5 PHOTO CARD ===== */
+  .photocard{position:relative; width:100%; max-width:340px; aspect-ratio:4/5; margin:0 auto 4px; border-radius:30px; overflow:hidden;
+    background:linear-gradient(165deg,var(--accent) 0%,var(--pink) 55%,#FFF4F9 100%);
+    box-shadow:0 16px 40px rgba(120,90,140,.26);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:#fff; padding:22px;}
+  .pc-deco span{position:absolute; font-size:22px; opacity:.9; filter:drop-shadow(0 2px 3px rgba(0,0,0,.12));}
+  .pc-figure{width:80%; height:54%; background:#FCFBF8; border-radius:24px; box-shadow:0 12px 26px rgba(0,0,0,.16);
+    display:flex; align-items:flex-end; justify-content:center; overflow:hidden; margin-bottom:16px; animation:boing .6s ease;}
+  .charimg{width:100%; height:100%; object-fit:contain; object-position:bottom;}
+  .charemoji{line-height:1;}
+  .pc-figure .charemoji{font-size:86px; align-self:center;}
+  .pc-type{display:inline-block; background:rgba(255,255,255,.30); border-radius:999px; padding:5px 16px; font-family:'Gaegu'; font-weight:700; font-size:16px; letter-spacing:3px; margin-bottom:10px;}
+  .pc-name{font-family:'Jua'; font-size:40px; line-height:1.1; text-shadow:0 3px 8px rgba(0,0,0,.20);}
+  .pc-tag{font-size:16px; margin-top:10px; opacity:.98; text-shadow:0 1px 3px rgba(0,0,0,.15);}
+  .pc-brand{position:absolute; bottom:16px; left:0; right:0; font-family:'Gaegu'; font-weight:700; font-size:13px; opacity:.9; letter-spacing:1px;}
   @keyframes boing{0%{transform:scale(0) rotate(-20deg)}70%{transform:scale(1.15) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
-  .rtype{font-family:'Gaegu'; font-weight:700; font-size:20px; color:var(--accent); margin-top:6px;}
-  .rname{font-family:'Jua'; font-size:32px; margin:2px 0 4px;}
-  .rtag{font-size:16px; color:#8a7d92; margin-bottom:20px;}
   .rsec{text-align:left; background:#FBF7FE; border-radius:20px; padding:18px 20px; margin:14px 4px;}
   .rsec h3{font-family:'Jua'; font-size:19px; margin:0 0 12px; color:var(--accent);}
   .rsec li{list-style:none; margin:0 0 10px; padding-left:28px; position:relative; font-size:16px; line-height:1.5;}
@@ -96,6 +107,10 @@
   .mbox{flex:1; background:#fff; border:3px solid #F0EAF4; border-radius:20px; padding:16px 10px;}
   .mbox .mlabel{font-family:'Gaegu'; font-weight:700; font-size:14px; color:#9a8ca6;}
   .mbox .memoji{font-size:40px; margin:6px 0 2px;}
+  .mbox .charimg{height:72px; margin:2px 0;}
+  .mbox .charemoji{font-size:40px;}
+  .stop .charimg{height:112px; margin-top:4px;}
+  .stop .charemoji{font-size:70px;}
   .mbox .mname{font-family:'Jua'; font-size:17px;}
   .mbox .mtype{font-size:13px; color:#a99cb3;}
   .note{font-size:13px; color:#a99cb3; margin:20px 4px 0; line-height:1.5;}
@@ -159,12 +174,24 @@
 
     <!-- RESULT -->
     <section class="result" id="result">
-      <div class="rcard">
-        <div class="ranimal" id="ranimal">📖</div>
-        <div class="rtype" id="rtype">INFP</div>
-        <div class="rname" id="rname"></div>
-        <div class="rtag" id="rtag"></div>
+      <div class="photocard" id="photocard">
+        <div class="pc-deco" aria-hidden="true">
+          <span style="top:7%;left:9%">✨</span>
+          <span style="top:12%;right:11%">🌸</span>
+          <span style="top:40%;left:6%">⭐</span>
+          <span style="top:46%;right:7%">☁️</span>
+          <span style="bottom:25%;left:11%">💕</span>
+          <span style="bottom:15%;right:13%">✨</span>
+        </div>
+        <div class="pc-figure" id="pcFigure"></div>
+        <div class="pc-type" id="rtype">ISFP</div>
+        <div class="pc-name" id="rname"></div>
+        <div class="pc-tag" id="rtag"></div>
+        <div class="pc-brand">📖 성경인물 성격카드</div>
+      </div>
+      <button class="btn" id="photoSaveBtn">🖼️ 이 카드 이미지로 저장하기</button>
 
+      <div class="rcard">
         <div class="rsec">
           <h3>내 성격은요 💛</h3>
           <ul id="rtraits"></ul>
@@ -280,6 +307,14 @@ const R = {
   ENTJ:{e:"✉️",n:"바울",g:"목표를 향해 달리는 대장",traits:["목표를 정하면 끝까지 해내요 (복음을 전한 바울!)","앞장서서 이끄는 걸 잘해요","자신감이 넘쳐요"],good:"INFJ",diff:"ISFP"}
 };
 
+/* 인물 일러스트 이미지 (없으면 이모지로 대체) */
+const IMG = { ISFJ:'images/isfj.png', ISFP:'images/isfp.png', ISTP:'images/istp.png' };
+function figureFor(type){
+  return IMG[type]
+    ? '<img class="charimg" src="'+IMG[type]+'" alt="'+R[type].n+'">'
+    : '<span class="charemoji">'+R[type].e+'</span>';
+}
+
 /* ---------- 성경인물 이야기 + 해석 ---------- */
 const STORY = {
   ISTJ:{story:"옛날, 아픈 사람을 고치는 다정한 의사가 있었어요. 이름은 누가였지요.\n\n누가는 예수님을 직접 본 적은 없었지만, 예수님 이야기를 들을 때마다 가슴이 뛰었어요. '이 놀라운 이야기를, 사람들이 정확히 알 수 있게 남기고 싶어!'\n\n그래서 누가는 예수님을 만났던 사람들을 하나하나 찾아다녔어요. 목자도, 제자도, 예수님의 어머니 마리아의 이야기까지 귀 기울여 들었지요. 들은 이야기는 빠뜨리지 않고 순서대로 차곡차곡 적었어요.\n\n하나님은 누가의 정직하고 성실한 마음을 귀하게 보셨어요. 그래서 그 꼼꼼한 손끝을 통해, 오래오래 읽힐 '누가복음'을 남겨 주셨답니다.\n\n누가는 여러 사람을 만나 예수님의 일을 하나하나 확인하며 꼼꼼하게 기록했어요. 하나님은 그 성실함을 사용하셔서 귀한 복음서를 남기게 하셨지요.",
@@ -388,16 +423,16 @@ function showResult(type){
   currentType=type;
   const r=R[type]; const good=R[r.good]; const diff=R[r.diff];
   setAccent(COLORS[Math.floor(Math.random()*COLORS.length)]);
-  document.getElementById('ranimal').textContent=r.e;
+  document.getElementById('pcFigure').innerHTML=figureFor(type);
   document.getElementById('rtype').textContent=type;
   document.getElementById('rname').textContent=r.n;
   document.getElementById('rtag').textContent=r.g;
   const ul=document.getElementById('rtraits'); ul.innerHTML='';
   r.traits.forEach(t=>{const li=document.createElement('li'); li.textContent=t; ul.appendChild(li);});
-  document.getElementById('goodEmoji').textContent=good.e;
+  document.getElementById('goodEmoji').innerHTML=figureFor(r.good);
   document.getElementById('goodName').textContent=good.n;
   document.getElementById('goodType').textContent=r.good;
-  document.getElementById('diffEmoji').textContent=diff.e;
+  document.getElementById('diffEmoji').innerHTML=figureFor(r.diff);
   document.getElementById('diffName').textContent=diff.n;
   document.getElementById('diffType').textContent=r.diff;
   quizEl.style.display='none';
@@ -408,7 +443,7 @@ function showResult(type){
 
 function showStory(){
   const type=currentType, r=R[type], s=STORY[type];
-  document.getElementById('sEmoji').textContent=r.e;
+  document.getElementById('sEmoji').innerHTML=figureFor(type);
   document.getElementById('sType').textContent=type;
   document.getElementById('sName').textContent=r.n;
   document.getElementById('sTag').textContent=r.g;
@@ -448,6 +483,21 @@ document.getElementById('storyBtn').onclick=showStory;
 document.getElementById('backToResult').onclick=()=>{ storyEl.style.display='none'; resultEl.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); };
 document.getElementById('againBtn').onclick=restart;
 document.getElementById('againBtn2').onclick=restart;
+
+document.getElementById('photoSaveBtn').onclick=async()=>{
+  const btn=document.getElementById('photoSaveBtn');
+  if(typeof html2canvas==='undefined'){ alert('이미지 저장 기능을 불러오지 못했어요. 인터넷 연결을 확인한 뒤 다시 시도하거나, 휴대폰 화면 캡처(스크린샷)를 이용해 주세요.'); return; }
+  const orig=btn.textContent; btn.textContent='저장 중이에요... ⏳'; btn.disabled=true;
+  try{
+    const card=document.getElementById('photocard');
+    const canvas=await html2canvas(card,{scale:3,backgroundColor:null,useCORS:true});
+    const link=document.createElement('a');
+    link.download=(R[currentType].n||'result')+'_성경인물카드.png';
+    link.href=canvas.toDataURL('image/png');
+    link.click();
+  }catch(e){ alert('저장 중 문제가 생겼어요. 휴대폰 화면 캡처(스크린샷)로 저장해 주세요.'); }
+  btn.textContent=orig; btn.disabled=false;
+};
 
 document.getElementById('saveBtn').onclick=async()=>{
   const saveBtn=document.getElementById('saveBtn');

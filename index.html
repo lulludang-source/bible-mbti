@@ -88,8 +88,7 @@
   .photocard{position:relative; width:100%; height:0; padding-top:125%; margin:0 auto; border-radius:28px; overflow:hidden;
     background:#F3EAF1;
     box-shadow:0 18px 42px rgba(120,90,140,.26); animation:pop .5s ease;}
-  .pc-photo{position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.88)), var(--accent);}
+  .pc-photo{position:absolute; inset:0;}
   .pc-photo .charimg{width:100%; height:100%; object-fit:cover; object-position:center 20%;}
   .pc-photo .charemoji{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:132px; padding-bottom:60px;}
   .pc-scrim{position:absolute; left:0; right:0; bottom:0; height:52%; z-index:1;
@@ -130,8 +129,7 @@
   /* ===== STORY CARD ===== */
   .story{display:none; animation:pop .5s ease; max-width:360px; margin:0 auto;}
   .scard{background:var(--card); border-radius:34px; padding:0 0 30px; box-shadow:0 18px 40px rgba(120,90,140,.18); overflow:hidden;}
-  .stop{position:relative; height:0; padding-top:75%; overflow:hidden; text-align:center; color:#fff;
-    background:linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.86)), var(--accent);}
+  .stop{position:relative; height:0; padding-top:75%; overflow:hidden; text-align:center; color:#fff; background:#EFE7F4;}
   .sscrim{position:absolute; left:0; right:0; bottom:0; height:52%; z-index:1;
     background:linear-gradient(180deg, rgba(20,15,25,0) 0%, rgba(20,15,25,.08) 42%, rgba(20,15,25,.56) 100%);}
   .stop .stoptext{position:absolute; left:0; right:0; bottom:0; z-index:2; padding:0 20px 22px;}
@@ -406,7 +404,15 @@ const optAtxt=optA.querySelector('span:last-child'), optBtxt=optB.querySelector(
 const count=document.getElementById('count'), fill=document.getElementById('fill'), backBtn=document.getElementById('backBtn');
 const qcard=document.getElementById('qcard');
 const storyEl=document.getElementById('story');
-let idx=0; const answers=[]; let order=[]; let currentType='ISFP'; let userName='';
+let idx=0; const answers=[]; let order=[]; let currentType='ISFP'; let userName=''; let currentAccentColor='#FF6F91';
+
+/* 인물 색을 흰색과 섞어 '불투명 단색' 파스텔로 (html2canvas가 안전하게 처리) */
+function lightTint(hex){
+  hex=(hex||'#FF6F91').replace('#','');
+  const r=parseInt(hex.slice(0,2),16), g=parseInt(hex.slice(2,4),16), b=parseInt(hex.slice(4,6),16);
+  const mix=c=>Math.round(c*0.22 + 255*0.78);
+  return 'rgb('+mix(r)+','+mix(g)+','+mix(b)+')';
+}
 
 /* 한글 받침 여부에 따라 조사를 붙여주는 도우미 */
 function hasBatchim(str){
@@ -458,7 +464,9 @@ function finish(){
 function showResult(type){
   currentType=type;
   const r=R[type]; const good=R[r.good]; const diff=R[r.diff];
-  setAccent(COLORS[Math.floor(Math.random()*COLORS.length)]);
+  currentAccentColor = COLORS[Math.floor(Math.random()*COLORS.length)];
+  setAccent(currentAccentColor);
+  document.getElementById('photocard').style.background = lightTint(currentAccentColor);
   document.getElementById('pcFigure').innerHTML=figureFor(type);
   document.getElementById('rtype').textContent=type;
   document.getElementById('rname').textContent=r.n;
@@ -480,6 +488,7 @@ function showResult(type){
 
 function showStory(){
   const type=currentType, r=R[type], s=STORY[type];
+  document.querySelector('.stop').style.background = lightTint(currentAccentColor);
   document.getElementById('sEmoji').innerHTML=figureFor(type);
   document.getElementById('sType').textContent=type;
   document.getElementById('sName').textContent=r.n;
@@ -526,8 +535,15 @@ async function saveCardImage(el, btn){
   if(typeof html2canvas==='undefined'){ alert('이미지 저장 기능을 불러오지 못했어요. 인터넷 연결을 확인한 뒤 다시 시도하거나, 휴대폰 화면 캡처(스크린샷)를 이용해 주세요.'); return; }
   const orig=btn.textContent; btn.textContent='저장 중이에요... ⏳'; btn.disabled=true;
   try{
-    // 웹폰트가 다 로드된 뒤에 캡처해야 글자·띄어쓰기가 깨지지 않아요
-    if(document.fonts && document.fonts.ready){ try{ await document.fonts.ready; }catch(e){} }
+    // 웹폰트를 강제로 로드 완료시킨 뒤 캡처해야 글자·띄어쓰기가 깨지지 않아요
+    if(document.fonts){
+      try{ await Promise.all([
+        document.fonts.load("400 40px Jua"),
+        document.fonts.load("400 17px 'Gowun Dodum'"),
+        document.fonts.load("700 16px Gaegu")
+      ]); }catch(e){}
+      if(document.fonts.ready){ try{ await document.fonts.ready; }catch(e){} }
+    }
     const canvas=await html2canvas(el,{scale:2, useCORS:true, backgroundColor:null, imageTimeout:0, logging:false});
     const blob=await new Promise(res=>canvas.toBlob(res,'image/png'));
     if(!blob) throw new Error('no blob');

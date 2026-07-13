@@ -86,7 +86,7 @@
 
   /* ===== 4:5 PHOTO CARD (풀 이미지 + 글씨 오버레이) ===== */
   .photocard{position:relative; width:100%; aspect-ratio:4/5; margin:0 auto; border-radius:28px; overflow:hidden;
-    background:#F0E3EE; background:linear-gradient(180deg, color-mix(in srgb,var(--accent) 30%,#fff), color-mix(in srgb,var(--accent) 12%,#fff));
+    background:linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.88)), var(--accent);
     box-shadow:0 18px 42px rgba(120,90,140,.26); animation:pop .5s ease;}
   .pc-photo{position:absolute; inset:0;}
   .pc-photo .charimg{width:100%; height:100%; object-fit:cover; object-position:center 20%;}
@@ -95,7 +95,7 @@
     background:linear-gradient(180deg, rgba(40,25,45,0) 0%, rgba(40,25,45,.30) 45%, rgba(40,25,45,.68) 100%);}
   .pc-plate{position:absolute; left:0; right:0; bottom:0; z-index:2; padding:0 18px 20px; text-align:center; color:#fff;}
   .pc-deco span{position:absolute; font-size:16px; opacity:.9; filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));}
-  .pc-type{display:inline-block; background:rgba(255,255,255,.26); backdrop-filter:blur(2px); color:#fff; border:1px solid rgba(255,255,255,.4);
+  .pc-type{display:inline-block; background:rgba(255,255,255,.26); color:#fff; border:1px solid rgba(255,255,255,.4);
     border-radius:999px; padding:4px 15px; font-family:'Gaegu'; font-weight:700; font-size:15px; letter-spacing:3px; margin-bottom:8px;}
   .pc-name{font-family:'Jua'; font-size:38px; line-height:1.05; color:#fff; text-shadow:0 3px 12px rgba(0,0,0,.45);}
   .pc-tag{font-size:15px; margin-top:8px; color:#fff; opacity:.96; text-shadow:0 2px 8px rgba(0,0,0,.4);}
@@ -112,9 +112,9 @@
   .mbox .memoji{font-size:40px; margin:6px 0 2px;}
   .mbox .charimg{height:72px; margin:2px 0;}
   .mbox .charemoji{font-size:40px;}
-  .stop .shero{width:100%; height:190px; overflow:hidden;}
-  .stop .shero .charimg{width:100%; height:100%; object-fit:cover; object-position:center 22%;}
-  .stop .shero .charemoji{width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:84px;}
+  .stop .shero{position:absolute; inset:0;}
+  .stop .shero .charimg{width:100%; height:100%; object-fit:cover; object-position:center 20%;}
+  .stop .shero .charemoji{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:120px; padding-bottom:70px;}
   .mbox .mname{font-family:'Jua'; font-size:17px;}
   .mbox .mtype{font-size:13px; color:#a99cb3;}
   .note{font-size:13px; color:#a99cb3; margin:20px 4px 0; line-height:1.5;}
@@ -129,11 +129,14 @@
   /* ===== STORY CARD ===== */
   .story{display:none; animation:pop .5s ease; max-width:360px; margin:0 auto;}
   .scard{background:var(--card); border-radius:34px; padding:0 0 30px; box-shadow:0 18px 40px rgba(120,90,140,.18); overflow:hidden;}
-  .stop{background:linear-gradient(135deg,var(--accent),var(--pink)); color:#fff; padding:0 0 20px; text-align:center; overflow:hidden;}
-  .stop .stoptext{padding:14px 20px 0;}
-  .stop .stype{font-family:'Gaegu'; font-weight:700; font-size:18px; opacity:.95; letter-spacing:2px;}
-  .stop .sname{font-family:'Jua'; font-size:34px; line-height:1.2;}
-  .stop .stag{font-size:15px; opacity:.95; margin-top:4px;}
+  .stop{position:relative; aspect-ratio:4/5; overflow:hidden; text-align:center; color:#fff;
+    background:linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.86)), var(--accent);}
+  .sscrim{position:absolute; left:0; right:0; bottom:0; height:52%; z-index:1;
+    background:linear-gradient(180deg, rgba(40,25,45,0) 0%, rgba(40,25,45,.30) 45%, rgba(40,25,45,.68) 100%);}
+  .stop .stoptext{position:absolute; left:0; right:0; bottom:0; z-index:2; padding:0 20px 22px;}
+  .stop .stype{display:inline-block; background:rgba(255,255,255,.26); border:1px solid rgba(255,255,255,.4); border-radius:999px; padding:3px 14px; font-family:'Gaegu'; font-weight:700; font-size:15px; opacity:1; letter-spacing:3px; margin-bottom:8px;}
+  .stop .sname{font-family:'Jua'; font-size:34px; line-height:1.1; text-shadow:0 3px 12px rgba(0,0,0,.45);}
+  .stop .stag{font-size:15px; margin-top:7px; opacity:.96; text-shadow:0 2px 8px rgba(0,0,0,.4);}
   .ssec{text-align:left; padding:8px 24px 4px;}
   .ssec h3{font-family:'Jua'; font-size:19px; color:var(--accent); margin:20px 0 10px;}
   .ssec p{font-size:16px; line-height:1.7; margin:0; color:#5a4a63;}
@@ -195,7 +198,6 @@
           <div class="pc-type" id="rtype">ISFP</div>
           <div class="pc-name" id="rname"></div>
           <div class="pc-tag" id="rtag"></div>
-          <div class="pc-brand">📖 성경인물 성격카드</div>
         </div>
       </div>
       <button class="btn" id="photoSaveBtn">🖼️ 이 카드 이미지로 저장하기</button>
@@ -234,6 +236,7 @@
       <div class="scard">
         <div class="stop">
           <div class="shero" id="sEmoji"></div>
+          <div class="sscrim"></div>
           <div class="stoptext">
             <div class="stype" id="sType">ISFP</div>
             <div class="sname" id="sName">아담</div>
@@ -462,10 +465,10 @@ function showResult(type){
   document.getElementById('rtraitsTitle').textContent = (userName ? (namePoss(userName)+' 성격은요') : '내 성격은요') + ' 💛';
   const ul=document.getElementById('rtraits'); ul.innerHTML='';
   r.traits.forEach(t=>{const li=document.createElement('li'); li.textContent=t; ul.appendChild(li);});
-  document.getElementById('goodEmoji').innerHTML=figureFor(r.good);
+  document.getElementById('goodEmoji').textContent=good.e;
   document.getElementById('goodName').textContent=good.n;
   document.getElementById('goodType').textContent=r.good;
-  document.getElementById('diffEmoji').innerHTML=figureFor(r.diff);
+  document.getElementById('diffEmoji').textContent=diff.e;
   document.getElementById('diffName').textContent=diff.n;
   document.getElementById('diffType').textContent=r.diff;
   quizEl.style.display='none';

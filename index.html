@@ -83,21 +83,22 @@
   .result{display:none; text-align:center; animation:pop .5s ease;}
   .rcard{background:var(--card); border-radius:34px; padding:8px 24px 34px; box-shadow:0 18px 40px rgba(120,90,140,.18); position:relative; overflow:hidden;}
 
-  /* ===== 4:5 PHOTO CARD ===== */
-  .photocard{position:relative; width:100%; max-width:340px; aspect-ratio:4/5; margin:0 auto 4px; border-radius:30px; overflow:hidden;
-    background:linear-gradient(165deg,var(--accent) 0%,var(--pink) 55%,#FFF4F9 100%);
-    box-shadow:0 16px 40px rgba(120,90,140,.26);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:#fff; padding:22px;}
-  .pc-deco span{position:absolute; font-size:22px; opacity:.9; filter:drop-shadow(0 2px 3px rgba(0,0,0,.12));}
-  .pc-figure{width:80%; height:54%; background:#FCFBF8; border-radius:24px; box-shadow:0 12px 26px rgba(0,0,0,.16);
-    display:flex; align-items:flex-end; justify-content:center; overflow:hidden; margin-bottom:16px; animation:boing .6s ease;}
-  .charimg{width:100%; height:100%; object-fit:contain; object-position:bottom;}
-  .charemoji{line-height:1;}
-  .pc-figure .charemoji{font-size:86px; align-self:center;}
-  .pc-type{display:inline-block; background:rgba(255,255,255,.30); border-radius:999px; padding:5px 16px; font-family:'Gaegu'; font-weight:700; font-size:16px; letter-spacing:3px; margin-bottom:10px;}
-  .pc-name{font-family:'Jua'; font-size:40px; line-height:1.1; text-shadow:0 3px 8px rgba(0,0,0,.20);}
-  .pc-tag{font-size:16px; margin-top:10px; opacity:.98; text-shadow:0 1px 3px rgba(0,0,0,.15);}
-  .pc-brand{position:absolute; bottom:16px; left:0; right:0; font-family:'Gaegu'; font-weight:700; font-size:13px; opacity:.9; letter-spacing:1px;}
+  /* ===== 4:5 PHOTO CARD (풀 이미지 + 글씨 오버레이) ===== */
+  .photocard{position:relative; width:100%; max-width:330px; aspect-ratio:4/5; margin:0 auto 4px; border-radius:30px; overflow:hidden;
+    background:#F0E3EE; background:linear-gradient(180deg, color-mix(in srgb,var(--accent) 30%,#fff), color-mix(in srgb,var(--accent) 12%,#fff));
+    box-shadow:0 18px 42px rgba(120,90,140,.26); animation:pop .5s ease;}
+  .pc-photo{position:absolute; inset:0;}
+  .pc-photo .charimg{width:100%; height:100%; object-fit:cover; object-position:center 20%;}
+  .pc-photo .charemoji{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:132px; padding-bottom:60px;}
+  .pc-scrim{position:absolute; left:0; right:0; bottom:0; height:52%; z-index:1;
+    background:linear-gradient(180deg, rgba(40,25,45,0) 0%, rgba(40,25,45,.30) 45%, rgba(40,25,45,.68) 100%);}
+  .pc-plate{position:absolute; left:0; right:0; bottom:0; z-index:2; padding:0 18px 20px; text-align:center; color:#fff;}
+  .pc-deco span{position:absolute; font-size:16px; opacity:.9; filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));}
+  .pc-type{display:inline-block; background:rgba(255,255,255,.26); backdrop-filter:blur(2px); color:#fff; border:1px solid rgba(255,255,255,.4);
+    border-radius:999px; padding:4px 15px; font-family:'Gaegu'; font-weight:700; font-size:15px; letter-spacing:3px; margin-bottom:8px;}
+  .pc-name{font-family:'Jua'; font-size:38px; line-height:1.05; color:#fff; text-shadow:0 3px 12px rgba(0,0,0,.45);}
+  .pc-tag{font-size:15px; margin-top:8px; color:#fff; opacity:.96; text-shadow:0 2px 8px rgba(0,0,0,.4);}
+  .pc-brand{font-family:'Gaegu'; font-weight:700; font-size:12px; color:#fff; opacity:.8; letter-spacing:1px; margin-top:11px; text-shadow:0 1px 6px rgba(0,0,0,.4);}
   @keyframes boing{0%{transform:scale(0) rotate(-20deg)}70%{transform:scale(1.15) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
   .rsec{text-align:left; background:#FBF7FE; border-radius:20px; padding:18px 20px; margin:14px 4px;}
   .rsec h3{font-family:'Jua'; font-size:19px; margin:0 0 12px; color:var(--accent);}
@@ -175,19 +176,18 @@
     <!-- RESULT -->
     <section class="result" id="result">
       <div class="photocard" id="photocard">
-        <div class="pc-deco" aria-hidden="true">
-          <span style="top:7%;left:9%">✨</span>
-          <span style="top:12%;right:11%">🌸</span>
-          <span style="top:40%;left:6%">⭐</span>
-          <span style="top:46%;right:7%">☁️</span>
-          <span style="bottom:25%;left:11%">💕</span>
-          <span style="bottom:15%;right:13%">✨</span>
+        <div class="pc-photo" id="pcFigure"></div>
+        <div class="pc-scrim"></div>
+        <div class="pc-plate">
+          <div class="pc-deco" aria-hidden="true">
+            <span style="top:-2px;left:14%">✨</span>
+            <span style="top:6px;right:16%">✨</span>
+          </div>
+          <div class="pc-type" id="rtype">ISFP</div>
+          <div class="pc-name" id="rname"></div>
+          <div class="pc-tag" id="rtag"></div>
+          <div class="pc-brand">📖 성경인물 성격카드</div>
         </div>
-        <div class="pc-figure" id="pcFigure"></div>
-        <div class="pc-type" id="rtype">ISFP</div>
-        <div class="pc-name" id="rname"></div>
-        <div class="pc-tag" id="rtag"></div>
-        <div class="pc-brand">📖 성경인물 성격카드</div>
       </div>
       <button class="btn" id="photoSaveBtn">🖼️ 이 카드 이미지로 저장하기</button>
 

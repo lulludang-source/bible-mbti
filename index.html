@@ -289,7 +289,7 @@ const Q = [
 
   {e:"✏️", t:"친구가 준비물을 안 가져왔을 때 나는?", a:"\"왜 안 챙겼어?\" 먼저 물어본다", b:"\"괜찮아, 같이 쓰자\" 먼저 말한다", d:"TF"},
   {e:"😢", t:"친구랑 다퉜을 때 나는?", a:"누가 잘못했는지 따져본다", b:"친구 기분이 상했을까 먼저 걱정된다", d:"TF"},
-  {e:"🗣️", t:"모둠에서 의견이 갈리면 나는?", a:"어떤 게 더 맞는지 생각한다", b:"다 같이 기분 좋게 정하고 싶다", d:"TF"},
+  {e:"🗣️", t:"친구들이랑 의견이 갈리면 나는?", a:"어떤 게 더 맞는지 생각한다", b:"다 같이 기분 좋게 정하고 싶다", d:"TF"},
 
   {e:"📚", t:"방학 숙제를 나는?", a:"계획을 세워서 미리미리 한다", b:"몰아서 하거나 그때그때 한다", d:"JP"},
   {e:"🎒", t:"소풍 가방을 쌀 때 나는?", a:"전날 미리 다 챙겨둔다", b:"소풍날 아침에 후다닥 챙긴다", d:"JP"},
@@ -313,7 +313,7 @@ const R = {
   ESFP:{e:"🪜",n:"야곱",g:"어디서나 인기쟁이",traits:["함께 있으면 즐거워지는 친구예요","새로운 걸 시도하고 활발해요","밝고 친구가 많아요 (사다리 꿈을 꾼 야곱!)"],good:"ISTP",diff:"INTJ"},
   ENFP:{e:"🎣",n:"베드로",g:"열정 넘치는 아이디어뱅크",traits:["하고 싶은 게 생기면 바로 도전해요 (열정 가득 베드로!)","새로운 아이디어가 팡팡 떠올라요","친구들 기분을 좋게 해줘요"],good:"INTP",diff:"ISTJ"},
   ENTP:{e:"👸",n:"에스더",g:"재치있고 용감한 친구",traits:["재치있게 문제를 풀어요 (에스더는 지혜로 백성을 구했어요!)","새로운 방법 찾는 걸 좋아해요","머리 회전이 빠르고 용감해요"],good:"ISFP",diff:"ISFJ"},
-  ESTJ:{e:"⚖️",n:"드보라",g:"앞장서는 든든한 리더",traits:["모둠을 척척 이끌어요 (드보라는 나라를 이끈 지도자!)","규칙을 지키고 야무지게 해내요","책임감이 강해요"],good:"INTJ",diff:"INFP"},
+  ESTJ:{e:"⚖️",n:"드보라",g:"앞장서는 든든한 리더",traits:["친구들을 척척 이끌어요 (드보라는 나라를 이끈 지도자!)","규칙을 지키고 야무지게 해내요","책임감이 강해요"],good:"INTJ",diff:"INFP"},
   ESFJ:{e:"🎶",n:"다윗",g:"노래하는 따뜻한 리더",traits:["친구를 잘 챙기고 함께 즐거워해요 (다윗은 하프 켜며 찬양했어요)","분위기를 밝고 따뜻하게 만들어요","사람들에게 인기가 많아요"],good:"ISTJ",diff:"INTP"},
   ENFJ:{e:"🏹",n:"요나단",g:"의리 있는 따뜻한 대장",traits:["친구를 진심으로 아끼고 지켜줘요 (요나단은 다윗의 최고의 친구!)","친구들을 잘 이끌어요","다 함께 잘되길 바라요"],good:"INFP",diff:"ISTP"},
   ENTJ:{e:"✉️",n:"바울",g:"목표를 향해 달리는 대장",traits:["목표를 정하면 끝까지 해내요 (복음을 전한 바울!)","앞장서서 이끄는 걸 잘해요","자신감이 넘쳐요"],good:"INFJ",diff:"ISFP"}
@@ -623,92 +623,93 @@ async function buildResultCanvas(){
 }
 
 async function buildStoryCanvas(){
-  const W=800, P=44, cw=W-2*P;
+  const S=3, BW=360, P=24, cw=BW-2*P;
   const accent=currentAccentColor, tint=lightTint(accent), r=R[currentType], s=STORY[currentType], type=currentType;
   const grape='#9B6FE0', ink='#5A4A63', muted='#8a7d92', boxBg='#FBF7FE';
   const img=await loadCharImage(type);
 
   function render(ctx,draw){
-    let y=0; const HH=600, cx=W/2;
+    let y=0; const HH=270, cx=BW/2, LH=26;
     if(draw){
-      ctx.save(); roundRectPath(ctx,0,0,W,HH,40); ctx.clip();
-      ctx.fillStyle=tint; ctx.fillRect(0,0,W,HH);
-      if(img) drawCover(ctx,img,0,0,W,HH,0.08);
-      else { ctx.save(); ctx.textAlign='center'; ctx.font='160px sans-serif'; ctx.fillText(r.e,cx,HH*0.16); ctx.restore(); }
+      ctx.save(); roundRectPath(ctx,0,0,BW,HH,20); ctx.clip();
+      ctx.fillStyle=tint; ctx.fillRect(0,0,BW,HH);
+      if(img) drawCover(ctx,img,0,0,BW,HH,0.06);
+      else { ctx.save(); ctx.textAlign='center'; ctx.font='96px sans-serif'; ctx.fillText(r.e,cx,HH*0.10); ctx.restore(); }
       const g=ctx.createLinearGradient(0,HH*0.42,0,HH);
       g.addColorStop(0,'rgba(20,15,25,0)'); g.addColorStop(0.5,'rgba(20,15,25,0.10)'); g.addColorStop(1,'rgba(20,15,25,0.60)');
-      ctx.fillStyle=g; ctx.fillRect(0,HH*0.42,W,HH*0.58);
-      ctx.font='700 22px Gaegu'; const ts=type.split('').join(' '); const tw=ctx.measureText(ts).width;
-      const pw=tw+42, ph=40, px=cx-pw/2, py=HH-158;
-      roundRectPath(ctx,px,py,pw,ph,ph/2); ctx.fillStyle='rgba(0,0,0,0.30)'; ctx.fill(); ctx.lineWidth=2; ctx.strokeStyle='rgba(255,255,255,0.55)'; ctx.stroke();
+      ctx.fillStyle=g; ctx.fillRect(0,HH*0.42,BW,HH*0.58);
+      ctx.font='700 15px Gaegu'; const ts=type.split('').join(' '); const tw=ctx.measureText(ts).width;
+      const pw=tw+26, ph=28, px=cx-pw/2, py=HH-96;
+      roundRectPath(ctx,px,py,pw,ph,ph/2); ctx.fillStyle='rgba(0,0,0,0.30)'; ctx.fill(); ctx.lineWidth=1.5; ctx.strokeStyle='rgba(255,255,255,0.55)'; ctx.stroke();
       ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(ts,cx,py+ph/2+1); ctx.textBaseline='top';
-      ctx.save(); ctx.font='400 48px Jua'; ctx.fillStyle='#fff'; ctx.shadowColor='rgba(0,0,0,0.5)'; ctx.shadowBlur=12; ctx.shadowOffsetY=2; ctx.textAlign='center'; ctx.fillText(r.n,cx,HH-106); ctx.restore();
-      ctx.save(); ctx.font="400 22px 'Gowun Dodum'"; ctx.fillStyle='rgba(255,255,255,0.96)'; ctx.shadowColor='rgba(0,0,0,0.45)'; ctx.shadowBlur=8; ctx.textAlign='center'; ctx.fillText(r.g,cx,HH-50); ctx.restore();
+      ctx.save(); ctx.font='400 32px Jua'; ctx.fillStyle='#fff'; ctx.shadowColor='rgba(0,0,0,0.5)'; ctx.shadowBlur=8; ctx.shadowOffsetY=2; ctx.textAlign='center'; ctx.fillText(r.n,cx,HH-62); ctx.restore();
+      ctx.save(); ctx.font="400 15px 'Gowun Dodum'"; ctx.fillStyle='rgba(255,255,255,0.96)'; ctx.shadowColor='rgba(0,0,0,0.45)'; ctx.shadowBlur=6; ctx.textAlign='center'; ctx.fillText(r.g,cx,HH-28); ctx.restore();
       ctx.textAlign='left'; ctx.restore();
     }
-    y=HH+42;
-    function heading(txt){ if(draw){ ctx.font='400 30px Jua'; ctx.fillStyle=accent; ctx.textAlign='left'; ctx.fillText(txt,P,y); } y+=50; }
+    y=HH+24;
+    function heading(txt){ if(draw){ ctx.font='400 19px Jua'; ctx.fillStyle=accent; ctx.textAlign='left'; ctx.fillText(txt,P,y); } y+=32; }
     // 4글자 풀이
     heading('🧩 내 성격 4글자 풀이');
-    const gap=12, chipW=(cw-3*gap)/4, chipH=144, chipY=y;
+    const gap=8, chipW=(cw-3*gap)/4, chipH=96, chipY=y;
     if(draw){
       type.split('').forEach((L,i)=>{
         const x=P+i*(chipW+gap);
-        roundRectPath(ctx,x,chipY,chipW,chipH,18); ctx.fillStyle=boxBg; ctx.fill(); ctx.lineWidth=2; ctx.strokeStyle='#EFE7F6'; ctx.stroke();
+        roundRectPath(ctx,x,chipY,chipW,chipH,14); ctx.fillStyle=boxBg; ctx.fill(); ctx.lineWidth=1.5; ctx.strokeStyle='#EFE7F6'; ctx.stroke();
         ctx.textAlign='center';
-        ctx.font='400 32px Jua'; ctx.fillStyle=accent; ctx.fillText(L,x+chipW/2,chipY+16);
-        ctx.font='700 16px Gaegu'; ctx.fillStyle=grape; ctx.fillText(LETTER[L].t,x+chipW/2,chipY+60);
-        ctx.font="400 12px 'Gowun Dodum'"; ctx.fillStyle=muted;
-        const dl=wrapLines(ctx,LETTER[L].d,chipW-16); let dy=chipY+88; dl.forEach(ln=>{ctx.fillText(ln,x+chipW/2,dy); dy+=18;});
+        ctx.font='400 22px Jua'; ctx.fillStyle=accent; ctx.fillText(L,x+chipW/2,chipY+10);
+        ctx.font='700 13px Gaegu'; ctx.fillStyle=grape; ctx.fillText(LETTER[L].t,x+chipW/2,chipY+40);
+        ctx.font="400 10px 'Gowun Dodum'"; ctx.fillStyle=muted;
+        const dl=wrapLines(ctx,LETTER[L].d,chipW-10); let dy=chipY+58; dl.forEach(ln=>{ctx.fillText(ln,x+chipW/2,dy); dy+=14;});
         ctx.textAlign='left';
       });
     }
-    y=chipY+chipH+38;
+    y=chipY+chipH+26;
     // 이야기
     heading('📖 이 인물의 이야기');
     const paras=s.story.split('\n\n');
     paras.forEach((para,idx)=>{
       if(idx===paras.length-1){
-        ctx.font='700 18px Gaegu'; const lines=wrapLines(ctx,para,cw-40); const boxH=lines.length*30+30;
-        if(draw){ roundRectPath(ctx,P,y,cw,boxH,16); ctx.fillStyle=boxBg; ctx.fill(); ctx.fillStyle=grape; ctx.textAlign='left'; let ty=y+15; lines.forEach(ln=>{ctx.fillText(ln,P+20,ty); ty+=30;}); }
-        y+=boxH+16;
+        ctx.font='700 16px Gaegu'; const lines=wrapLines(ctx,para,cw-28); const boxH=lines.length*LH+24;
+        if(draw){ roundRectPath(ctx,P,y,cw,boxH,14); ctx.fillStyle=boxBg; ctx.fill(); ctx.fillStyle=grape; ctx.textAlign='left'; let ty=y+12; lines.forEach(ln=>{ctx.fillText(ln,P+14,ty); ty+=LH;}); }
+        y+=boxH+14;
       } else {
-        ctx.font="400 17px 'Gowun Dodum'"; const lines=wrapLines(ctx,para,cw);
-        if(draw){ ctx.fillStyle=ink; ctx.textAlign='left'; let ty=y; lines.forEach(ln=>{ctx.fillText(ln,P,ty); ty+=30;}); }
-        y+=lines.length*30+14;
+        ctx.font="400 15px 'Gowun Dodum'"; const lines=wrapLines(ctx,para,cw);
+        if(draw){ ctx.fillStyle=ink; ctx.textAlign='left'; let ty=y; lines.forEach(ln=>{ctx.fillText(ln,P,ty); ty+=LH;}); }
+        y+=lines.length*LH+12;
       }
     });
-    y+=8;
+    y+=6;
     // 성격 해석
     heading('💡 성격 해석');
-    ctx.font="400 17px 'Gowun Dodum'"; { const lines=wrapLines(ctx,s.interp,cw); if(draw){ ctx.fillStyle=ink; ctx.textAlign='left'; let ty=y; lines.forEach(ln=>{ctx.fillText(ln,P,ty); ty+=30;}); } y+=lines.length*30+26; }
+    ctx.font="400 15px 'Gowun Dodum'"; { const lines=wrapLines(ctx,s.interp,cw); if(draw){ ctx.fillStyle=ink; ctx.textAlign='left'; let ty=y; lines.forEach(ln=>{ctx.fillText(ln,P,ty); ty+=LH;}); } y+=lines.length*LH+22; }
     // 대표 구절 박스
-    { const innerW=cw-48; ctx.font='700 20px Gaegu'; const qlines=wrapLines(ctx,'\u201C'+s.v+'\u201D',innerW);
-      const boxH=20+26+10+qlines.length*30+18+22+18;
+    { const innerW=cw-32; ctx.font='700 17px Gaegu'; const qlines=wrapLines(ctx,'\u201C'+s.v+'\u201D',innerW);
+      const boxH=14+20+8+qlines.length*LH+14+20+14;
       if(draw){
-        ctx.save(); roundRectPath(ctx,P,y,cw,boxH,20); ctx.fillStyle='#FBF3F8'; ctx.fill(); ctx.setLineDash([6,5]); ctx.lineWidth=2; ctx.strokeStyle=accent; ctx.stroke(); ctx.restore();
+        ctx.save(); roundRectPath(ctx,P,y,cw,boxH,16); ctx.fillStyle='#FBF3F8'; ctx.fill(); ctx.setLineDash([5,4]); ctx.lineWidth=1.5; ctx.strokeStyle=accent; ctx.stroke(); ctx.restore();
         ctx.textAlign='center';
-        ctx.font='700 14px Gaegu'; ctx.fillStyle=grape; ctx.fillText(r.n+' 대표 성경 구절',cx,y+18);
-        ctx.font='700 20px Gaegu'; ctx.fillStyle='#6a4a63'; let qy=y+52; qlines.forEach(ln=>{ctx.fillText(ln,cx,qy); qy+=30;});
-        ctx.font='400 16px Jua'; ctx.fillStyle=accent; ctx.fillText('— '+s.vref,cx,y+boxH-30);
+        ctx.font='700 12px Gaegu'; ctx.fillStyle=grape; ctx.fillText(r.n+' 대표 성경 구절',cx,y+14);
+        ctx.font='700 17px Gaegu'; ctx.fillStyle='#6a4a63'; let qy=y+42; qlines.forEach(ln=>{ctx.fillText(ln,cx,qy); qy+=LH;});
+        ctx.font='400 14px Jua'; ctx.fillStyle=accent; ctx.fillText('— '+s.vref,cx,y+boxH-24);
         ctx.textAlign='left';
       }
-      y+=boxH+26;
+      y+=boxH+22;
     }
     // 성경에서 찾아보기
     heading('🔍 성경에서 찾아보기');
-    { ctx.font='700 17px Gaegu'; const txt='👉 '+s.read+'을(를) 펼쳐 보세요!'; const lines=wrapLines(ctx,txt,cw-40); const boxH=lines.length*28+26;
-      if(draw){ roundRectPath(ctx,P,y,cw,boxH,16); ctx.fillStyle=boxBg; ctx.fill(); ctx.fillStyle=grape; ctx.textAlign='left'; let ty=y+13; lines.forEach(ln=>{ctx.fillText(ln,P+20,ty); ty+=28;}); }
-      y+=boxH+40;
+    { ctx.font='700 15px Gaegu'; const txt='👉 '+s.read+'을(를) 펼쳐 보세요!'; const lines=wrapLines(ctx,txt,cw-28); const boxH=lines.length*24+22;
+      if(draw){ roundRectPath(ctx,P,y,cw,boxH,14); ctx.fillStyle=boxBg; ctx.fill(); ctx.fillStyle=grape; ctx.textAlign='left'; let ty=y+11; lines.forEach(ln=>{ctx.fillText(ln,P+14,ty); ty+=24;}); }
+      y+=boxH+30;
     }
     return y;
   }
 
-  const tmp=document.createElement('canvas'); tmp.width=W; tmp.height=10;
-  const endY=Math.ceil(render(tmp.getContext('2d'),false));
-  const c=document.createElement('canvas'); c.width=W; c.height=endY;
-  const ctx=c.getContext('2d'); ctx.textBaseline='top';
-  ctx.save(); roundRectPath(ctx,0,0,W,endY,40); ctx.fillStyle='#ffffff'; ctx.fill(); ctx.clip();
+  const tmp=document.createElement('canvas'); tmp.width=BW; tmp.height=10;
+  const tctx=tmp.getContext('2d'); tctx.textBaseline='top';
+  const endY=Math.ceil(render(tctx,false));
+  const c=document.createElement('canvas'); c.width=BW*S; c.height=endY*S;
+  const ctx=c.getContext('2d'); ctx.scale(S,S); ctx.textBaseline='top';
+  ctx.save(); roundRectPath(ctx,0,0,BW,endY,20); ctx.fillStyle='#ffffff'; ctx.fill(); ctx.clip();
   render(ctx,true); ctx.restore();
   return c;
 }

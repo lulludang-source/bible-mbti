@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>나랑 닮은 성경인물은? 📖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gaegu:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coral:#FF6F91; --pink:#FF9FB2; --yellow:#FFC75F; --mint:#6FD3A3;
+    --sky:#56CCF2; --purple:#B983FF; --grape:#9B6FE0; --ink:#5A4A63;
+    --card:#FFFFFF;
+    --accent:var(--coral);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:'Gowun Dodum', sans-serif;
+    color:var(--ink);
+    min-height:100vh;
+    background:linear-gradient(135deg,#FFE0EC 0%,#FFF3D6 30%,#DFF7EC 60%,#E4E0FF 100%);
+    background-attachment:fixed;
+    overflow-x:hidden;
+  }
+  /* floating background blobs */
+  .blob{position:fixed; border-radius:50%; filter:blur(6px); opacity:.35; z-index:0; pointer-events:none; animation:float 9s ease-in-out infinite;}
+  .b1{width:120px;height:120px;background:var(--yellow); top:8%; left:6%;}
+  .b2{width:90px;height:90px;background:var(--sky); top:70%; left:10%; animation-delay:1.5s;}
+  .b3{width:110px;height:110px;background:var(--pink); top:15%; right:8%; animation-delay:.8s;}
+  .b4{width:80px;height:80px;background:var(--mint); top:78%; right:12%; animation-delay:2.2s;}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-22px) rotate(8deg)}}
+
+  .wrap{position:relative; z-index:1; max-width:640px; margin:0 auto; padding:24px 20px 60px; min-height:100vh; display:flex; flex-direction:column; justify-content:center;}
+
+  /* ===== START SCREEN ===== */
+  .hero{text-align:center; animation:pop .5s ease;}
+  .hero .badge{display:inline-block; background:#fff; border-radius:999px; padding:8px 18px; font-family:'Gaegu'; font-weight:700; color:var(--coral); box-shadow:0 6px 0 rgba(255,111,145,.18); margin-bottom:18px; font-size:16px;}
+  .hero h1{font-family:'Jua'; font-size:clamp(30px,7vw,46px); line-height:1.28; margin:6px 0 2px; color:var(--ink);}
+  .hero h1 .rainbow{background:linear-gradient(90deg,var(--coral),var(--yellow),var(--mint),var(--sky),var(--purple)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+  .hero p{font-size:17px; color:#7a6d82; margin:14px 0 30px;}
+  .paws{font-size:40px; letter-spacing:8px; margin:10px 0 6px; animation:wobble 2.5s ease-in-out infinite;}
+  @keyframes wobble{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+  @keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+
+  .btn{
+    font-family:'Jua'; font-size:22px; border:none; cursor:pointer;
+    color:#fff; border-radius:24px; padding:18px 34px; width:100%;
+    background:linear-gradient(135deg,var(--coral),var(--pink));
+    box-shadow:0 8px 0 rgba(214,70,110,.35); transition:transform .12s, box-shadow .12s;
+  }
+  .btn:active{transform:translateY(6px); box-shadow:0 2px 0 rgba(214,70,110,.35);}
+  .btn:focus-visible{outline:4px solid var(--purple); outline-offset:3px;}
+
+  /* ===== QUIZ ===== */
+  .quiz{display:none;}
+  .topbar{display:flex; align-items:center; gap:12px; margin-bottom:26px;}
+  .count{font-family:'Jua'; font-size:20px; color:var(--accent); min-width:56px; text-align:center;}
+  .bar{flex:1; height:16px; background:#fff; border-radius:999px; overflow:hidden; box-shadow:inset 0 2px 4px rgba(0,0,0,.06);}
+  .fill{height:100%; width:0; border-radius:999px; background:linear-gradient(90deg,var(--coral),var(--yellow),var(--mint),var(--sky),var(--purple)); transition:width .4s cubic-bezier(.34,1.56,.64,1);}
+
+  .qcard{background:var(--card); border-radius:30px; padding:34px 26px; box-shadow:0 14px 34px rgba(120,90,140,.14); animation:slidein .35s ease;}
+  @keyframes slidein{0%{transform:translateX(40px);opacity:0}100%{transform:translateX(0);opacity:1}}
+  .qemoji{font-size:52px; text-align:center; margin-bottom:8px;}
+  .qtext{font-family:'Jua'; font-size:clamp(21px,5vw,26px); text-align:center; line-height:1.45; margin:6px 4px 26px;}
+  .opt{
+    display:flex; align-items:center; gap:14px; width:100%; text-align:left;
+    background:#fff; border:3px solid #F0EAF4; border-radius:22px; padding:18px 20px;
+    font-family:'Gowun Dodum'; font-size:18px; color:var(--ink); cursor:pointer; margin-bottom:14px;
+    transition:transform .12s, border-color .12s, background .12s; line-height:1.4;
+  }
+  .opt .dot{width:26px; height:26px; border-radius:50%; flex:0 0 26px; background:var(--accent); opacity:.85;}
+  .opt:hover{transform:translateY(-3px) scale(1.01); border-color:var(--accent); background:#FFF9FB;}
+  .opt:active{transform:scale(.98);}
+  .opt:focus-visible{outline:4px solid var(--purple); outline-offset:2px;}
+
+  .back{background:none; border:none; font-family:'Gaegu'; font-weight:700; font-size:16px; color:#9a8ca6; cursor:pointer; margin-top:18px; padding:8px;}
+  .back:disabled{opacity:.35; cursor:default;}
+
+  /* ===== RESULT ===== */
+  .result{display:none; text-align:center; animation:pop .5s ease;}
+  .rcard{background:var(--card); border-radius:34px; padding:16px 24px 34px; box-shadow:0 18px 40px rgba(120,90,140,.18); position:relative; overflow:hidden;}
+  .rcard::before{content:""; position:absolute; top:0; left:0; right:0; height:120px; background:linear-gradient(135deg,var(--accent),var(--pink)); opacity:.9;}
+  .ranimal{font-size:96px; position:relative; margin-top:22px; animation:boing .6s ease; filter:drop-shadow(0 8px 10px rgba(0,0,0,.15));}
+  @keyframes boing{0%{transform:scale(0) rotate(-20deg)}70%{transform:scale(1.15) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
+  .rtype{font-family:'Gaegu'; font-weight:700; font-size:20px; color:var(--accent); margin-top:6px;}
+  .rname{font-family:'Jua'; font-size:32px; margin:2px 0 4px;}
+  .rtag{font-size:16px; color:#8a7d92; margin-bottom:20px;}
+  .rsec{text-align:left; background:#FBF7FE; border-radius:20px; padding:18px 20px; margin:14px 4px;}
+  .rsec h3{font-family:'Jua'; font-size:19px; margin:0 0 12px; color:var(--accent);}
+  .rsec li{list-style:none; margin:0 0 10px; padding-left:28px; position:relative; font-size:16px; line-height:1.5;}
+  .rsec li::before{content:"⭐"; position:absolute; left:0; top:0;}
+  .match{display:flex; gap:12px; margin:18px 4px 6px;}
+  .mbox{flex:1; background:#fff; border:3px solid #F0EAF4; border-radius:20px; padding:16px 10px;}
+  .mbox .mlabel{font-family:'Gaegu'; font-weight:700; font-size:14px; color:#9a8ca6;}
+  .mbox .memoji{font-size:40px; margin:6px 0 2px;}
+  .mbox .mname{font-family:'Jua'; font-size:17px;}
+  .mbox .mtype{font-size:13px; color:#a99cb3;}
+  .note{font-size:13px; color:#a99cb3; margin:20px 4px 0; line-height:1.5;}
+  .rbtns{margin-top:22px;}
+  .btn.ghost{background:#fff; color:var(--accent); box-shadow:0 6px 0 rgba(180,140,200,.2); margin-top:12px;}
+</style>
+</head>
+<body>
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
+
+  <div class="wrap">
+    <!-- START -->
+    <section class="hero" id="hero">
+      <div class="paws">📖 🌈 ⛪ ✨</div>
+      <span class="badge">성경인물 성격 찾기 🎈</span>
+      <h1>나랑 닮은 <span class="rainbow">성경인물</span>은<br>누구일까?</h1>
+      <p>12개의 질문에 솔직하게 답해봐요.<br>학교랑 교회에서 나는 어떤 모습일까요? ✨</p>
+      <button class="btn" id="startBtn">시작하기 🚀</button>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="quiz" id="quiz">
+      <div class="topbar">
+        <span class="count" id="count">1/12</span>
+        <div class="bar"><div class="fill" id="fill"></div></div>
+      </div>
+      <div class="qcard" id="qcard">
+        <div class="qemoji" id="qemoji">🎒</div>
+        <div class="qtext" id="qtext"></div>
+        <button class="opt" id="optA"><span class="dot"></span><span></span></button>
+        <button class="opt" id="optB"><span class="dot"></span><span></span></button>
+      </div>
+      <button class="back" id="backBtn">← 이전 질문</button>
+    </section>
+
+    <!-- RESULT -->
+    <section class="result" id="result">
+      <div class="rcard">
+        <div class="ranimal" id="ranimal">📖</div>
+        <div class="rtype" id="rtype">INFP</div>
+        <div class="rname" id="rname"></div>
+        <div class="rtag" id="rtag"></div>
+
+        <div class="rsec">
+          <h3>내 성격은요 💛</h3>
+          <ul id="rtraits"></ul>
+        </div>
+
+        <div class="match">
+          <div class="mbox">
+            <div class="mlabel">나랑 잘 맞는 성경친구 💕</div>
+            <div class="memoji" id="goodEmoji">🐶</div>
+            <div class="mname" id="goodName"></div>
+            <div class="mtype" id="goodType"></div>
+          </div>
+          <div class="mbox">
+            <div class="mlabel">조금 다른 성경친구 🌈</div>
+            <div class="memoji" id="diffEmoji">🦅</div>
+            <div class="mname" id="diffName"></div>
+            <div class="mtype" id="diffType"></div>
+          </div>
+        </div>
+
+        <p class="note">※ 교회나 학교에서의 모습으로 만든 재미 테스트예요.<br>평소 성격이랑 조금 다를 수도 있어요! 😊</p>
+      </div>
+      <div class="rbtns">
+        <button class="btn" id="againBtn">다시 해보기 🔄</button>
+      </div>
+    </section>
+  </div>
+
+<script>
+/* ---------- 질문 (문항마다 A=앞글자, B=뒷글자) ---------- */
+const Q = [
+  {e:"🎮", t:"쉬는 시간에 나는?", a:"친구들이랑 우르르 나가서 논다", b:"자리에서 좋아하는 친구랑 조용히 논다", d:"EI"},
+  {e:"⛪", t:"처음 간 교회 모임에서 나는?", a:"내가 먼저 다가가서 인사한다", b:"누가 나한테 말 걸어주면 좋겠다", d:"EI"},
+  {e:"🎉", t:"신나는 일이 생기면 나는?", a:"여기저기 다 자랑하고 말하고 싶다", b:"마음속에 담아두거나 친한 한 명한테만", d:"EI"},
+
+  {e:"🎨", t:"미술 시간에 그림을 그릴 때 나는?", a:"눈에 보이는 걸 똑같이 그린다", b:"상상 속 이야기를 그린다", d:"SN"},
+  {e:"🚢", t:"'노아의 방주' 이야기를 들으면 나는?", a:"배가 얼마나 컸을까, 동물은 몇 마리일까 궁금", b:"그 안에서 무슨 일이 있었을까 상상해본다", d:"SN"},
+  {e:"🧱", t:"만들기 숙제를 할 때 나는?", a:"설명서대로 차근차근 만든다", b:"내 맘대로 새로운 걸 만든다", d:"SN"},
+
+  {e:"✏️", t:"친구가 준비물을 안 가져왔을 때 나는?", a:"\"왜 안 챙겼어?\" 먼저 물어본다", b:"\"괜찮아, 같이 쓰자\" 먼저 말한다", d:"TF"},
+  {e:"😢", t:"친구랑 다퉜을 때 나는?", a:"누가 잘못했는지 따져본다", b:"친구 기분이 상했을까 먼저 걱정된다", d:"TF"},
+  {e:"🗣️", t:"모둠에서 의견이 갈리면 나는?", a:"어떤 게 더 맞는지 생각한다", b:"다 같이 기분 좋게 정하고 싶다", d:"TF"},
+
+  {e:"📚", t:"방학 숙제를 나는?", a:"계획을 세워서 미리미리 한다", b:"몰아서 하거나 그때그때 한다", d:"JP"},
+  {e:"🎒", t:"소풍 가방을 쌀 때 나는?", a:"전날 미리 다 챙겨둔다", b:"소풍날 아침에 후다닥 챙긴다", d:"JP"},
+  {e:"🛝", t:"친구랑 놀 때 나는?", a:"뭐 하고 놀지 먼저 정하고 논다", b:"일단 만나서 그때 정한다", d:"JP"}
+];
+
+/* 문항별 알록달록 색 */
+const COLORS = ["#FF6F91","#FFB454","#FFC75F","#6FD3A3","#3EC5A9","#56CCF2","#7AA5F5","#B983FF","#9B6FE0","#FF8FB0","#FF6F91","#FFB454"];
+
+/* ---------- 결과 16종 (성경인물) ---------- */
+const R = {
+  ISTJ:{e:"🚢",n:"노아",g:"묵묵히 끝까지 해내는 친구",traits:["맡은 일은 끝까지 해내요 (방주를 완성한 노아처럼!)","약속과 규칙을 잘 지켜요","성실해서 어른들이 믿고 맡겨요"],good:"ESFJ",diff:"ENFP"},
+  ISFJ:{e:"🌾",n:"룻",g:"조용히 챙겨주는 다정한 친구",traits:["힘든 사람 곁을 지켜줘요 (룻이 시어머니를 끝까지 챙긴 것처럼)","티 안 나게 도와주는 걸 좋아해요","마음이 따뜻하고 착해요"],good:"ESTP",diff:"ENTP"},
+  INFJ:{e:"🧥",n:"요셉",g:"꿈을 꾸고 깊이 생각하는 친구",traits:["상상하고 꿈꾸는 걸 좋아해요 (꿈쟁이 요셉!)","친구 마음을 잘 알아채요","조용하지만 속이 깊어요"],good:"ENTJ",diff:"ESTP"},
+  INTJ:{e:"🦁",n:"다니엘",g:"흔들리지 않는 계획왕",traits:["미리 계획 세우는 걸 좋아해요","옳다고 믿으면 끝까지 지켜요 (사자굴 앞에서도!)","혼자서도 척척 잘해요"],good:"ESTJ",diff:"ESFP"},
+  ISTP:{e:"🔨",n:"브살렐",g:"뚝딱뚝딱 손재주꾼",traits:["손으로 만드는 걸 잘해요 (성막을 만든 최고의 장인!)","말보다 행동이 빨라요","고치고 만드는 게 제일 재밌어요"],good:"ESFP",diff:"ENFJ"},
+  ISFP:{e:"🍎",n:"아담",g:"마음이 여린 예술가",traits:["그림·노래·만들기를 좋아해요","싫은 소리를 잘 못 해요","조용히 봉사하는 걸 좋아해요"],good:"ENTP",diff:"ENTJ"},
+  INFP:{e:"💛",n:"요한",g:"사랑이 많은 꿈꾸는 친구",traits:["친구를 아끼고 잘 공감해요 (요한은 '사랑의 사도')","상상하고 이야기 만드는 걸 좋아해요","조용하지만 마음속엔 꿈이 가득해요"],good:"ENFJ",diff:"ESTJ"},
+  INTP:{e:"👑",n:"솔로몬",g:"궁금한 게 많은 지혜쟁이",traits:["\"왜 그럴까?\" 궁금한 게 많아요","곰곰이 생각해 지혜롭게 답을 찾아요 (솔로몬의 지혜!)","기발한 생각이 자주 떠올라요"],good:"ENFP",diff:"ESFJ"},
+  ESTP:{e:"💪",n:"삼손",g:"겁 없는 용감한 모험왕",traits:["몸으로 도전하는 걸 좋아해요 (힘이 최고 삼손!)","겁 없이 앞으로 나가요","친구들이랑 있으면 신나요"],good:"ISFJ",diff:"INFJ"},
+  ESFP:{e:"🥁",n:"미리암",g:"어디서나 인기쟁이",traits:["노래하고 춤추는 걸 좋아해요 (소고 치며 찬양한 미리암!)","함께 있으면 즐거워지는 친구예요","밝고 친구가 많아요"],good:"ISTP",diff:"INTJ"},
+  ENFP:{e:"🎣",n:"베드로",g:"열정 넘치는 아이디어뱅크",traits:["하고 싶은 게 생기면 바로 도전해요 (열정 가득 베드로!)","새로운 아이디어가 팡팡 떠올라요","친구들 기분을 좋게 해줘요"],good:"INTP",diff:"ISTJ"},
+  ENTP:{e:"🛡️",n:"에훗",g:"재치있고 용감한 친구",traits:["재치있게 문제를 풀어요 (지혜로 나라를 구한 에훗!)","새로운 방법 찾는 걸 좋아해요","머리 회전이 빠르고 용감해요"],good:"ISFP",diff:"ISFJ"},
+  ESTJ:{e:"🧱",n:"느헤미야",g:"앞장서는 든든한 리더",traits:["모둠을 척척 이끌어요 (무너진 성벽을 다시 세운 느헤미야!)","계획대로 야무지게 해내요","책임감이 강해요"],good:"INTJ",diff:"INFP"},
+  ESFJ:{e:"🤝",n:"바나바",g:"다 챙기는 따뜻한 반장",traits:["친구를 잘 챙기고 위로해줘요 (바나바는 '위로의 아들'!)","분위기를 따뜻하게 만들어요","다 함께 잘 지내길 바라요"],good:"ISTJ",diff:"INTP"},
+  ENFJ:{e:"🌊",n:"모세",g:"친구들을 이끄는 따뜻한 대장",traits:["친구들을 잘 챙기고 이끌어요 (백성을 이끈 모세!)","말로 힘을 주는 걸 좋아해요","다 함께 잘되길 바라요"],good:"INFP",diff:"ISTP"},
+  ENTJ:{e:"✉️",n:"바울",g:"목표를 향해 달리는 대장",traits:["목표를 정하면 끝까지 해내요 (복음을 전한 바울!)","앞장서서 이끄는 걸 잘해요","자신감이 넘쳐요"],good:"INFJ",diff:"ISFP"}
+};
+
+/* ---------- 로직 ---------- */
+const hero=document.getElementById('hero'), quizEl=document.getElementById('quiz'), resultEl=document.getElementById('result');
+const qemoji=document.getElementById('qemoji'), qtext=document.getElementById('qtext');
+const optA=document.getElementById('optA'), optB=document.getElementById('optB');
+const optAtxt=optA.querySelector('span:last-child'), optBtxt=optB.querySelector('span:last-child');
+const count=document.getElementById('count'), fill=document.getElementById('fill'), backBtn=document.getElementById('backBtn');
+const qcard=document.getElementById('qcard');
+let idx=0; const answers=[]; let order=[];
+
+function setAccent(c){document.documentElement.style.setProperty('--accent',c);}
+
+function render(){
+  const q=Q[idx];
+  setAccent(COLORS[idx]);
+  qcard.style.animation='none'; void qcard.offsetWidth; qcard.style.animation='slidein .35s ease';
+  qemoji.textContent=q.e;
+  qtext.textContent=q.t;
+  if(order[idx]==='ba'){
+    optAtxt.textContent=q.b; optA.dataset.key='b';
+    optBtxt.textContent=q.a; optB.dataset.key='a';
+  }else{
+    optAtxt.textContent=q.a; optA.dataset.key='a';
+    optBtxt.textContent=q.b; optB.dataset.key='b';
+  }
+  count.textContent=(idx+1)+"/12";
+  fill.style.width=(idx/Q.length*100)+"%";
+  backBtn.disabled = idx===0;
+}
+
+function choose(which){
+  answers[idx]=which; // 'a' or 'b'
+  if(idx<Q.length-1){ idx++; render(); }
+  else{ finish(); }
+}
+
+function finish(){
+  const score={E:0,I:0,S:0,N:0,T:0,F:0,J:0,P:0};
+  Q.forEach((q,i)=>{
+    const first=q.d[0], second=q.d[1];
+    if(answers[i]==='a') score[first]++; else score[second]++;
+  });
+  const type=(score.E>=score.I?'E':'I')+(score.S>=score.N?'S':'N')+(score.T>=score.F?'T':'F')+(score.J>=score.P?'J':'P');
+  showResult(type);
+}
+
+function showResult(type){
+  const r=R[type]; const good=R[r.good]; const diff=R[r.diff];
+  setAccent(COLORS[Math.floor(Math.random()*COLORS.length)]);
+  document.getElementById('ranimal').textContent=r.e;
+  document.getElementById('rtype').textContent=type;
+  document.getElementById('rname').textContent=r.n;
+  document.getElementById('rtag').textContent=r.g;
+  const ul=document.getElementById('rtraits'); ul.innerHTML='';
+  r.traits.forEach(t=>{const li=document.createElement('li'); li.textContent=t; ul.appendChild(li);});
+  document.getElementById('goodEmoji').textContent=good.e;
+  document.getElementById('goodName').textContent=good.n;
+  document.getElementById('goodType').textContent=r.good;
+  document.getElementById('diffEmoji').textContent=diff.e;
+  document.getElementById('diffName').textContent=diff.n;
+  document.getElementById('diffType').textContent=r.diff;
+  quizEl.style.display='none';
+  resultEl.style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.getElementById('startBtn').onclick=()=>{
+  hero.style.display='none'; quizEl.style.display='block'; idx=0; answers.length=0;
+  order=Q.map(()=>Math.random()<0.5?'ab':'ba');
+  render();
+};
+optA.onclick=()=>choose(optA.dataset.key);
+optB.onclick=()=>choose(optB.dataset.key);
+backBtn.onclick=()=>{ if(idx>0){ idx--; render(); } };
+document.getElementById('againBtn').onclick=()=>{
+  resultEl.style.display='none'; hero.style.display='block'; window.scrollTo({top:0,behavior:'smooth'});
+};
+</script>
+</body>
+</html>

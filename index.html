@@ -307,12 +307,22 @@ const R = {
   ENTJ:{e:"✉️",n:"바울",g:"목표를 향해 달리는 대장",traits:["목표를 정하면 끝까지 해내요 (복음을 전한 바울!)","앞장서서 이끄는 걸 잘해요","자신감이 넘쳐요"],good:"INFJ",diff:"ISFP"}
 };
 
-/* 인물 일러스트 이미지 (없으면 이모지로 대체) */
-const IMG = { ISFJ:'images/isfj.png', ISFP:'images/isfp.png', ISTP:'images/istp.png' };
+/* 인물 일러스트: images/유형.png 를 자동으로 찾음. 파일이 없으면 이모지로 대체.
+   파일명 대소문자(isfj.png / ISFJ.png) 모두 처리 */
 function figureFor(type){
-  return IMG[type]
-    ? '<img class="charimg" src="'+IMG[type]+'" alt="'+R[type].n+'">'
-    : '<span class="charemoji">'+R[type].e+'</span>';
+  const low='images/'+type.toLowerCase()+'.png';
+  const up='images/'+type+'.png';
+  return '<img class="charimg" src="'+low+'" alt="'+R[type].n+'" '
+       + 'data-up="'+up+'" data-em="'+R[type].e+'" onerror="imgFallback(this)">';
+}
+function imgFallback(img){
+  if(img.dataset.tried){
+    const s=document.createElement('span');
+    s.className='charemoji'; s.textContent=img.dataset.em;
+    img.replaceWith(s);
+  } else {
+    img.dataset.tried='1'; img.src=img.dataset.up;
+  }
 }
 
 /* ---------- 성경인물 이야기 + 해석 ---------- */

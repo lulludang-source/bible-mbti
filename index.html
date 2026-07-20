@@ -1,743 +1,742 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>나랑 닮은 성경인물은? 📖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ONYOU — Korean Cosmetics Manufacturing Partner</title>
+<link rel="icon" type="image/png" href="images/logo/ONYOU-LOGO-02-SYMBOL-GREY.png">
+<link rel="apple-touch-icon" href="images/logo/ONYOU-LOGO-02-SYMBOL-GREY.png">
+<meta name="description" content="ONYOU delivers full OBM turnkey cosmetics manufacturing for global beauty brands — from planning and formulation to production and export, built on Korea's proven expertise." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gaegu:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --coral:#FF6F91; --pink:#FF9FB2; --yellow:#FFC75F; --mint:#6FD3A3;
-    --sky:#56CCF2; --purple:#B983FF; --grape:#9B6FE0; --ink:#5A4A63;
-    --card:#FFFFFF;
-    --accent:var(--coral);
+    --cream:#f6f3eb;
+    --cream-2:#f1ede5;
+    --black:#0b0b0b;
+    --ink:#111110;
+    --white:#f2f1ee;
+    --orange:#e8743b;
+    --mut-cream:#6c6a63;
+    --mut-black:#8d8b85;
+    --line-c:rgba(17,17,16,.18);
+    --line-b:rgba(242,241,238,.2);
+    --font:'Archivo',Helvetica,Arial,sans-serif;
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --maxw:1440px;
   }
-  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
-  html,body{margin:0; padding:0;}
-  body{
-    font-family:'Gowun Dodum', sans-serif;
-    color:var(--ink);
-    min-height:100vh;
-    background:linear-gradient(135deg,#FFE0EC 0%,#FFF3D6 30%,#DFF7EC 60%,#E4E0FF 100%);
-    background-attachment:fixed;
-    overflow-x:hidden;
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 44px}
+  .giant{font-weight:700;text-transform:uppercase;line-height:.92;letter-spacing:-.015em;font-size:clamp(44px,8.5vw,150px)}
+  .giant .sp{display:inline-block;width:.5em}
+  .ey{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+  .ey::before{content:"";display:inline-block;width:6px;height:6px;background:var(--orange);border-radius:50%;margin-right:11px;vertical-align:2px}
+  .sec{padding:110px 0}
+  .cream{background:var(--cream);color:var(--ink)}
+  .black{background:var(--black);color:var(--white)}
+
+  /* About Us */
+  .about-sec{background:var(--cream);color:var(--ink)}
+  .about-body{display:flex;justify-content:flex-end;margin-top:54px}
+  .about-body-in{max-width:560px}
+  .about-vision-line{font-size:clamp(28px,3.8vw,52px);font-weight:700;text-transform:uppercase;line-height:1;letter-spacing:-.01em;color:var(--ink)}
+  .about-sub{margin-top:16px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+  .about-sub::before{content:"";display:inline-block;width:26px;height:1px;background:var(--orange);margin-right:14px;vertical-align:middle}
+  .about-lead{margin-top:16px;font-size:16px;line-height:1.85;color:var(--mut-cream)}
+  .about-values{display:flex;justify-content:space-between;align-items:center;position:relative;margin-top:100px}
+  .about-values::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line-c);z-index:0}
+  .av-item{position:relative;z-index:1;background:var(--cream);padding:0 clamp(12px,1.8vw,26px)}
+  .av-label{position:relative;display:inline-flex;align-items:center;font-size:clamp(15px,1.7vw,22px);font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:1;color:var(--ink);white-space:nowrap}
+  .av-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);margin-right:11px;flex-shrink:0}
+  .av-word{position:relative}
+  .av-num{position:absolute;top:-1.35em;left:0;font-size:11px;font-weight:400;letter-spacing:.12em;color:var(--mut-cream)}
+  @media(max-width:980px){
+    .about-body{justify-content:flex-start}
+    .about-values{flex-direction:column;align-items:stretch;margin-top:52px}
+    .about-values::before{display:none}
+    .av-item{background:none;padding:16px 0;border-bottom:1px solid var(--line-c)}
+    .av-item:first-child{border-top:1px solid var(--line-c)}
+    .av-label{font-size:19px}
+    .av-num{position:static;margin-right:11px;letter-spacing:.12em}
   }
-  /* floating background blobs */
-  .blob{position:fixed; border-radius:50%; filter:blur(6px); opacity:.35; z-index:0; pointer-events:none; animation:float 9s ease-in-out infinite;}
-  .b1{width:120px;height:120px;background:var(--yellow); top:8%; left:6%;}
-  .b2{width:90px;height:90px;background:var(--sky); top:70%; left:10%; animation-delay:1.5s;}
-  .b3{width:110px;height:110px;background:var(--pink); top:15%; right:8%; animation-delay:.8s;}
-  .b4{width:80px;height:80px;background:var(--mint); top:78%; right:12%; animation-delay:2.2s;}
-  @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-22px) rotate(8deg)}}
 
-  .wrap{position:relative; z-index:1; max-width:640px; margin:0 auto; padding:24px 20px 60px; min-height:100vh; display:flex; flex-direction:column; justify-content:center;}
+  /* Header */
+  header{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--cream);border-bottom:1px solid var(--line-c);transition:transform .35s var(--ease)}
+  header.hide{transform:translateY(-100%)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px;position:relative}
+  .nav-l,.nav-r{display:flex;gap:24px}
+  .nav a{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;opacity:.85;transition:opacity .2s}
+  .nav a:hover{opacity:1}
+  .brand{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:block}
+  .brand-logo{height:19px;width:auto;display:block;filter:brightness(0)}
+  .foot-logo-img{height:72px;width:auto;display:block;margin-bottom:14px}
+  .foot-social{display:flex;gap:12px;margin-top:22px}
+  .foot-social a{width:44px;height:44px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;transition:.2s;border:1px solid var(--white)}
+  .foot-social a:hover{background:transparent;border-color:var(--line-b)}
+  .foot-social a:hover svg{stroke:var(--white)}
+  .foot-social svg{width:22px;stroke:var(--black);fill:none;stroke-width:1.6;transition:.2s}
+  .ci-mark-img{width:130px;height:auto;display:block}
+  .lang{font-size:12px;letter-spacing:.1em;opacity:.6}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px;position:absolute;right:0;top:50%;transform:translateY(-50%)}
+  .burger span{width:24px;height:1.6px;background:var(--ink)}
+  .mobile-menu{display:none;flex-direction:column;background:var(--cream);border-top:1px solid var(--line-c);padding:12px 44px 22px}
+  .mobile-menu a{padding:13px 0;font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;border-bottom:1px solid var(--line-c)}
+  .mobile-menu a:last-child{border-bottom:0}
 
-  /* ===== START SCREEN ===== */
-  .hero{text-align:center; animation:pop .5s ease;}
-  .hero .badge{display:inline-block; background:#fff; border-radius:999px; padding:8px 18px; font-family:'Gaegu'; font-weight:700; color:var(--coral); box-shadow:0 6px 0 rgba(255,111,145,.18); margin-bottom:18px; font-size:16px;}
-  .hero h1{font-family:'Jua'; font-size:clamp(30px,7vw,46px); line-height:1.28; margin:6px 0 2px; color:var(--ink);}
-  .hero h1 .rainbow{background:linear-gradient(90deg,var(--coral),var(--yellow),var(--mint),var(--sky),var(--purple)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
-  .hero p{font-size:17px; color:#7a6d82; margin:14px 0 30px;}
-  .paws{font-size:40px; letter-spacing:8px; margin:10px 0 6px; animation:wobble 2.5s ease-in-out infinite;}
-  @keyframes wobble{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
-  @keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+  /* Hero */
+  .hero{padding:128px 0 0}
+  .hero .giant{text-align:center}
+  .hero-sub{max-width:640px;margin:26px auto 0;text-align:center;font-size:17px;color:var(--mut-cream);line-height:1.7}
+  .hero-img{margin-top:56px;height:clamp(300px,42vw,560px);background:var(--cream-2);position:relative;overflow:hidden}
+  .hero-img img{width:100%;height:100%;object-fit:cover}
+  .hero-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#b6b1a4}
+  .hero-ph svg{width:78px;opacity:.5;fill:currentColor}
+  .hero-cap{position:absolute;bottom:16px;left:20px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8f8a7c}
 
-  .btn{
-    font-family:'Jua'; font-size:20px; border:none; cursor:pointer;
-    color:#fff; border-radius:20px; padding:16px 30px; width:100%;
-    background:linear-gradient(135deg,var(--coral),var(--pink));
-    box-shadow:0 10px 24px rgba(214,70,110,.26); transition:transform .14s, box-shadow .14s;
+  /* Hero rolling carousel */
+  .hero-roll{margin-top:56px;width:100vw;margin-left:calc(50% - 50vw);position:relative;overflow:hidden;background:var(--cream-2);height:clamp(440px,50vw,640px)}
+  .hero-roll img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity 1.1s var(--ease)}
+  .hero-roll img.active{opacity:1}
+  .hero-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:9px;z-index:3}
+  .hd{width:7px;height:7px;border-radius:50%;border:none;padding:0;cursor:pointer;background:rgba(17,17,16,.3);transition:background .3s,transform .3s}
+  .hd.active{background:var(--orange);transform:scale(1.25)}
+  @media(max-width:640px){.hero-roll{height:clamp(340px,88vw,460px)}}
+
+  /* Thin-line list w/ hover arrow */
+  .split{display:grid;grid-template-columns:1fr 1.05fr;gap:64px}
+  .split-left{max-width:520px}
+  .split-desc{margin-top:28px;font-size:15.5px;line-height:1.75;max-width:440px}
+  .black .split-desc{color:#cbcac5}
+  .cream .split-desc{color:#4a4842}
+  .split-meta{margin-top:38px}
+  .black .split-meta{color:var(--mut-black)}
+  .cream .split-meta{color:var(--mut-cream)}
+  .tlist{align-self:center}
+  .tlist-item{display:flex;align-items:center;padding:28px 4px;cursor:pointer;position:relative;transition:padding-left .35s var(--ease)}
+  .black .tlist-item{border-top:1px solid var(--line-b)}
+  .cream .tlist-item{border-top:1px solid var(--line-c)}
+  .tlist-item:last-child{border-bottom:1px solid transparent}
+  .black .tlist-item:last-child{border-bottom-color:var(--line-b)}
+  .cream .tlist-item:last-child{border-bottom-color:var(--line-c)}
+  .tlist-item:hover{padding-left:12px}
+  .arrow{width:0;overflow:hidden;opacity:0;transition:width .4s var(--ease),opacity .3s;flex-shrink:0}
+  .tlist-item:hover .arrow{width:76px;opacity:1}
+  .arrow svg{width:64px;height:20px}
+  .arrow line,.arrow path{stroke:var(--orange);stroke-width:1.5;fill:none}
+  .tlabel{font-weight:400;font-size:clamp(21px,2.9vw,38px);letter-spacing:.005em;text-transform:uppercase;white-space:nowrap;transition:transform .35s var(--ease)}
+  @media(hover:hover){.tlist-item:hover .tlabel{transform:translateX(6px)}}
+  .tnum{margin-left:auto;font-size:12px;letter-spacing:.1em;padding-left:20px}
+  .black .tnum{color:var(--mut-black)}
+  .cream .tnum{color:var(--mut-cream)}
+
+  /* Services accordion */
+  .svc-head{cursor:pointer}
+  .svc-item:last-child .tlist-item{border-bottom:1px solid var(--line-b)}
+  .svc-plus{margin-left:22px;width:15px;height:15px;flex-shrink:0;position:relative;transition:transform .4s var(--ease)}
+  .svc-plus::before,.svc-plus::after{content:"";position:absolute;top:50%;left:0;width:15px;height:1.5px;background:var(--mut-black);transition:background .3s}
+  .svc-plus::after{transform:rotate(90deg)}
+  .svc-item.open .svc-plus{transform:rotate(135deg)}
+  .svc-item.open .svc-plus::before,.svc-item.open .svc-plus::after{background:var(--orange)}
+  .svc-detail{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+  .svc-item.open .svc-detail{grid-template-rows:1fr}
+  .svc-detail-in{overflow:hidden}
+  .svc-detail ul{list-style:none;padding:4px 4px 30px;display:flex;flex-direction:column;gap:11px;max-width:640px}
+  .svc-detail li{position:relative;padding-left:20px;font-size:15px;line-height:1.55;color:#cbcac5}
+  .svc-detail li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--orange)}
+
+  /* Feature (OBM) — image left, text right */
+  .feat{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .feat-img{aspect-ratio:4/5;background:var(--cream-2);position:relative;overflow:hidden}
+  .feat-img img{width:100%;height:100%;object-fit:cover}
+  .feat h2{font-weight:700;text-transform:uppercase;font-size:clamp(32px,4.6vw,64px);line-height:.98;letter-spacing:-.01em}
+  .feat p{margin-top:24px;font-size:16px;line-height:1.8;color:var(--mut-cream);max-width:460px}
+  .feat .more{display:inline-block;margin-top:30px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;border-bottom:2px solid var(--orange);padding-bottom:4px}
+
+  /* Business full-bleed feature */
+  .business-feat{position:relative;background:#efeae1;text-align:center;padding:clamp(96px,15vw,168px) 0;overflow:hidden}
+  .business-feat::before{content:"";position:absolute;inset:0;background:url('images/business-bg.jpg') center 72%/cover no-repeat;z-index:0}
+  .business-feat::after{content:"";position:absolute;inset:0;background:rgba(246,243,235,.3);z-index:1}
+  .bf-inner{position:relative;z-index:2;max-width:none;margin:0 auto;display:flex;flex-direction:column;align-items:center;color:var(--ink)}
+  .bf-inner .ey{color:var(--mut-cream)}
+  .bf-head{display:inline-flex;flex-direction:column;align-items:flex-start;max-width:100%}
+  .bf-inner h2{margin-top:14px;line-height:1.02}
+  .bf-sub{margin-top:11px;font-size:clamp(16px,1.9vw,21px);line-height:1.6;color:var(--ink);max-width:660px}
+  .bf-cols{margin-top:46px;display:grid;grid-template-columns:1fr 1fr;gap:52px;max-width:720px;text-align:left}
+  .bf-cols p{font-size:15px;line-height:1.85;color:#5a574f}
+  .bf-more{display:inline-block;margin-top:46px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;border-bottom:2px solid var(--orange);padding-bottom:4px;color:var(--ink)}
+  @media(max-width:640px){.bf-cols{grid-template-columns:1fr;gap:22px;max-width:440px}}
+
+  /* Vision / values */
+  .vision-statement{font-weight:700;text-transform:uppercase;font-size:clamp(34px,5vw,74px);line-height:.98;letter-spacing:-.01em}
+  .vision-sub{margin-top:20px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut-black)}
+  .vision-lead{font-size:17px;line-height:1.8;color:#cbcac5;max-width:460px}
+
+  /* CI */
+  .ci-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .ci-quote{font-weight:700;text-transform:uppercase;font-size:clamp(30px,4.4vw,60px);line-height:.98;letter-spacing:-.01em;margin:18px 0 26px}
+  .ci p{font-size:16px;line-height:1.8;color:var(--mut-cream);max-width:460px}
+  .ci-keywords{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+  .ci-keywords span{border:1px solid var(--line-c);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px}
+  .ci-symbol{display:flex;flex-direction:column;align-items:center;gap:36px}
+  .ci-mark{width:190px;height:190px;display:flex;align-items:center;justify-content:center}
+  .ci-mark svg{width:88px;fill:var(--ink)}
+  .ci-colors{display:flex;gap:28px}
+  .ci-color{text-align:center}
+  .ci-swatch{width:52px;height:52px;margin:0 auto 10px}
+  .ci-color .nm{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+  .ci-color .pn{font-size:10.5px;color:var(--mut-cream);margin-top:3px;letter-spacing:.04em}
+
+  /* CEO */
+  .ceo-grid{display:grid;grid-template-columns:400px 1fr;gap:60px;align-items:start;margin-top:48px}
+  .ceo-photo{aspect-ratio:3/3.7;background:#1a1a1a;position:relative;overflow:hidden}
+  .ceo-photo img{width:100%;height:100%;object-fit:cover}
+  .ceo-photo .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#4a4a48;gap:12px}
+  .ceo-photo .ph svg{width:50px;fill:currentColor;opacity:.6}
+  .ceo-role{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--mut-black)}
+  .ceo-name{font-weight:700;text-transform:uppercase;font-size:34px;letter-spacing:-.01em;margin:6px 0 20px}
+  .ceo-bio p{font-size:15.5px;color:#cbcac5;margin-bottom:14px;line-height:1.75}
+  .ceo-cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:34px;padding-top:32px;border-top:1px solid var(--line-b)}
+  .ceo-cols h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut-black);margin-bottom:16px;font-weight:600}
+  .ceo-cols ul{list-style:none}
+  .ceo-cols li{font-size:14px;color:#cbcac5;padding:7px 0 7px 18px;position:relative;line-height:1.5}
+  .ceo-cols li::before{content:"";position:absolute;left:0;top:13px;width:5px;height:5px;background:var(--white)}
+
+  /* Portfolio */
+  .pf-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:48px}
+  .pf-carousel{position:relative}
+  .pf-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 75px)/6);gap:15px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 4px 14px;scrollbar-width:none;-ms-overflow-style:none}
+  .pf-track::-webkit-scrollbar{display:none}
+  .brand-card{scroll-snap-align:start;cursor:pointer;display:flex;flex-direction:column;gap:12px}
+  .brand-thumb{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--cream-2);transition:.3s var(--ease)}
+  .brand-card:hover .brand-thumb{transform:translateY(-4px)}
+  .brand-thumb img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s,transform .5s var(--ease)}
+  .brand-thumb img.loaded{opacity:1}
+  .brand-card:hover .brand-thumb img.loaded{transform:scale(1.05)}
+  .brand-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+  .brand-ph svg{width:24px;opacity:.35;fill:#b6b1a4}
+  .brand-ph b{font-size:12px;font-weight:600;color:#b6b1a4}
+  .brand-count{position:absolute;top:10px;right:10px;background:var(--ink);color:var(--cream);font-size:11px;font-weight:600;padding:4px 9px}
+  .brand-name{font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;text-align:center}
+  .pf-arrow{position:absolute;top:36%;width:46px;height:46px;border-radius:50%;background:var(--cream);border:1px solid var(--line-c);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;transition:.2s}
+  .pf-arrow:hover{background:var(--ink)}
+  .pf-arrow:hover svg{stroke:var(--cream)}
+  .pf-arrow svg{width:20px;stroke:var(--ink);fill:none;stroke-width:2}
+  .pf-arrow.prev{left:-18px}.pf-arrow.next{right:-18px}
+  .pf-arrow.disabled{opacity:.3;pointer-events:none}
+  .pf-hint{text-align:center;font-size:12px;letter-spacing:.06em;color:var(--mut-cream);margin-top:12px;text-transform:uppercase}
+  .pf-showall{display:none;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:transparent;border:1px solid var(--line-c);padding:13px 26px;margin:24px auto 0;cursor:pointer}
+  .pf-showall.hidden{display:none!important}
+
+  /* Brand modal + lightbox */
+  .bm{position:fixed;inset:0;background:rgba(11,11,11,.7);z-index:180;display:none;align-items:center;justify-content:center;padding:30px}
+  .bm.open{display:flex}
+  .bm-panel{background:var(--cream);width:min(980px,94vw);max-height:88vh;overflow:auto;padding:36px}
+  .bm-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:26px}
+  .bm-head h3{font-weight:700;text-transform:uppercase;font-size:28px;letter-spacing:-.01em}
+  .bm-close{width:42px;height:42px;border:1px solid var(--line-c);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .bm-close svg{width:20px;stroke:var(--ink);fill:none;stroke-width:2}
+  .bm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .bm-img{aspect-ratio:3/4;overflow:hidden;background:var(--cream-2);cursor:pointer;position:relative}
+  .bm-img img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s,transform .4s var(--ease)}
+  .bm-img img.loaded{opacity:1}
+  .bm-img:hover img.loaded{transform:scale(1.05)}
+  .lb{position:fixed;inset:0;background:rgba(6,6,6,.94);z-index:200;display:none;align-items:center;justify-content:center;padding:30px}
+  .lb.open{display:flex}
+  .lb img{max-width:88vw;max-height:84vh}
+  .lb-close,.lb-nav{position:absolute;background:rgba(242,241,238,.1);border:1px solid rgba(242,241,238,.22);color:#fff;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .lb-close{top:26px;right:26px}.lb-prev{left:26px;top:50%;transform:translateY(-50%)}.lb-next{right:26px;top:50%;transform:translateY(-50%)}
+  .lb-close svg,.lb-nav svg{width:22px;stroke:#fff;fill:none;stroke-width:2}
+  .lb-count{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:#cbcac5;font-size:13px;letter-spacing:.06em}
+
+  /* Contact */
+  .ct-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;margin-top:48px}
+  .ct-lead{color:var(--mut-black);font-size:17px;line-height:1.7;margin-bottom:30px}
+  .ct-info{display:flex;flex-direction:column;gap:16px;font-size:15px}
+  .ct-info .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut-black)}
+  .ct-info .val{color:var(--white);margin-top:2px}
+  .ct-form .field{margin-bottom:16px}
+  .ct-form label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut-black);margin-bottom:7px}
+  .ct-form input,.ct-form select,.ct-form textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line-b);padding:10px 0;font-family:var(--font);font-size:15px;color:var(--white);transition:.2s}
+  .ct-form input:focus,.ct-form select:focus,.ct-form textarea:focus{outline:none;border-bottom-color:var(--white)}
+  .ct-form select option{background:var(--black)}
+  .ct-form textarea{resize:vertical;min-height:90px}
+  .ct-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .ct-submit{margin-top:22px;background:var(--white);color:var(--black);border:0;font-family:var(--font);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:16px 34px;cursor:pointer;transition:.2s}
+  .ct-submit:hover{opacity:.85}
+
+  /* Footer */
+  footer{background:var(--black);color:var(--mut-black);padding:70px 0 34px;border-top:1px solid var(--line-b)}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px}
+  .foot-logo{font-weight:800;font-size:22px;letter-spacing:.06em;color:var(--white);margin-bottom:14px}
+  .foot-col h5{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--white);margin-bottom:14px}
+  .foot-col a,.foot-col p{display:block;font-size:13px;color:var(--mut-black);margin-bottom:8px;transition:.2s}
+  .foot-col a:hover{color:var(--white)}
+  .foot-bottom{padding-top:24px;border-top:1px solid var(--line-b);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;letter-spacing:.04em}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .totop{position:fixed;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--orange);background:var(--cream);color:var(--orange);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,background .2s,color .2s;z-index:90}
+  .totop.show{opacity:1;pointer-events:auto}
+  .totop:hover{background:var(--orange);color:var(--cream)}
+  .totop svg{width:20px;stroke:currentColor;fill:none;stroke-width:2}
+
+  @media(max-width:1000px){
+    .pf-track{grid-auto-columns:calc((100% - 45px)/4)}
+    .bm-grid{grid-template-columns:repeat(3,1fr)}
+    .ceo-grid{grid-template-columns:320px 1fr;gap:44px}
   }
-  .btn:active{transform:translateY(1px) scale(.99); box-shadow:0 5px 14px rgba(214,70,110,.24);}
-  .btn:focus-visible{outline:3px solid var(--purple); outline-offset:3px;}
-
-  /* ===== QUIZ ===== */
-  .quiz{display:none;}
-  .topbar{display:flex; align-items:center; gap:12px; margin-bottom:26px;}
-  .count{font-family:'Jua'; font-size:20px; color:var(--accent); min-width:56px; text-align:center;}
-  .bar{flex:1; height:16px; background:#fff; border-radius:999px; overflow:hidden; box-shadow:inset 0 2px 4px rgba(0,0,0,.06);}
-  .fill{height:100%; width:0; border-radius:999px; background:linear-gradient(90deg,var(--coral),var(--yellow),var(--mint),var(--sky),var(--purple)); transition:width .4s cubic-bezier(.34,1.56,.64,1);}
-
-  .qcard{background:var(--card); border-radius:30px; padding:34px 26px; box-shadow:0 14px 34px rgba(120,90,140,.14); animation:slidein .35s ease;}
-  @keyframes slidein{0%{transform:translateX(40px);opacity:0}100%{transform:translateX(0);opacity:1}}
-  .qemoji{font-size:52px; text-align:center; margin-bottom:8px;}
-  .qtext{font-family:'Jua'; font-size:clamp(21px,5vw,26px); text-align:center; line-height:1.45; margin:6px 4px 26px;}
-  .opt{
-    display:flex; align-items:center; gap:14px; width:100%; text-align:left;
-    background:#fff; border:3px solid #F0EAF4; border-radius:22px; padding:18px 20px;
-    font-family:'Gowun Dodum'; font-size:18px; color:var(--ink); cursor:pointer; margin-bottom:14px;
-    transition:transform .12s, border-color .12s, background .12s; line-height:1.4;
+  @media(max-width:1080px){
+    .nav-l,.nav-r{display:none}
+    .burger{display:flex}
+    .mobile-menu.open{display:flex}
   }
-  .opt .dot{width:26px; height:26px; border-radius:50%; flex:0 0 26px; background:var(--accent); opacity:.85;}
-  .opt:hover{transform:translateY(-3px) scale(1.01); border-color:var(--accent); background:#FFF9FB;}
-  .opt:active{transform:scale(.98);}
-  .opt:focus-visible{outline:4px solid var(--purple); outline-offset:2px;}
-
-  .back{background:none; border:none; font-family:'Gaegu'; font-weight:700; font-size:16px; color:#9a8ca6; cursor:pointer; margin-top:18px; padding:8px;}
-  .back:disabled{opacity:.35; cursor:default;}
-
-  /* ===== RESULT ===== */
-  .result{display:none; text-align:center; animation:pop .5s ease; max-width:360px; margin:0 auto;}
-  .rcard{background:var(--card); border-radius:28px; padding:8px 22px 30px; box-shadow:0 14px 34px rgba(120,90,140,.14); position:relative; overflow:hidden; margin-top:16px;}
-  #photoSaveBtn{margin-top:16px;}
-
-  /* ===== 4:5 PHOTO CARD (풀 이미지 + 글씨 오버레이) ===== */
-  .photocard{position:relative; width:100%; height:0; padding-top:125%; margin:0 auto; border-radius:28px; overflow:hidden;
-    background:#F3EAF1;
-    box-shadow:0 18px 42px rgba(120,90,140,.26); animation:pop .5s ease;}
-  .pc-photo{position:absolute; inset:0;}
-  .pc-photo .charimg{width:100%; height:100%; object-fit:cover; object-position:center 20%;}
-  .pc-photo .charemoji{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:132px; padding-bottom:60px;}
-  .pc-scrim{position:absolute; left:0; right:0; bottom:0; height:52%; z-index:1;
-    background:linear-gradient(180deg, rgba(20,15,25,0) 0%, rgba(20,15,25,.08) 42%, rgba(20,15,25,.56) 100%);}
-  .pc-plate{position:absolute; left:0; right:0; bottom:0; z-index:2; padding:0 18px 20px; text-align:center; color:#fff;}
-  .pc-deco span{position:absolute; font-size:16px; opacity:.9; filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));}
-  .pc-type{display:inline-block; background:rgba(0,0,0,.30); color:#fff; border:1px solid rgba(255,255,255,.5);
-    border-radius:999px; padding:4px 15px; font-family:'Gaegu'; font-weight:700; font-size:15px; letter-spacing:3px; margin-bottom:8px; text-shadow:0 1px 4px rgba(0,0,0,.5);}
-  .pc-name{font-family:'Jua'; font-size:38px; line-height:1.05; color:#fff; text-shadow:0 3px 12px rgba(0,0,0,.45);}
-  .pc-tag{font-size:15px; margin-top:8px; color:#fff; opacity:.96; text-shadow:0 2px 8px rgba(0,0,0,.4);}
-  .pc-brand{font-family:'Gaegu'; font-weight:700; font-size:12px; color:#fff; opacity:.8; letter-spacing:1px; margin-top:11px; text-shadow:0 1px 6px rgba(0,0,0,.4);}
-  @keyframes boing{0%{transform:scale(0) rotate(-20deg)}70%{transform:scale(1.15) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
-  .rsec{text-align:center; background:#FBF7FE; border-radius:20px; padding:18px 20px; margin:14px 4px;}
-  .rsec h3{font-family:'Jua'; font-size:19px; margin:0 0 12px; color:var(--accent);}
-  .rsec ul{display:inline-block; text-align:left; margin:0 auto; padding:0;}
-  .rsec li{list-style:none; margin:0 0 10px; padding-left:28px; position:relative; font-size:16px; line-height:1.5;}
-  .rsec li::before{content:"⭐"; position:absolute; left:0; top:0;}
-  .match{display:flex; gap:12px; margin:18px 4px 6px;}
-  .mbox{flex:1; background:#fff; border:3px solid #F0EAF4; border-radius:20px; padding:16px 10px;}
-  .mbox .mlabel{font-family:'Gaegu'; font-weight:700; font-size:14px; color:#9a8ca6;}
-  .mbox .memoji{font-size:40px; margin:6px 0 2px;}
-  .mbox .charimg{height:72px; margin:2px 0;}
-  .mbox .charemoji{font-size:40px;}
-  .stop .shero{position:absolute; inset:0;}
-  .stop .shero .charimg{width:100%; height:100%; object-fit:cover; object-position:center 15%;}
-  .stop .shero .charemoji{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:120px; padding-bottom:70px;}
-  .mbox .mname{font-family:'Jua'; font-size:17px;}
-  .mbox .mtype{font-size:13px; color:#a99cb3;}
-  .note{font-size:13px; color:#a99cb3; margin:20px 4px 0; line-height:1.5;}
-  .rbtns{margin-top:16px;}
-  .btn.ghost{background:#fff; color:var(--accent); box-shadow:0 6px 18px rgba(150,120,170,.16); margin-top:10px;}
-  .name-input{width:100%; max-width:320px; margin:0 auto 16px; display:block; box-sizing:border-box;
-    font-family:'Gowun Dodum'; font-size:17px; text-align:center; color:var(--ink);
-    border:2px solid #F0E4EE; border-radius:18px; padding:15px 18px; background:#fff; outline:none; transition:border-color .15s, box-shadow .15s;}
-  .name-input:focus{border-color:var(--coral); box-shadow:0 0 0 4px rgba(255,111,145,.12);}
-  .name-input::placeholder{color:#c3b6cd;}
-
-  /* ===== STORY CARD ===== */
-  .story{display:none; animation:pop .5s ease; max-width:360px; margin:0 auto;}
-  .scard{background:var(--card); border-radius:34px; padding:0 0 30px; box-shadow:0 18px 40px rgba(120,90,140,.18); overflow:hidden;}
-  .stop{position:relative; height:0; padding-top:75%; overflow:hidden; text-align:center; color:#fff; background:#EFE7F4;}
-  .sscrim{position:absolute; left:0; right:0; bottom:0; height:52%; z-index:1;
-    background:linear-gradient(180deg, rgba(20,15,25,0) 0%, rgba(20,15,25,.08) 42%, rgba(20,15,25,.56) 100%);}
-  .stop .stoptext{position:absolute; left:0; right:0; bottom:0; z-index:2; padding:0 20px 22px;}
-  .stop .stype{display:inline-block; background:rgba(0,0,0,.30); border:1px solid rgba(255,255,255,.5); border-radius:999px; padding:3px 14px; font-family:'Gaegu'; font-weight:700; font-size:15px; opacity:1; letter-spacing:3px; margin-bottom:8px; text-shadow:0 1px 4px rgba(0,0,0,.5);}
-  .stop .sname{font-family:'Jua'; font-size:34px; line-height:1.1; text-shadow:0 3px 12px rgba(0,0,0,.45);}
-  .stop .stag{font-size:15px; margin-top:7px; opacity:.96; text-shadow:0 2px 8px rgba(0,0,0,.4);}
-  .ssec{text-align:left; padding:8px 24px 4px;}
-  .ssec h3{font-family:'Jua'; font-size:19px; color:var(--accent); margin:20px 0 10px;}
-  .ssec p{font-size:16px; line-height:1.7; margin:0; color:#5a4a63;}
-  .story-body p{font-size:16px; line-height:1.85; margin:0 0 12px; color:#5a4a63;}
-  .story-body p:last-child{margin-bottom:0; font-family:'Gaegu'; font-weight:700; font-size:17px; color:var(--grape); background:#FBF7FE; border-radius:14px; padding:14px 16px; line-height:1.7;}
-  .ssec.read{margin-top:6px;}
-  .ssec.read p{background:#FBF7FE; border-radius:16px; padding:14px 16px; font-family:'Gaegu'; font-weight:700; font-size:17px; color:var(--grape);}
-  .chips{display:flex; gap:8px;}
-  .chip{flex:1; background:#FBF7FE; border:2px solid #EFE7F6; border-radius:16px; padding:12px 6px; text-align:center;}
-  .chip .cl{font-family:'Jua'; font-size:26px; color:var(--accent); line-height:1;}
-  .chip .cterm{font-family:'Jua'; font-size:14px; color:var(--grape); margin-top:7px; line-height:1.2;}
-  .chip .cdesc{font-size:11px; color:#a99cb3; margin-top:5px; line-height:1.35;}
-  .vcard{margin:20px 24px 4px; background:linear-gradient(160deg,#FFF7F0,#FDEFF6); border:2px dashed var(--pink); border-radius:22px; padding:22px 20px; text-align:center; position:relative;}
-  .vcard::before{content:"❝"; position:absolute; top:6px; left:16px; font-size:40px; color:var(--pink); opacity:.5; line-height:1;}
-  .vlabel{font-family:'Gaegu'; font-weight:700; font-size:14px; color:var(--grape); margin-bottom:10px;}
-  .vquote{font-family:'Gaegu'; font-weight:700; font-size:19px; line-height:1.6; color:#6a4a63;}
-  .vref{font-family:'Jua'; font-size:15px; color:var(--accent); margin-top:12px;}
+  @media(max-width:880px){
+    .wrap{padding:0 26px}
+    .nav-l,.nav-r{display:none}
+    .burger{display:flex}
+    .mobile-menu.open{display:flex}
+    .split,.feat,.ci-grid,.ct-grid{grid-template-columns:1fr;gap:40px}
+    .ceo-grid{grid-template-columns:1fr;gap:34px}
+    .ceo-photo{max-width:340px}
+    .ceo-cols{grid-template-columns:1fr;gap:26px}
+    .pf-arrow{display:none}
+    .arrow{display:none}
+    .tlist-item:hover{padding-left:4px}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
+    .sec{padding:76px 0}
+    .hero{padding:104px 0 0}
+    .split,.tlist,.svc-item,.tlist-item{min-width:0}
+    .tlabel{white-space:normal;line-height:1.15}
+    .ey{letter-spacing:.14em}
+    .about-sub,.vision-sub,.ceo-role,.ceo-cols h4,.foot-col h5,.ct-info .lbl,.ct-form label,.hero-cap,.feat .more,.bf-more,.pf-showall,.ct-submit{letter-spacing:.1em}
+  }
+  @media(max-width:768px){
+    .pf-track{grid-auto-flow:row;grid-template-columns:1fr 1fr;overflow:visible;scroll-snap-type:none;gap:14px;padding:4px 0}
+    .pf-track .brand-card:nth-child(n+7){display:none}
+    .pf-track.expanded .brand-card:nth-child(n+7){display:flex}
+    .pf-hint{display:none}
+    .pf-showall{display:flex;align-items:center;justify-content:center;width:fit-content}
+  }
+  @media(max-width:520px){
+    .bm-grid{grid-template-columns:repeat(2,1fr)}
+    .ct-row{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}*{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
 
-  <div class="wrap">
-    <!-- START -->
-    <section class="hero" id="hero">
-      <div class="paws">📖 🌈 ⛪ ✨</div>
-      <span class="badge">성경인물 성격 찾기 🎈</span>
-      <h1>나랑 닮은 <span class="rainbow">성경인물</span>은<br>누구일까?</h1>
-      <p>12개의 질문에 솔직하게 답해봐요.<br>학교랑 교회에서 나는 어떤 모습일까요? ✨</p>
-      <input id="nameInput" class="name-input" type="text" maxlength="8" placeholder="이름을 적어주세요 (예: 지민)" />
-      <button class="btn" id="startBtn">시작하기 🚀</button>
-    </section>
+<svg style="display:none"><symbol id="ppl" viewBox="0 0 64 64"><circle cx="23" cy="16" r="8"/><path d="M11 56 V40 a12 12 0 0 1 24 0 V56 Z"/><circle cx="44" cy="13" r="7" opacity=".55"/><path d="M34 56 V38 a10 10 0 0 1 20 0 V56 Z" opacity=".55"/></symbol></svg>
 
-    <!-- QUIZ -->
-    <section class="quiz" id="quiz">
-      <div class="topbar">
-        <span class="count" id="count">1/12</span>
-        <div class="bar"><div class="fill" id="fill"></div></div>
-      </div>
-      <div class="qcard" id="qcard">
-        <div class="qemoji" id="qemoji">🎒</div>
-        <div class="qtext" id="qtext"></div>
-        <button class="opt" id="optA"><span class="dot"></span><span></span></button>
-        <button class="opt" id="optB"><span class="dot"></span><span></span></button>
-      </div>
-      <button class="back" id="backBtn">← 이전 질문</button>
-    </section>
-
-    <!-- RESULT -->
-    <section class="result" id="result">
-      <div class="photocard" id="photocard">
-        <div class="pc-photo" id="pcFigure"></div>
-        <div class="pc-scrim"></div>
-        <div class="pc-plate">
-          <div class="pc-deco" aria-hidden="true">
-            <span style="top:-2px;left:14%">✨</span>
-            <span style="top:6px;right:16%">✨</span>
-          </div>
-          <div class="pc-type" id="rtype">ISFP</div>
-          <div class="pc-name" id="rname"></div>
-          <div class="pc-tag" id="rtag"></div>
-        </div>
-      </div>
-      <button class="btn" id="photoSaveBtn">🖼️ 이 카드 이미지로 저장하기</button>
-
-      <div class="rcard">
-        <div class="rsec">
-          <h3 id="rtraitsTitle">내 성격은요 💛</h3>
-          <ul id="rtraits"></ul>
-        </div>
-
-        <div class="match">
-          <div class="mbox">
-            <div class="mlabel">나랑 잘 맞는 성경친구 💕</div>
-            <div class="memoji" id="goodEmoji">🐶</div>
-            <div class="mname" id="goodName"></div>
-            <div class="mtype" id="goodType"></div>
-          </div>
-          <div class="mbox">
-            <div class="mlabel">조금 다른 성경친구 🌈</div>
-            <div class="memoji" id="diffEmoji">🦅</div>
-            <div class="mname" id="diffName"></div>
-            <div class="mtype" id="diffType"></div>
-          </div>
-        </div>
-
-        <p class="note">※ 교회나 학교에서의 모습으로 만든 재미 테스트예요.<br>평소 성격이랑 조금 다를 수도 있어요! 😊</p>
-      </div>
-      <div class="rbtns">
-        <button class="btn" id="storyBtn">📖 인물 이야기 카드 보기</button>
-        <button class="btn ghost" id="againBtn">다시 해보기 🔄</button>
-      </div>
-    </section>
-
-    <!-- STORY CARD -->
-    <section class="story" id="story">
-      <div class="scard">
-        <div class="stop">
-          <div class="shero" id="sEmoji"></div>
-          <div class="sscrim"></div>
-          <div class="stoptext">
-            <div class="stype" id="sType">ISFP</div>
-            <div class="sname" id="sName">아담</div>
-            <div class="stag" id="sTag"></div>
-          </div>
-        </div>
-
-        <div class="ssec">
-          <h3>🧩 내 성격 4글자 풀이</h3>
-          <div class="chips" id="sChips"></div>
-        </div>
-
-        <div class="ssec">
-          <h3>📖 이 인물의 이야기</h3>
-          <div class="story-body" id="sStory"></div>
-        </div>
-
-        <div class="ssec">
-          <h3>💡 성격 해석</h3>
-          <p id="sInterp"></p>
-        </div>
-
-        <div class="vcard" id="sVerseCard">
-          <div class="vlabel" id="sVerseName">대표 성경 구절</div>
-          <div class="vquote" id="sVerse"></div>
-          <div class="vref" id="sVref"></div>
-        </div>
-
-        <div class="ssec read">
-          <h3>🔍 성경에서 찾아보기</h3>
-          <p id="sRead"></p>
-        </div>
-      </div>
-      <div class="rbtns">
-        <button class="btn" id="saveBtn">🖼️ 이미지로 저장하기</button>
-        <button class="btn ghost" id="backToResult">← 결과로 돌아가기</button>
-        <button class="btn ghost" id="againBtn2">다시 해보기 🔄</button>
-      </div>
-    </section>
+<header id="header">
+  <div class="wrap nav">
+    <div class="nav-l">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#business">Business</a>
+      <a href="#founder">Founder</a>
+      <a href="#portfolio">Portfolio</a>
+    </div>
+    <a href="#top" class="brand" aria-label="ONYOU">
+      <img class="brand-logo" src="images/logo/ONYOU-LOGO-03-MG-TEXT-GREY.png" alt="ONYOU">
+    </a>
+    <div class="nav-r">
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#business">Business</a>
+    <a href="#founder">Founder</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero cream">
+    <div class="wrap">
+      <h1 class="giant reveal">Cosmetics<br>made in Korea</h1>
+      <p class="hero-sub reveal">Full OBM turnkey manufacturing for global beauty brands—from planning and formulation to production and export, built on over 20 years of Korean cosmetics expertise.</p>
+    </div>
+    <div class="wrap"><div class="hero-roll reveal" id="heroRoll">
+      <img src="images/hero/hero-1.jpg" alt="Formulation texture" class="active">
+      <img src="images/hero/hero-2.jpg" alt="Product bottles">
+      <img src="images/hero/hero-3.jpg" alt="Serum bottles">
+      <div class="hero-dots">
+        <button class="hd active" aria-label="Slide 1"></button>
+        <button class="hd" aria-label="Slide 2"></button>
+        <button class="hd" aria-label="Slide 3"></button>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- ABOUT US (cream-2) -->
+  <section class="sec about-sec" id="about">
+    <div class="wrap">
+      <div class="about-head reveal">
+        <h2 class="giant" style="font-size:clamp(40px,6vw,104px)">About<span class="sp"></span>Us</h2>
+      </div>
+      <div class="about-body reveal">
+        <div class="about-body-in">
+          <h3 class="about-vision-line">Beauty Trend Leader</h3>
+          <p class="about-sub">Global Beauty Solutions Provider</p>
+          <p class="about-lead">ONYOU is a comprehensive cosmetics solution provider — combining deep industry experience with the latest beauty trends, technologies, and market insights to guide every brand we work with.</p>
+        </div>
+      </div>
+      <div class="about-values reveal">
+        <div class="av-item"><span class="av-label"><span class="av-dot"></span><span class="av-word"><span class="av-num">01</span>Expert</span></span></div>
+        <div class="av-item"><span class="av-label"><span class="av-dot"></span><span class="av-word"><span class="av-num">02</span>Success</span></span></div>
+        <div class="av-item"><span class="av-label"><span class="av-dot"></span><span class="av-word"><span class="av-num">03</span>Trust</span></span></div>
+        <div class="av-item"><span class="av-label"><span class="av-dot"></span><span class="av-word"><span class="av-num">04</span>Strategic Guidance</span></span></div>
+        <div class="av-item"><span class="av-label"><span class="av-dot"></span><span class="av-word"><span class="av-num">05</span>Reasonable</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES (black) -->
+  <section class="sec black" id="services">
+    <div class="wrap split">
+      <div class="split-left reveal">
+        <h2 class="giant" style="font-size:clamp(40px,5.6vw,88px)">Our<span class="sp"></span>Services</h2>
+        <p class="split-desc">With full OBM turnkey management, ONYOU tailors every service to your brand — handling the entire process from concepts to the finished product. We turn your idea into a market-ready product while you focus on building your brand.</p>
+        <p class="split-meta ey">OBM Turnkey · Made in Korea</p>
+      </div>
+      <div class="tlist reveal" id="svcList">
+      <div class="svc-item">
+        <div class="tlist-item svc-head"><span class="arrow"><svg viewBox="0 0 64 20"><line x1="0" y1="10" x2="58" y2="10"/><path d="M50 3 L60 10 L50 17"/></svg></span><span class="tlabel">Product Planning</span><span class="tnum">01</span><span class="svc-plus" aria-hidden="true"></span></div>
+        <div class="svc-detail"><div class="svc-detail-in"><ul>
+            <li>Competitor &amp; market research on concepts, channels and comparable price ranges</li>
+            <li>Product planning &amp; concept development</li>
+            <li>Retail price &amp; cost target setting</li>
+            <li>End-to-end launch schedule management</li>
+            <li>Formula sampling &amp; supply meetings with manufacturers</li>
+            <li>Formula improvement requests &amp; R&amp;D coordination</li>
+            <li>Standard-sample receipt &amp; finished-product QC</li>
+        </ul></div></div>
+      </div>
+      <div class="svc-item">
+        <div class="tlist-item svc-head"><span class="arrow"><svg viewBox="0 0 64 20"><line x1="0" y1="10" x2="58" y2="10"/><path d="M50 3 L60 10 L50 17"/></svg></span><span class="tlabel">Branding</span><span class="tnum">02</span><span class="svc-plus" aria-hidden="true"></span></div>
+        <div class="svc-detail"><div class="svc-detail-in"><ul>
+            <li>Full brand direction — naming, catchphrase, copywriting, concept colors, target &amp; lifestyle definition</li>
+        </ul></div></div>
+      </div>
+      <div class="svc-item">
+        <div class="tlist-item svc-head"><span class="arrow"><svg viewBox="0 0 64 20"><line x1="0" y1="10" x2="58" y2="10"/><path d="M50 3 L60 10 L50 17"/></svg></span><span class="tlabel">Design</span><span class="tnum">03</span><span class="svc-plus" aria-hidden="true"></span></div>
+        <div class="svc-detail"><div class="svc-detail-in"><ul>
+            <li>BI / CI design</li>
+            <li>Brand design strategy</li>
+            <li>Design research &amp; planning</li>
+            <li>Package graphic design</li>
+            <li>Container mold design</li>
+            <li>Sourcing of containers, cartons &amp; packaging materials</li>
+            <li>Specialty post-processing specification planning</li>
+        </ul></div></div>
+      </div>
+      <div class="svc-item">
+        <div class="tlist-item svc-head"><span class="arrow"><svg viewBox="0 0 64 20"><line x1="0" y1="10" x2="58" y2="10"/><path d="M50 3 L60 10 L50 17"/></svg></span><span class="tlabel">Marketing &amp; Contents</span><span class="tnum">04</span><span class="svc-plus" aria-hidden="true"></span></div>
+        <div class="svc-detail"><div class="svc-detail-in"><ul>
+            <li>Marketing strategy planning</li>
+            <li>Content planning &amp; production</li>
+            <li>Online content guides incl. detail-page planning</li>
+            <li>Promotion execution</li>
+            <li>Brand collaboration strategy proposals</li>
+        </ul></div></div>
+      </div>
+      <div class="svc-item">
+        <div class="tlist-item svc-head"><span class="arrow"><svg viewBox="0 0 64 20"><line x1="0" y1="10" x2="58" y2="10"/><path d="M50 3 L60 10 L50 17"/></svg></span><span class="tlabel">Quality Control &amp; SCM</span><span class="tnum">05</span><span class="svc-plus" aria-hidden="true"></span></div>
+        <div class="svc-detail"><div class="svc-detail-in"><ul>
+            <li>Copy review per cosmetics labeling &amp; advertising guidelines</li>
+            <li>Manufacturer coordination during production</li>
+            <li>Collection &amp; storage of manufacturer / distributor documents</li>
+            <li>Retention standards for production-control samples</li>
+            <li>MFDS functional reporting &amp; low-irritation testing</li>
+            <li>Human application (clinical) testing</li>
+            <li>China hygiene license (NMPA) acquisition</li>
+            <li>Packaging materials production supervision, cost management &amp; margin review</li>
+        </ul></div></div>
+      </div>
+      <div class="svc-item">
+        <div class="tlist-item svc-head"><span class="arrow"><svg viewBox="0 0 64 20"><line x1="0" y1="10" x2="58" y2="10"/><path d="M50 3 L60 10 L50 17"/></svg></span><span class="tlabel">Sales Channel Expansion</span><span class="tnum">06</span><span class="svc-plus" aria-hidden="true"></span></div>
+        <div class="svc-detail"><div class="svc-detail-in"><ul>
+            <li>Video ad campaigns via Facebook &amp; Instagram</li>
+            <li>Naver Beauty Window</li>
+            <li>Kakao Makers</li>
+            <li>H&amp;B stores — Lohb&#39;s, Watsons, Olive Young</li>
+            <li>TV home shopping (live &amp; T-commerce)</li>
+            <li>Global e-commerce — Taobao, Qoo10, Amazon</li>
+        </ul></div></div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBM FEATURE (full-bleed bg) -->
+  <section class="sec business-feat" id="business">
+    <div class="wrap">
+      <div class="bf-inner reveal">
+        <div class="bf-head">
+          <span class="ey">Business</span>
+          <h2 class="giant" style="font-size:clamp(26px,5vw,80px)">OBM Turnkey Manufacturing</h2>
+        </div>
+        <p class="bf-sub">From a single idea to a market-ready product — ONYOU manages every stage of your brand under one roof.</p>
+        <div class="bf-cols">
+          <p>Planning, formulation, design, production, and quality — handled end to end, so you can launch with confidence and stay focused on building your brand.</p>
+          <p>Backed by trusted partner facilities and over two decades of Korean cosmetics expertise, we bring your product to global markets — made exactly to your vision.</p>
+        </div>
+        <a href="#contact" class="bf-more">Start your brand</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CEO (black) -->
+  <section class="sec black" id="founder">
+    <div class="wrap">
+      <h2 class="giant reveal" style="font-size:clamp(40px,6vw,104px)">Meet the<span class="sp"></span>Founder</h2>
+      <div class="ceo-grid">
+        <div class="ceo-photo reveal">
+          <img src="images/ceo.jpg" alt="Wool Hong, Founder & CEO of ONYOU" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="ph" style="display:none"><svg viewBox="0 0 64 64"><use href="#ppl"/></svg><span style="font-size:12px">images/ceo.jpg</span></div>
+        </div>
+        <div class="reveal">
+          <div class="ceo-role">CEO · Founder</div>
+          <div class="ceo-name">Wool Hong</div>
+          <div class="ceo-bio">
+            <p>With over 20 years of experience in the cosmetics industry, Wool Hong has successfully led numerous brand development, product launch, and commercialization projects.</p>
+            <p>Drawing on extensive expertise in marketing, product planning, product development, and brand management, she has built a strong track record across leading beauty companies, manufacturers, and R&amp;D organizations.</p>
+            <p>As the Founder &amp; CEO of ONYOU Co., Ltd., she provides professional consulting and strategic guidance in cosmetics product development, brand building, manufacturing, and business growth.</p>
+          </div>
+          <div class="ceo-cols">
+            <div>
+              <h4>Professional Experience</h4>
+              <ul>
+                <li>Marketing Team, Korea Yakult</li>
+                <li>Marketing &amp; Product Planning, Daemyung I&amp;S</li>
+                <li>Product Planning, LG Household &amp; Health Care</li>
+                <li>Product Planning, Bandi Nail &amp; Color Cosmetics</li>
+                <li>Product Planning, PLU</li>
+                <li>Head of Product Development, Design &amp; Quality, CELAB R&amp;D Center</li>
+                <li>Founder &amp; CEO, ONYOU Co., Ltd. (2019–Present)</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Professional Activities</h4>
+              <ul>
+                <li>Director, Cosmetics BM Academy</li>
+                <li>Product Development &amp; Brand Strategy Consultant</li>
+                <li>Manufacturing &amp; Quality Management Instructor</li>
+                <li>Startup &amp; Entrepreneurship Mentor</li>
+                <li>Beauty Industry Consultant</li>
+                <li>Brand Development Advisor</li>
+                <li>Speaker at Beauty Industry Seminars</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CI (cream) -->
+  <section class="sec cream">
+    <div class="wrap ci-grid">
+      <div class="reveal">
+        <span class="ey">Brand Identity</span>
+        <div class="ci-quote">Everything<br>starts with<br>people</div>
+        <p>The combination of ONYOU's wordmark and symbol reflects our commitment to our core values while expressing warmth, balance, and thoughtful consideration. The image of people coming together represents the spirit and identity of ONYOU.</p>
+        <div class="ci-keywords"><span>Beauty</span><span>Client</span><span>Communication</span><span>Company</span></div>
+      </div>
+      <div class="ci-symbol reveal">
+        <div class="ci-mark">
+          <img class="ci-mark-img" src="images/logo/ONYOU-LOGO-02-SYMBOL-GREY.png" alt="ONYOU symbol" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+          <svg viewBox="0 0 64 64" style="display:none"><use href="#ppl"/></svg>
+        </div>
+        <div class="ci-colors">
+          <div class="ci-color"><div class="ci-swatch" style="background:#141414"></div><div class="nm">Black</div><div class="pn">Pantone Black C</div></div>
+          <div class="ci-color"><div class="ci-swatch" style="background:#e8743b"></div><div class="nm">Orange</div><div class="pn">Pantone 165C</div></div>
+          <div class="ci-color"><div class="ci-swatch" style="background:#a7a9ac"></div><div class="nm">Gray</div><div class="pn">Cool Gray 4C</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PORTFOLIO (cream) -->
+  <section class="sec cream" id="portfolio">
+    <div class="wrap">
+      <div class="pf-head reveal">
+        <h2 class="giant" style="font-size:clamp(40px,6vw,104px)">Our<span class="sp"></span>Brands</h2>
+        <p style="max-width:320px;color:var(--mut-cream);font-size:14px;text-transform:uppercase;letter-spacing:.04em">Brands developed and manufactured with ONYOU. Select a brand to view its products.</p>
+      </div>
+      <div class="pf-carousel reveal">
+        <button class="pf-arrow prev" id="pfPrev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <div class="pf-track" id="pfTrack"></div>
+        <button class="pf-arrow next" id="pfNext" aria-label="More"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+      <p class="pf-hint">Swipe or use the arrows · Click a brand to view its products</p>
+      <button class="pf-showall" id="pfShowAll">Show all brands</button>
+    </div>
+  </section>
+
+  <!-- CONTACT (black) -->
+  <section class="sec black" id="contact">
+    <div class="wrap">
+      <h2 class="giant reveal" style="font-size:clamp(40px,6vw,104px)">Contact<span class="sp"></span>Us</h2>
+      <div class="ct-grid">
+        <div class="reveal">
+          <p class="ct-lead">Tell us about your product idea or manufacturing needs. Our team will get back to you with the right solution.</p>
+          <div class="ct-info">
+            <div><div class="lbl">Email</div><div class="val">wool@onyoucompany.co.kr</div></div>
+            <div><div class="lbl">Location</div><div class="val">Seoul, Republic of Korea</div></div>
+            <div><div class="lbl">Website</div><div class="val">www.onyoucompany.co.kr</div></div>
+          </div>
+        </div>
+        <form class="ct-form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="ct-row">
+            <div class="field"><label>Name</label><input type="text" name="name" required></div>
+            <div class="field"><label>Company</label><input type="text" name="company"></div>
+          </div>
+          <div class="ct-row">
+            <div class="field"><label>Email</label><input type="email" name="email" required></div>
+            <div class="field"><label>Country</label><input type="text" name="country"></div>
+          </div>
+          <div class="field"><label>Inquiry type</label>
+            <select name="inquiry_type"><option>OBM Turnkey Manufacturing</option><option>Product Development</option><option>Brand Consulting</option><option>Other</option></select>
+          </div>
+          <div class="field"><label>Message</label><textarea name="message" required></textarea></div>
+          <button type="submit" class="ct-submit">Send Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="foot-logo-img" src="images/logo/ONYOU-LOGO-09-SB-TEXT-V-WHITE.png" alt="ONYOU" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <div class="foot-logo" style="display:none">ONYOU</div>
+        <p style="font-size:13px;max-width:280px;color:var(--mut-black)">OBM Turnkey Manufacturing from Korea.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="#about">About</a><a href="#business">Business</a><a href="#portfolio">Portfolio</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <p>Seoul, Republic of Korea</p><p>wool@onyoucompany.co.kr</p><a href="https://www.onyoucompany.co.kr">Korean Website</a>
+        <div class="foot-social">
+          <a href="https://www.instagram.com/onyou_pf/" target="_blank" rel="noopener" aria-label="ONYOU Instagram">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Identity</h5>
+        <p>Beauty</p><p>Client</p><p>Communication</p><p>Company</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© ONYOU Co., Ltd. All rights reserved.</span>
+      <span>Cosmetics manufactured in Korea</span>
+    </div>
+  </div>
+</footer>
+
+<div class="bm" id="bm">
+  <div class="bm-panel">
+    <div class="bm-head"><h3 id="bmTitle">Brand</h3><button class="bm-close" id="bmClose" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="bm-grid" id="bmGrid"></div>
+  </div>
+</div>
+
+<div class="lb" id="lb">
+  <button class="lb-close" id="lbClose"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="lb-nav lb-prev" id="lbPrev"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-nav lb-next" id="lbNext"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
+<button class="totop" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
 <script>
-/* ---------- 질문 (문항마다 A=앞글자, B=뒷글자) ---------- */
-const Q = [
-  {e:"🎮", t:"쉬는 시간에 나는?", a:"친구들이랑 우르르 나가서 논다", b:"자리에서 좋아하는 친구랑 조용히 논다", d:"EI"},
-  {e:"⛪", t:"처음 간 교회 모임에서 나는?", a:"내가 먼저 다가가서 인사한다", b:"누가 나한테 말 걸어주면 좋겠다", d:"EI"},
-  {e:"🎉", t:"신나는 일이 생기면 나는?", a:"여기저기 다 자랑하고 말하고 싶다", b:"마음속에 담아두거나 친한 한 명한테만", d:"EI"},
-
-  {e:"🎨", t:"미술 시간에 그림을 그릴 때 나는?", a:"눈에 보이는 걸 똑같이 그린다", b:"상상 속 이야기를 그린다", d:"SN"},
-  {e:"🚢", t:"'노아의 방주' 이야기를 들으면 나는?", a:"배가 얼마나 컸을까, 동물은 몇 마리일까 궁금", b:"그 안에서 무슨 일이 있었을까 상상해본다", d:"SN"},
-  {e:"🧱", t:"만들기 숙제를 할 때 나는?", a:"설명서대로 차근차근 만든다", b:"내 맘대로 새로운 걸 만든다", d:"SN"},
-
-  {e:"✏️", t:"친구가 준비물을 안 가져왔을 때 나는?", a:"\"왜 안 챙겼어?\" 먼저 물어본다", b:"\"괜찮아, 같이 쓰자\" 먼저 말한다", d:"TF"},
-  {e:"😢", t:"친구랑 다퉜을 때 나는?", a:"누가 잘못했는지 따져본다", b:"친구 기분이 상했을까 먼저 걱정된다", d:"TF"},
-  {e:"🗣️", t:"친구들이랑 의견이 갈리면 나는?", a:"어떤 게 더 맞는지 생각한다", b:"다 같이 기분 좋게 정하고 싶다", d:"TF"},
-
-  {e:"📚", t:"방학 숙제를 나는?", a:"계획을 세워서 미리미리 한다", b:"몰아서 하거나 그때그때 한다", d:"JP"},
-  {e:"🎒", t:"소풍 가방을 쌀 때 나는?", a:"전날 미리 다 챙겨둔다", b:"소풍날 아침에 후다닥 챙긴다", d:"JP"},
-  {e:"🛝", t:"친구랑 놀 때 나는?", a:"뭐 하고 놀지 먼저 정하고 논다", b:"일단 만나서 그때 정한다", d:"JP"}
-];
-
-/* 문항별 알록달록 색 */
-const COLORS = ["#FF6F91","#FFB454","#FFC75F","#6FD3A3","#3EC5A9","#56CCF2","#7AA5F5","#B983FF","#9B6FE0","#FF8FB0","#FF6F91","#FFB454"];
-
-/* ---------- 결과 16종 (성경인물) ---------- */
-const R = {
-  ISTJ:{e:"⚕️",n:"누가",g:"꼼꼼하고 성실한 친구",traits:["무엇이든 정확하게 기록하고 정리해요 (꼼꼼한 의사이자 기록가 누가!)","약속과 규칙을 잘 지켜요","맡은 일은 끝까지 해내요"],good:"ESFJ",diff:"ENFP"},
-  ISFJ:{e:"🌷",n:"마리아",g:"조용하고 다정한 친구",traits:["마음이 따뜻하고 착해요 (아기 예수님을 품은 마리아처럼)","티 안 나게 곁에서 챙겨줘요","말없이 순종하고 잘 참아요"],good:"ESTP",diff:"ENTP"},
-  INFJ:{e:"💧",n:"예레미야",g:"마음이 깊은 친구",traits:["친구의 슬픔을 함께 느껴요 (예레미야는 '눈물의 선지자')","혼자 깊이 생각하는 걸 좋아해요","조용하지만 속이 단단해요"],good:"ENTJ",diff:"ESTP"},
-  INTJ:{e:"🚢",n:"노아",g:"흔들리지 않는 계획왕",traits:["미리 계획을 세워 척척 해내요 (거대한 방주를 완성한 노아!)","옳다고 믿으면 끝까지 지켜요","혼자서도 잘해요"],good:"ESTJ",diff:"ESFP"},
-  ISTP:{e:"🪢",n:"라합",g:"위기에 강한 지혜쟁이",traits:["급할 때 침착하게 방법을 찾아요 (라합은 지혜롭게 사람을 도왔어요)","말보다 행동이 빨라요","용감하고 손이 야무져요"],good:"ESFP",diff:"ENFJ"},
-  ISFP:{e:"🍎",n:"아담",g:"마음이 여린 예술가",traits:["그림·노래·만들기를 좋아해요","싫은 소리를 잘 못 해요","조용히 봉사하는 걸 좋아해요"],good:"ENTP",diff:"ENTJ"},
-  INFP:{e:"💛",n:"바나바",g:"다 위로해주는 다정한 친구",traits:["친구를 아끼고 힘을 줘요 (바나바는 '위로의 아들'!)","상상하고 마음에 공감하는 걸 좋아해요","조용하지만 마음속엔 꿈이 가득해요"],good:"ENFJ",diff:"ESTJ"},
-  INTP:{e:"👑",n:"솔로몬",g:"궁금한 게 많은 지혜쟁이",traits:["\"왜 그럴까?\" 궁금한 게 많아요","곰곰이 생각해 지혜롭게 답을 찾아요 (솔로몬의 지혜!)","기발한 생각이 자주 떠올라요"],good:"ENFP",diff:"ESFJ"},
-  ESTP:{e:"🏺",n:"리브가",g:"행동이 빠른 모험가",traits:["결정하면 바로 움직여요 (리브가는 선뜻 나서서 도왔어요)","겁 없이 도전해요","친구들이랑 있으면 신나요"],good:"ISFJ",diff:"INFJ"},
-  ESFP:{e:"🪜",n:"야곱",g:"어디서나 인기쟁이",traits:["함께 있으면 즐거워지는 친구예요","새로운 걸 시도하고 활발해요","밝고 친구가 많아요 (사다리 꿈을 꾼 야곱!)"],good:"ISTP",diff:"INTJ"},
-  ENFP:{e:"🎣",n:"베드로",g:"열정 넘치는 아이디어뱅크",traits:["하고 싶은 게 생기면 바로 도전해요 (열정 가득 베드로!)","새로운 아이디어가 팡팡 떠올라요","친구들 기분을 좋게 해줘요"],good:"INTP",diff:"ISTJ"},
-  ENTP:{e:"👸",n:"에스더",g:"재치있고 용감한 친구",traits:["재치있게 문제를 풀어요 (에스더는 지혜로 백성을 구했어요!)","새로운 방법 찾는 걸 좋아해요","머리 회전이 빠르고 용감해요"],good:"ISFP",diff:"ISFJ"},
-  ESTJ:{e:"⚖️",n:"드보라",g:"앞장서는 든든한 리더",traits:["친구들을 척척 이끌어요 (드보라는 나라를 이끈 지도자!)","규칙을 지키고 야무지게 해내요","책임감이 강해요"],good:"INTJ",diff:"INFP"},
-  ESFJ:{e:"🎶",n:"다윗",g:"노래하는 따뜻한 리더",traits:["친구를 잘 챙기고 함께 즐거워해요 (다윗은 하프 켜며 찬양했어요)","분위기를 밝고 따뜻하게 만들어요","사람들에게 인기가 많아요"],good:"ISTJ",diff:"INTP"},
-  ENFJ:{e:"🏹",n:"요나단",g:"의리 있는 따뜻한 대장",traits:["친구를 진심으로 아끼고 지켜줘요 (요나단은 다윗의 최고의 친구!)","친구들을 잘 이끌어요","다 함께 잘되길 바라요"],good:"INFP",diff:"ISTP"},
-  ENTJ:{e:"✉️",n:"바울",g:"목표를 향해 달리는 대장",traits:["목표를 정하면 끝까지 해내요 (복음을 전한 바울!)","앞장서서 이끄는 걸 잘해요","자신감이 넘쳐요"],good:"INFJ",diff:"ISFP"}
-};
-
-/* 인물 일러스트: images/유형.png 를 자동으로 찾음. 파일이 없으면 이모지로 대체.
-   파일명 대소문자(isfj.png / ISFJ.png) 모두 처리 */
-function figureFor(type){
-  const low='images/'+type.toLowerCase()+'.png';
-  const up='images/'+type+'.png';
-  return '<img class="charimg" src="'+low+'" alt="'+R[type].n+'" '
-       + 'data-up="'+up+'" data-em="'+R[type].e+'" onerror="imgFallback(this)">';
-}
-function imgFallback(img){
-  if(img.dataset.tried){
-    const s=document.createElement('span');
-    s.className='charemoji'; s.textContent=img.dataset.em;
-    img.replaceWith(s);
-  } else {
-    img.dataset.tried='1'; img.src=img.dataset.up;
-  }
-}
-
-/* ---------- 성경인물 이야기 + 해석 ---------- */
-const STORY = {
-  ISTJ:{story:"옛날, 아픈 사람을 고치는 다정한 의사가 있었어요. 이름은 누가였지요.\n\n누가는 예수님을 직접 본 적은 없었지만, 예수님 이야기를 들을 때마다 가슴이 뛰었어요. '이 놀라운 이야기를, 사람들이 정확히 알 수 있게 남기고 싶어!'\n\n그래서 누가는 예수님을 만났던 사람들을 하나하나 찾아다녔어요. 목자도, 제자도, 예수님의 어머니 마리아의 이야기까지 귀 기울여 들었지요. 들은 이야기는 빠뜨리지 않고 순서대로 차곡차곡 적었어요.\n\n하나님은 누가의 정직하고 성실한 마음을 귀하게 보셨어요. 그래서 그 꼼꼼한 손끝을 통해, 오래오래 읽힐 '누가복음'을 남겨 주셨답니다.\n\n누가는 여러 사람을 만나 예수님의 일을 하나하나 확인하며 꼼꼼하게 기록했어요. 하나님은 그 성실함을 사용하셔서 귀한 복음서를 남기게 하셨지요.",
-        interp:"누가는 궁금한 걸 대충 넘기지 않고 '정확하게 알고 싶어' 하는 사람이었어요. 한 사람 한 사람 직접 만나 확인하고, 들은 것을 순서대로 정리한 모습은 사실과 근거를 소중히 여기는 ISTJ의 전형이에요. 눈에 보이는 것을 꼼꼼히 살피고(S), 감정보다 사실을 따지며(T), 계획을 세워 끝까지 마무리하는(J) 성실함이 그의 기록 곳곳에 배어 있답니다.",
-        read:"누가복음 1장", v:"내가 모든 일을 근원부터 자세히 미루어 살핀 고로 그 차례대로 써 보내는 것이 좋은 줄 알았노니", vref:"누가복음 1:3"},
-  ISFJ:{story:"나사렛에 마리아라는 마음 착한 소녀가 살았어요.\n\n어느 날 천사가 찾아와 말했어요. '두려워 마라. 하나님이 너와 함께 계신단다. 너는 아기 예수님의 엄마가 될 거야.' 마리아는 깜짝 놀랐지만, 두 손을 모으고 조용히 대답했어요. '저는 주님의 종이에요. 말씀대로 제게 이루어지길 바라요.'\n\n하나님은 높고 힘센 사람이 아니라, 마음이 겸손하고 순종하는 마리아를 귀하게 보셨어요.\n\n마리아는 먼 길을 걸어 베들레헴의 작은 마구간에서 아기 예수님을 낳았고, 그날의 신기한 일들을 마음속에 소중히 담아 두었어요. 그리고 하나님을 믿으며 아기 예수님을 정성껏 길렀답니다.\n\n천사가 아기 예수님의 엄마가 될 거라고 했을 때, 마리아는 하나님을 믿고 조용히 순종했어요. 하나님은 그 겸손한 마음을 기쁘게 보셨지요.",
-        interp:"마리아는 갑작스럽고 어려운 부탁 앞에서도 요란하게 따지지 않고 '그렇게 할게요' 하고 받아들였어요. 나서기보다 곁에서 묵묵히 돌보고(I), 아기를 정성껏 챙기며(S·F), 맡은 일을 끝까지 지켜내는(J) 모습은 조용하지만 책임감이 강한 ISFJ의 따뜻함 그 자체예요.",
-        read:"누가복음 1~2장", v:"주의 여종이오니 말씀대로 내게 이루어지이다", vref:"누가복음 1:38"},
-  INFJ:{story:"예레미야가 아직 어렸을 때, 하나님이 말씀하셨어요. '내가 너를 태어나기도 전에 이미 알았단다. 너는 나의 말을 전하는 사람이 될 거야.'\n\n예레미야는 겁이 났어요. '저는 아직 너무 어린걸요.' 하지만 하나님은 '내가 늘 너와 함께 있을게. 무서워 말아라' 하고 손을 잡아 주셨지요.\n\n예레미야는 사람들에게 눈물로 이야기했어요. '지금 이 길에서 돌아서면 하나님이 다시 안아 주실 거예요.' 그런데 사람들은 귀를 막고 오히려 예레미야를 미워했어요.\n\n외롭고 힘들 때마다 예레미야는 하나님께 마음을 털어놓았어요. 하나님은 그 여리지만 끝까지 포기하지 않는 마음을 가장 가까이서 지켜 주셨답니다.\n\n예레미야는 백성이 잘못된 길로 갈 때 함께 마음 아파하며, 눈물로 하나님의 말씀을 전했어요. 그래서 '눈물의 선지자'라고 불려요.",
-        interp:"예레미야는 사람들이 자기를 미워해도, 그들이 아파할 미래가 보여서 마음이 먼저 아팠어요. 남의 감정을 깊이 느끼고(F), 눈에 보이지 않는 앞날까지 내다보며(N), 힘들어도 옳다고 믿는 길을 조용히 지키는(I·J) 모습은 겉은 여려 보여도 속이 단단한 INFJ의 특징이에요.",
-        read:"예레미야 1장", v:"내가 너를 모태에 짓기 전에 너를 알았고 네가 배에서 나오기 전에 너를 성별하였고", vref:"예레미야 1:5"},
-  INTJ:{story:"세상 사람들이 나쁜 일만 골라 하던 때, 오직 노아만은 하나님과 동행하며 바르게 살았어요.\n\n하나님이 노아에게 말씀하셨어요. '곧 큰 홍수가 올 거란다. 아주 커다란 방주를 만들어라.' 그리고 배의 길이와 높이까지 자세히 알려 주셨지요.\n\n노아는 그 말씀을 그대로 믿고, 오랜 세월 방주를 만들었어요. 사람들이 '비도 안 오는데 웬 배야?' 하고 비웃었지만, 노아는 하나님을 믿었기에 흔들리지 않았어요.\n\n드디어 큰 비가 쏟아졌지만, 하나님은 방주에 탄 노아의 가족과 동물들을 모두 지켜 주셨어요. 비가 그친 뒤 하늘엔 예쁜 무지개가 떴지요. 하나님은 순종하는 노아를 귀하게 보시고, 다시는 온 땅을 물로 심판하지 않겠다고 약속해 주셨답니다.\n\n노아는 사람들이 비웃어도 하나님의 말씀을 믿고 방주를 끝까지 만들었어요. 하나님은 그 흔들림 없는 믿음을 귀하게 보셨지요.",
-        interp:"노아는 아직 비 한 방울 안 왔을 때부터 미래를 준비한 사람이에요. 남들이 뭐라 해도 흔들리지 않고(I), 큰 그림과 먼 앞날을 내다보며(N), 한번 정한 계획을 끝까지 밀고 나가는(J) 뚝심은 목표를 세우면 반드시 이루어내는 INTJ의 모습이에요.",
-        read:"창세기 6~9장", v:"노아가 그와 같이 하되 하나님이 자기에게 명하신 대로 다 준행하였더라", vref:"창세기 6:22"},
-  ISTP:{story:"여리고 성벽에 라합이라는 여인이 살았어요. 라합은 하나님이 이스라엘을 위해 행하신 놀라운 일들을 전해 듣고, '이스라엘의 하나님이 참 하나님이구나' 하고 믿게 되었지요.\n\n어느 날 밤, 이스라엘에서 온 정탐꾼 두 사람이 라합의 집에 숨어들었어요. 그때 성문에서 병사들이 '수상한 사람을 내놓아라!' 하고 들이닥쳤지요.\n\n라합은 조금도 당황하지 않고 재빠르게 두 사람을 지붕 위에 숨기고, 병사들에게는 다른 길을 가리켰어요. 병사들이 돌아가자, 라합은 창문으로 붉은 줄을 내려 정탐꾼들을 무사히 도망시켰지요.\n\n하나님을 믿은 라합의 용기 덕분에, 훗날 그 붉은 줄을 표시로 삼아 라합과 온 가족이 안전하게 구원받았답니다.\n\n라합은 하나님을 믿고, 위험 속에서도 침착하게 지혜를 내어 정탐꾼과 자기 가족을 구했어요. 하나님은 그 믿음과 용기를 귀하게 보셨지요.",
-        interp:"라합은 위험이 코앞에 닥친 순간, 겁내며 얼어붙는 대신 곧바로 '어떻게 할까'를 계산하고 몸을 움직였어요. 상황을 냉정하게 파악하고(T), 지금 눈앞의 방법을 실용적으로 찾아(S), 말보다 행동으로 해결하는(P) 모습은 위기에 강한 ISTP의 침착함이에요.",
-        read:"여호수아 2장", v:"너희가 나를 살려 두어 내 부모와 형제를 살려 주리라 하니", vref:"여호수아 2:13"},
-  ISFP:{story:"하나님은 땅의 흙으로 첫 사람 아담을 지으시고, 코에 생명의 숨을 불어넣으셨어요. 그러자 아담은 살아 숨 쉬는 사람이 되었지요.\n\n하나님은 아담을 아름다운 에덴동산에 두시고, 온갖 동물을 데려오셨어요. 아담은 동물 하나하나를 다정하게 바라보며 이름을 지어 주었어요. 하나님과 아담은 동산을 함께 거니는 다정한 사이였지요.\n\n동산에는 딱 한 가지 약속이 있었어요. '선악과나무의 열매만은 먹지 말아라.' 그런데 아내 하와가 권하자, 마음 약한 아담은 거절하지 못하고 그만 열매를 먹고 말았어요. 부끄러워 나무 뒤에 숨은 아담에게, 하나님은 '아담아, 네가 어디 있느냐' 하고 먼저 찾아와 부르셨어요.\n\n잘못한 뒤에도 하나님은 아담을 버리지 않고, 옷을 지어 입히시며 끝까지 돌보셨답니다.\n\n아담은 다정하지만 마음이 여려 약속을 어기기도 했어요. 그래도 하나님은 그런 아담을 먼저 찾아와 주시고 끝까지 사랑하셨지요.",
-        interp:"아담은 동물에게 이름을 붙여 줄 만큼 섬세하고 다정했지만, 사랑하는 사람의 부탁 앞에서는 '안 돼'라고 말하지 못했어요. 조용하고 온화하며(I), 감성이 풍부하고(F), 지금 이 순간의 관계를 소중히 여기는(S·P) 모습은 마음이 여리고 예술적인 ISFP의 특징이에요.",
-        read:"창세기 2~3장", v:"여호와 하나님이 땅의 흙으로 사람을 지으시고 생기를 그 코에 불어넣으시니 사람이 생령이 되니라", vref:"창세기 2:7"},
-  INFP:{story:"예루살렘에 요셉이라는 사람이 있었는데, 사람들은 그를 '바나바'라고 불렀어요. '위로의 아들'이라는 뜻이지요.\n\n바나바는 성령과 믿음이 가득한 착한 사람이라, 힘든 사람을 참 잘 위로해 주었어요. 자기 밭을 팔아 어려운 이들을 돕기도 했지요.\n\n한번은, 예수님 믿는 사람들을 괴롭히던 무서운 바울이 마음을 고쳐먹고 찾아왔어요. 다들 '저 사람은 못 믿어!' 하고 피할 때, 바나바가 나서서 말했어요. '바울은 정말 변했어요. 하나님이 그를 새사람으로 만드셨답니다.' 그러고는 바울의 손을 잡아 친구들에게 데려가 주었어요.\n\n하나님은 사람을 끝까지 믿어 주는 바나바의 따뜻한 마음을 사용하셔서, 많은 사람을 세우고 교회를 자라게 하셨답니다.\n\n바나바는 실수한 사람도 다시 믿어 주고 힘을 준 '위로의 아들'이었어요. 하나님은 그 따뜻한 마음을 귀하게 사용하셨지요.",
-        interp:"바나바는 모두가 등 돌린 사람에게서도 '좋은 면'을 먼저 보고 손을 내밀었어요. 사람의 마음을 믿고 품으며(F), 겉모습 너머의 가능성을 보고(N), 앞에 나서기보다 조용히 뒤에서 응원하는(I) 모습은 따뜻한 이상을 품은 INFP의 다정함이에요.",
-        read:"사도행전 4장, 11장", v:"그는 착한 사람이요 성령과 믿음이 충만한 사람이라", vref:"사도행전 11:24"},
-  INTP:{story:"솔로몬이 젊은 나이에 왕이 되었을 때, 하나님이 꿈에 나타나 물으셨어요. '무엇을 갖고 싶으냐?'\n\n솔로몬은 부자가 되게 해달라고도, 오래 살게 해달라고도 하지 않았어요. '지혜로운 마음을 주세요. 하나님의 백성을 잘 다스리고 싶어요.' 하나님은 그 대답을 무척 기뻐하시며, 솔로몬에게 세상에서 가장 지혜로운 마음을 선물해 주셨어요.\n\n얼마 뒤, 두 여인이 한 아기를 두고 서로 '내 아기예요!' 하고 다투었어요. 가만히 듣던 솔로몬이 말했어요. '그럼 아기를 반으로 나누렴.' 그러자 한 여인이 울며 '차라리 저 사람에게 주세요. 아기만 살려 주세요!' 하고 외쳤지요. 솔로몬은 빙그레 웃으며 진짜 엄마를 가려냈어요.\n\n사람들은 하나님이 솔로몬에게 주신 지혜에 깜짝 놀랐답니다.\n\n솔로몬은 하나님께 지혜를 구했고, 하나님은 그 마음을 기뻐하시며 놀라운 지혜를 주셨어요. 그 지혜로 솔로몬은 어려운 문제도 슬기롭게 풀어냈지요.",
-        interp:"솔로몬은 시끄러운 다툼 속에서도 한 발 물러나 '진짜를 가려낼 방법이 뭘까?' 하고 곰곰이 생각했어요. 감정에 휩쓸리지 않고 논리로 파고들며(T), 남들은 못 떠올릴 기발한 수를 찾아내는(N·P) 모습은 호기심 많고 똑똑한 INTP의 지혜예요.",
-        read:"열왕기상 3장", v:"지혜롭고 총명한 마음을 네게 주노니 너의 앞에도 너와 같은 자가 없었거니와", vref:"열왕기상 3:12"},
-  ESTP:{story:"아브라함의 늙은 종이 먼 길을 떠났어요. 주인의 아들 이삭의 신붓감을 찾기 위해서였지요.\n\n우물가에서 종은 하나님께 기도했어요. '하나님, 물을 달라고 할 때 저에게도 낙타에게도 물을 주는 아가씨가 바로 그 사람이게 해주세요.'\n\n그 기도가 끝나기도 전에, 하나님은 리브가를 그곳으로 이끄셨어요. 리브가는 종에게 물을 건네고 '낙타들에게도 제가 물을 길어다 줄게요!' 하며 부지런히 우물을 오갔지요. 종은 '하나님이 정말 응답하셨구나!' 하고 감사했어요.\n\n얼마 뒤 '지금 바로 이삭에게 가겠느냐?'는 물음에도 리브가는 망설이지 않았어요. '네, 가겠어요!' 하나님이 이끄시는 새로운 길을 믿고 씩씩하게 따라나선 거예요.\n\n리브가는 선뜻 물을 길어다 주고, 하나님이 여신 새 길로 망설임 없이 떠났어요. 하나님은 그 부지런하고 용감한 마음을 통해 귀한 만남을 이루셨지요.",
-        interp:"리브가는 생각만 오래 하지 않고 몸이 먼저 움직이는 사람이었어요. 사람들 앞에 선뜻 나서고(E), 지금 필요한 걸 바로 알아채(S), 재고 따지기보다 곧장 행동하며(P) 힘든 일도 척척 해내는 모습은 활동적이고 용감한 ESTP의 매력이에요.",
-        read:"창세기 24장", v:"이 사람과 함께 가겠느냐 그가 대답하되 가겠나이다", vref:"창세기 24:58"},
-  ESFP:{story:"야곱이 홀로 먼 길을 떠나던 밤이었어요. 잘 곳도 없어 들판에서 돌 하나를 베개 삼아 잠이 들었지요.\n\n그런데 꿈속에서 놀라운 일이 벌어졌어요. 땅에서 하늘까지 닿는 커다란 사다리 위로 천사들이 오르락내리락 하고, 하나님의 목소리가 들렸어요. '야곱아, 내가 언제나 너와 함께 있을게. 네가 어디로 가든 지켜 줄게.'\n\n외롭던 야곱에게 하나님이 먼저 찾아와 약속해 주신 거예요. 잠에서 깬 야곱은 가슴이 두근두근했어요. '와, 여기가 바로 하나님의 집이구나!'\n\n야곱은 베고 자던 돌을 세워 기둥으로 삼고, 그곳 이름을 '벧엘'이라 지으며 하나님께 예배했어요. 혼자였던 밤이, 하나님을 만난 가장 신나는 이야기가 되었답니다.\n\n야곱은 외로운 들판에서 하나님을 만나 마음껏 기뻐했어요. 하나님은 어디서든 함께하겠다고 야곱에게 먼저 약속해 주셨지요.",
-        interp:"야곱은 아무것도 없는 들판에서도 놀라운 순간을 만나 마음껏 기뻐했어요. 감정을 밝게 드러내고(E·F), 지금 이 순간을 온몸으로 느끼며(S), 어디서든 새로운 이야기를 즐기는(P) 모습은 활기차고 사람 좋아하는 ESFP의 에너지예요.",
-        read:"창세기 27~28장", v:"내가 너와 함께 있어 네가 어디로 가든지 너를 지키며 너를 이끌어 이 땅으로 돌아오게 할지라", vref:"창세기 28:15"},
-  ENFP:{story:"베드로는 원래 물고기를 잡는 어부였어요. 어느 날 예수님이 '나를 따라오너라' 하시자, 베드로는 그물을 내려놓고 곧장 예수님을 따라나섰지요.\n\n어느 밤, 제자들이 탄 배가 거센 파도에 흔들렸어요. 그때 예수님이 물 위를 걸어오시자, 베드로가 외쳤어요. '저도 물 위로 걸어가게 해주세요!' 예수님이 '오너라' 하시자, 베드로는 예수님만 바라보며 정말 물 위를 걸었어요!\n\n그런데 사나운 바람으로 눈을 돌리자, 그만 무서워져 몸이 가라앉기 시작했지요. '주님, 구해주세요!' 그 순간 예수님이 손을 뻗어 베드로를 꼭 붙잡아 주셨어요. '왜 의심했느냐? 나를 믿으렴.'\n\n예수님은 겁도 많지만 언제나 제일 먼저 다가오는 베드로를 사랑하셨고, 훗날 그를 교회의 든든한 기둥으로 세워 주셨답니다.\n\n베드로는 예수님을 믿고 겁 없이 물 위로 발을 내디딘 열정 넘치는 제자였어요. 예수님은 그런 베드로를 붙잡아 주시고 귀하게 쓰셨지요.",
-        interp:"베드로는 재고 따지기 전에 '저요! 저 할래요!' 하고 가장 먼저 손을 드는 사람이었어요. 마음이 뜨겁게 움직이면 바로 도전하고(E·P), 새로운 일에 눈을 반짝이며(N), 사람들 사이에서 힘이 나는(F) 모습은 열정 가득한 ENFP 그 자체예요.",
-        read:"마태복음 4장, 14장", v:"베드로가 배에서 내려 물 위로 걸어서 예수께로 가되", vref:"마태복음 14:29"},
-  ENTP:{story:"에스더는 아름답고 지혜로운 왕비가 되었어요. 사실 그것은, 하나님이 훗날 백성을 구하려고 미리 준비하신 자리였지요.\n\n그런데 나쁜 신하 하만이 유대 사람들을 모두 없애려는 무서운 계획을 꾸몄어요. 삼촌 모르드개가 말했어요. '네가 왕비가 된 것은 바로 이때를 위함인지도 몰라.'\n\n에스더는 왕 앞에 함부로 나아가면 목숨이 위험했지만, 백성과 함께 사흘을 금식하며 하나님께 기도한 뒤 용기를 냈어요. '죽으면 죽지요.' 그러고는 지혜로운 계획을 세워, 딱 알맞은 순간에 하만의 나쁜 계획을 왕 앞에 밝혔지요.\n\n하나님은 기도하며 용기 낸 에스더를 통해, 위험에 빠진 백성을 모두 구해 주셨답니다.\n\n에스더는 하나님께 기도한 뒤 목숨을 걸고 나아가, 지혜로운 방법으로 백성을 구했어요. 하나님은 그 믿음과 용기를 통해 놀라운 일을 이루셨지요.",
-        interp:"에스더는 무서운 상황에서도 무작정 뛰어들지 않고 '어떻게 하면 이길까'를 머리로 설계했어요. 사람들 앞에서 당당하고(E), 기발한 작전을 짜며(N), 가장 유리한 순간을 노려 승부하는(T·P) 모습은 재치 있고 담대한 ENTP의 특징이에요.",
-        read:"에스더 4장", v:"죽으면 죽으리이다 하니라", vref:"에스더 4:16"},
-  ESTJ:{story:"이스라엘에 드보라라는 지혜로운 지도자가 있었어요. 드보라는 종려나무 아래에서 사람들의 다툼을 판단해 주었고, 하나님의 말씀을 전하는 사람이기도 했지요.\n\n그때 시스라라는 무서운 장군이 이스라엘을 오랫동안 괴롭히고 있었어요. 하나님이 드보라에게 승리를 약속해 주시자, 드보라는 장군 바락을 불러 말했어요. '하나님이 우리를 도우실 거예요. 군대를 이끌고 나가세요!'\n\n바락이 '드보라가 함께 가야 가겠어요' 하자, 드보라는 하나님을 믿고 흔쾌히 앞장섰어요. 전쟁터에서 드보라는 확신에 찬 목소리로 외쳤어요. '일어나라! 바로 오늘이 하나님이 승리를 주시는 날이다!'\n\n드보라의 믿음과 든든한 리더십을 통해, 하나님은 이스라엘에 승리와 평화를 주셨답니다.\n\n드보라는 하나님의 말씀을 믿고 앞장서서 백성을 이끈 확신에 찬 지도자였어요. 하나님은 그 믿음의 리더십을 귀하게 쓰셨지요.",
-        interp:"드보라는 어려운 상황에서 머뭇거리는 사람들에게 '지금이야, 가자!' 하고 방향을 정해 주는 지도자였어요. 사람들 앞에 나서 이끌고(E), 현실을 정확히 판단하며(S·T), 해야 할 일을 확실하게 밀어붙이는(J) 모습은 책임감 강한 ESTJ의 리더십이에요.",
-        read:"사사기 4장", v:"일어나라 이는 여호와께서 시스라를 네 손에 넘겨주신 날이라", vref:"사사기 4:14"},
-  ESFJ:{story:"다윗은 여러 형제 중 막내로, 들판에서 양을 치는 목동이었어요. 다윗은 하프를 켜며 하나님을 찬양하는 노래를 만들곤 했지요. 하나님은 겉모습이 아니라 다윗의 마음을 보시고, 그를 왕으로 미리 뽑아 두셨어요. '사람은 외모를 보지만, 나는 중심을 본단다.'\n\n어느 날, 골리앗이라는 거인이 나타나 이스라엘 군대를 겁주었어요. 어른들도 벌벌 떨 뿐이었지만, 어린 다윗이 나섰어요. '제가 나가겠어요! 살아 계신 하나님이 함께하시니까요.'\n\n다윗은 갑옷도 마다하고 물맷돌 다섯 개만 챙겨 골리앗 앞에 섰어요. '너는 칼과 창으로 나오지만, 나는 하나님의 이름으로 나간다!' 그러고는 물매를 빙빙 돌려 돌 하나를 던졌지요. 하나님이 그 돌을 인도하셔서, 돌은 정확히 골리앗의 이마에 맞았고 거인은 쿵 쓰러졌어요!\n\n다윗은 자기 힘이 아니라 하나님을 믿는 믿음으로 이긴 것을 알았어요. 하나님은 그 찬양하고 신뢰하는 마음을 크게 보시고, 훗날 다윗을 사랑받는 왕으로 세워 주셨답니다.\n\n다윗은 하나님을 찬양하며, 골리앗 앞에서도 하나님을 믿고 용감했어요. 하나님은 그 믿음의 마음을 귀하게 보시고 승리를 주셨지요.",
-        interp:"다윗은 노래로 마음을 나누고, 사람들을 따뜻하게 품는 사람이었어요. 함께 어울리는 걸 좋아하고(E), 사람의 마음을 세심히 살피며(F), 지금 해야 할 일에 정성껏 최선을 다하는(S·J) 모습은 정 많고 사랑받는 ESFJ의 따뜻함이에요.",
-        read:"사무엘상 16~17장", v:"여호와는 나의 목자시니 내게 부족함이 없으리로다", vref:"시편 23:1"},
-  ENFJ:{story:"요나단은 사울 왕의 아들, 곧 왕자였어요. 요나단도 '하나님은 사람이 많든 적든 얼마든지 구원하실 수 있어' 하고 굳게 믿는 용감한 사람이었지요.\n\n다윗이 골리앗을 이긴 날, 요나단은 다윗을 처음 만났어요. 그런데 마음이 척 통해서, 요나단은 다윗을 자기 목숨처럼 아끼게 되었지요. 요나단은 하나님이 다윗과 함께하시는 것을 알아보고, 자기가 입던 왕자의 겉옷과 칼, 활까지 선뜻 내주었어요.\n\n아버지 사울 왕이 다윗을 해치려 하자, 요나단은 위험을 무릅쓰고 다윗을 지켰어요. 몰래 활을 쏘아 '지금 도망쳐!'라는 신호를 보내 친구를 살렸지요. 두 사람은 하나님 앞에서 '영원한 친구가 되자'고 약속했답니다.\n\n왕자 자리보다 친구를, 그리고 하나님의 뜻을 먼저 생각한 요나단은 세상에서 가장 의리 있는 친구였어요.\n\n요나단은 하나님이 함께하시는 친구 다윗을 알아보고, 자기 것을 내어주며 끝까지 지켜 주었어요. 하나님은 그 따뜻하고 신실한 마음을 기뻐하셨지요.",
-        interp:"요나단은 자기 자리를 지키기보다, 친구를 아끼고 지키는 데 온 마음을 쏟았어요. 사람을 진심으로 챙기고 이끌며(E·F), 관계 너머의 큰 뜻까지 헤아리고(N), 한번 정한 의리를 끝까지 지키는(J) 모습은 따뜻한 리더 ENFJ의 우정이에요.",
-        read:"사무엘상 18장, 20장", v:"요나단이 다윗을 자기 생명같이 사랑하니라", vref:"사무엘상 18:1"},
-  ENTJ:{story:"바울의 원래 이름은 사울이었어요. 사울은 예수님 믿는 사람들을 몹시 미워해서 붙잡으러 다니던 무서운 사람이었지요.\n\n어느 날, 다마스쿠스로 가는 길에 갑자기 하늘에서 눈부신 빛이 쏟아지더니 목소리가 들렸어요. '사울아, 왜 나를 괴롭히느냐?' 예수님의 음성이었어요! 사울은 그 자리에서 눈이 멀었지요.\n\n며칠 뒤, 하나님은 사울의 눈을 다시 뜨게 하시고 완전히 새사람으로 바꿔 주셨어요. 이름도 '바울'로 바뀌었지요. 자기를 용서해 주신 하나님의 사랑에 감격한 바울은, 이제 온 세상에 예수님을 전하는 사람이 되었어요.\n\n배가 부서지고 매를 맞고 감옥에 갇혀도 바울은 멈추지 않았어요. '하나님이 주신 이 길을 끝까지 달리겠다!' 하나님은 그 뜨거운 열심을 통해 온 세상에 복음을 전하셨답니다.\n\n바울은 하나님을 만나 완전히 변해, 목표를 향해 힘차게 복음을 전한 대장이었어요. 하나님은 그 강한 추진력을 귀하게 쓰셨지요.",
-        interp:"바울은 한번 방향을 정하자, 어떤 어려움에도 멈추지 않고 목표를 향해 돌진했어요. 앞장서서 사람들을 이끌고(E), 큰 그림과 사명을 품으며(N), 논리적으로 밀어붙여 끝까지 계획을 이루는(T·J) 모습은 강한 추진력의 ENTJ 그 자체예요.",
-        read:"사도행전 9장", v:"내가 선한 싸움을 싸우고 나의 달려갈 길을 마치고 믿음을 지켰으니", vref:"디모데후서 4:7"}
-};
-
-/* MBTI 4글자 풀이 */
-const LETTER = {
-  E:{t:"외향형",d:"사람들과 어울려요"}, I:{t:"내향형",d:"혼자가 편해요"},
-  S:{t:"감각형",d:"보이는 걸 잘 봐요"}, N:{t:"직관형",d:"상상하고 꿈꿔요"},
-  T:{t:"사고형",d:"옳고 그름을 따져요"}, F:{t:"감정형",d:"기분을 먼저 살펴요"},
-  J:{t:"판단형",d:"미리 계획하고 정리해요"}, P:{t:"인식형",d:"그때그때 자유롭게"}
-};
-const hero=document.getElementById('hero'), quizEl=document.getElementById('quiz'), resultEl=document.getElementById('result');
-const qemoji=document.getElementById('qemoji'), qtext=document.getElementById('qtext');
-const optA=document.getElementById('optA'), optB=document.getElementById('optB');
-const optAtxt=optA.querySelector('span:last-child'), optBtxt=optB.querySelector('span:last-child');
-const count=document.getElementById('count'), fill=document.getElementById('fill'), backBtn=document.getElementById('backBtn');
-const qcard=document.getElementById('qcard');
-const storyEl=document.getElementById('story');
-let idx=0; const answers=[]; let order=[]; let currentType='ISFP'; let userName=''; let currentAccentColor='#FF6F91';
-
-/* 인물 색을 흰색과 섞어 '불투명 단색' 파스텔로 (html2canvas가 안전하게 처리) */
-function lightTint(hex){
-  hex=(hex||'#FF6F91').replace('#','');
-  const r=parseInt(hex.slice(0,2),16), g=parseInt(hex.slice(2,4),16), b=parseInt(hex.slice(4,6),16);
-  const mix=c=>Math.round(c*0.22 + 255*0.78);
-  return 'rgb('+mix(r)+','+mix(g)+','+mix(b)+')';
-}
-
-/* 한글 받침 여부에 따라 조사를 붙여주는 도우미 */
-function hasBatchim(str){
-  if(!str) return false;
-  const c=str.charCodeAt(str.length-1);
-  if(c<0xAC00||c>0xD7A3) return false;
-  return (c-0xAC00)%28!==0;
-}
-function nameSubj(name){ return name + (hasBatchim(name)?'이는':'는'); }      // 지민이는 / 민수는
-function namePoss(name){ return name + (hasBatchim(name)?'이':'') ; }          // 지민이 / 민수
-function iyo(word){ return word + (hasBatchim(word)?'이에요':'예요'); }         // 친구예요 / 계획왕이에요
-
-/* 성을 빼고 이름만 부르기 (박예은 → 예은) */
-function firstName(name){
-  name=(name||'').trim();
-  const two=['남궁','황보','제갈','선우','독고','서문','사공','동방','서방','어금','망절'];
-  if(name.length>=4 && two.includes(name.slice(0,2))) return name.slice(2);
-  if(name.length>=3) return name.slice(1);
-  return name;
-}
-
-function setAccent(c){document.documentElement.style.setProperty('--accent',c);}
-
-function render(){
-  const q=Q[idx];
-  setAccent(COLORS[idx]);
-  qcard.style.animation='none'; void qcard.offsetWidth; qcard.style.animation='slidein .35s ease';
-  qemoji.textContent=q.e;
-  qtext.textContent=q.t;
-  if(order[idx]==='ba'){
-    optAtxt.textContent=q.b; optA.dataset.key='b';
-    optBtxt.textContent=q.a; optB.dataset.key='a';
-  }else{
-    optAtxt.textContent=q.a; optA.dataset.key='a';
-    optBtxt.textContent=q.b; optB.dataset.key='b';
-  }
-  count.textContent=(idx+1)+"/12";
-  fill.style.width=(idx/Q.length*100)+"%";
-  backBtn.disabled = idx===0;
-}
-
-function choose(which){
-  answers[idx]=which; // 'a' or 'b'
-  if(idx<Q.length-1){ idx++; render(); }
-  else{ finish(); }
-}
-
-function finish(){
-  const score={E:0,I:0,S:0,N:0,T:0,F:0,J:0,P:0};
-  Q.forEach((q,i)=>{
-    const first=q.d[0], second=q.d[1];
-    if(answers[i]==='a') score[first]++; else score[second]++;
+  var BRANDS=[{id:"b12",name:"Louaude",imgs:10},{id:"b15",name:"SERENPAUSE",imgs:2},{id:"b19",name:"JOSUN",imgs:2},{id:"b21",name:"KIERA2",imgs:4},{id:"b30",name:"ALLOY",imgs:2},{id:"b02",name:"CLEMIRE",imgs:2},{id:"b04",name:"CUMCURA",imgs:2},{id:"b05",name:"DASEUL",imgs:8},{id:"b06",name:"DAYBIEN",imgs:16},{id:"b07",name:"EDVIEW",imgs:9},{id:"b08",name:"Fleradi",imgs:2},{id:"b09",name:"HIDE&SEEK",imgs:6},{id:"b10",name:"ILUTINE",imgs:2},{id:"b11",name:"INFENA",imgs:2},{id:"b14",name:"POVHA",imgs:2},{id:"b16",name:"UBERNA",imgs:3},{id:"b17",name:"URAON",imgs:2},{id:"b18",name:"YOYUN",imgs:8},{id:"b20",name:"KIERA",imgs:3},{id:"b22",name:"LILADD",imgs:2},{id:"b27",name:"NDEARGO",imgs:1},{id:"b28",name:"ONIRO",imgs:2},{id:"b29",name:"AILL",imgs:2},{id:"b32",name:"ATEMPO",imgs:2},{id:"b33",name:"AUDEW",imgs:8},{id:"b34",name:"BRISKIN",imgs:2},{id:"b36",name:"DEAR B",imgs:2},{id:"b38",name:"RUNSLOW",imgs:3},{id:"b39",name:"TARAJU",imgs:2},{id:"b40",name:"TOUCH IN SOL",imgs:2},{id:"b01",name:"CHUIHAIR",imgs:3},{id:"b03",name:"COLORLABS",imgs:3},{id:"b13",name:"ON THE CALI",imgs:2},{id:"b23",name:"MUEI",imgs:2},{id:"b24",name:"MYROOTY",imgs:9},{id:"b25",name:"M CURIE",imgs:2},{id:"b26",name:"Motifull",imgs:2},{id:"b31",name:"ARASOOP",imgs:1},{id:"b35",name:"CAU",imgs:1},{id:"b37",name:"DEWFOLA",imgs:1}];
+  // EDIT: replace names/counts. Folder: images/portfolio/b01/1.jpg ... (1.jpg = cover)
+  var PH='<svg viewBox="0 0 24 24" fill="none" stroke="#b6b1a4" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>';
+  var track=document.getElementById('pfTrack');
+  BRANDS.forEach(function(b,idx){
+    var card=document.createElement('div');card.className='brand-card';card.dataset.index=idx;
+    card.innerHTML='<div class="brand-thumb"><div class="brand-ph">'+PH+'<b>'+b.id+'</b></div>'+
+      '<img loading="lazy" alt="'+b.name+'" src="images/portfolio/'+b.id+'/1.jpg" onload="this.classList.add(\'loaded\')" onerror="this.remove()">'+
+      '<span class="brand-count">'+(idx+1)+'</span></div><div class="brand-name">'+b.name+'</div>';
+    track.appendChild(card);
   });
-  const type=(score.E>=score.I?'E':'I')+(score.S>=score.N?'S':'N')+(score.T>=score.F?'T':'F')+(score.J>=score.P?'J':'P');
-  showResult(type);
-}
+  var pfPrev=document.getElementById('pfPrev'),pfNext=document.getElementById('pfNext');
+  function pw(){return track.clientWidth*0.86;}
+  pfPrev.onclick=function(){track.scrollBy({left:-pw(),behavior:'smooth'});};
+  pfNext.onclick=function(){track.scrollBy({left:pw(),behavior:'smooth'});};
+  function upd(){pfPrev.classList.toggle('disabled',track.scrollLeft<10);pfNext.classList.toggle('disabled',track.scrollLeft+track.clientWidth>=track.scrollWidth-10);}
+  track.addEventListener('scroll',upd);window.addEventListener('resize',upd);setTimeout(upd,120);
+  var sa=document.getElementById('pfShowAll');if(sa){sa.addEventListener('click',function(){track.classList.add('expanded');sa.classList.add('hidden');});}
 
-function showResult(type){
-  currentType=type;
-  const r=R[type]; const good=R[r.good]; const diff=R[r.diff];
-  currentAccentColor = COLORS[Math.floor(Math.random()*COLORS.length)];
-  setAccent(currentAccentColor);
-  document.getElementById('photocard').style.background = lightTint(currentAccentColor);
-  document.getElementById('pcFigure').innerHTML=figureFor(type);
-  document.getElementById('rtype').textContent=type;
-  document.getElementById('rname').textContent=r.n;
-  const nm=firstName(userName);
-  document.getElementById('rtag').textContent = nm ? (nameSubj(nm)+' '+iyo(r.g)+'!') : r.g;
-  document.getElementById('rtraitsTitle').textContent = (nm ? (namePoss(nm)+' 성격은요') : '내 성격은요') + ' 💛';
-  const ul=document.getElementById('rtraits'); ul.innerHTML='';
-  r.traits.forEach(t=>{const li=document.createElement('li'); li.textContent=t; ul.appendChild(li);});
-  document.getElementById('goodEmoji').textContent=good.e;
-  document.getElementById('goodName').textContent=good.n;
-  document.getElementById('goodType').textContent=r.good;
-  document.getElementById('diffEmoji').textContent=diff.e;
-  document.getElementById('diffName').textContent=diff.n;
-  document.getElementById('diffType').textContent=r.diff;
-  quizEl.style.display='none';
-  storyEl.style.display='none';
-  resultEl.style.display='block';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+  var bm=document.getElementById('bm'),bmT=document.getElementById('bmTitle'),bmG=document.getElementById('bmGrid'),cur=[];
+  track.addEventListener('click',function(e){var c=e.target.closest('.brand-card');if(c)openBrand(+c.dataset.index);});
+  function openBrand(i){var b=BRANDS[i];bmT.textContent=b.name;bmG.innerHTML='';cur=[];
+    for(var j=1;j<=b.imgs;j++){var s='images/portfolio/'+b.id+'/'+j+'.jpg';cur.push(s);
+      var d=document.createElement('div');d.className='bm-img';d.dataset.i=j-1;
+      d.innerHTML='<div class="brand-ph">'+PH+'<b>'+j+'</b></div><img loading="lazy" src="'+s+'" onload="this.classList.add(\'loaded\')" onerror="this.remove()">';bmG.appendChild(d);}
+    bm.classList.add('open');document.body.style.overflow='hidden';}
+  function closeBrand(){bm.classList.remove('open');document.body.style.overflow='';}
+  document.getElementById('bmClose').onclick=closeBrand;bm.addEventListener('click',function(e){if(e.target===bm)closeBrand();});
+  bmG.addEventListener('click',function(e){var c=e.target.closest('.bm-img');if(c)openLb(cur,+c.dataset.i);});
 
-function showStory(){
-  const type=currentType, r=R[type], s=STORY[type];
-  document.querySelector('.stop').style.background = lightTint(currentAccentColor);
-  document.getElementById('sEmoji').innerHTML=figureFor(type);
-  document.getElementById('sType').textContent=type;
-  document.getElementById('sName').textContent=r.n;
-  document.getElementById('sTag').textContent=r.g;
-  const chips=document.getElementById('sChips'); chips.innerHTML='';
-  type.split('').forEach(L=>{
-    const l=LETTER[L];
-    const d=document.createElement('div'); d.className='chip';
-    d.innerHTML='<div class="cl">'+L+'</div><div class="cterm">'+l.t+'</div><div class="cdesc">'+l.d+'</div>';
-    chips.appendChild(d);
-  });
-  const sb=document.getElementById('sStory'); sb.innerHTML='';
-  s.story.split('\n\n').forEach(para=>{ const p=document.createElement('p'); p.textContent=para; sb.appendChild(p); });
-  document.getElementById('sInterp').textContent=s.interp;
-  document.getElementById('sVerseName').textContent=r.n+" 대표 성경 구절";
-  document.getElementById('sVerse').textContent="\u201C"+s.v+"\u201D";
-  document.getElementById('sVref').textContent="— "+s.vref;
-  document.getElementById('sRead').textContent="👉 "+s.read+"을(를) 펼쳐 보세요!";
-  resultEl.style.display='none';
-  storyEl.style.display='block';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+  var lb=document.getElementById('lb'),li=document.getElementById('lbImg'),lc=document.getElementById('lbCount'),L=[],ci=0;
+  function openLb(a,i){L=a;ci=i;li.src=a[i];lc.textContent=(i+1)+' / '+a.length;lb.classList.add('open');document.body.style.overflow='hidden';}
+  function closeLb(){lb.classList.remove('open');if(!bm.classList.contains('open'))document.body.style.overflow='';}
+  function stp(d){if(!L.length)return;ci=(ci+d+L.length)%L.length;li.src=L[ci];lc.textContent=(ci+1)+' / '+L.length;}
+  document.getElementById('lbClose').onclick=closeLb;document.getElementById('lbPrev').onclick=function(){stp(-1)};document.getElementById('lbNext').onclick=function(){stp(1)};
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb();});
+  document.addEventListener('keydown',function(e){if(lb.classList.contains('open')){if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')stp(-1);if(e.key==='ArrowRight')stp(1);return;}if(bm.classList.contains('open')&&e.key==='Escape')closeBrand();});
 
-function restart(){
-  resultEl.style.display='none'; storyEl.style.display='none'; hero.style.display='block';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-document.getElementById('startBtn').onclick=()=>{
-  userName=(document.getElementById('nameInput').value||'').trim();
-  hero.style.display='none'; quizEl.style.display='block'; idx=0; answers.length=0;
-  order=Q.map(()=>Math.random()<0.5?'ab':'ba');
-  render();
-};
-optA.onclick=()=>choose(optA.dataset.key);
-optB.onclick=()=>choose(optB.dataset.key);
-backBtn.onclick=()=>{ if(idx>0){ idx--; render(); } };
-document.getElementById('storyBtn').onclick=showStory;
-document.getElementById('backToResult').onclick=()=>{ storyEl.style.display='none'; resultEl.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); };
-document.getElementById('againBtn').onclick=restart;
-document.getElementById('againBtn2').onclick=restart;
-
-/* ================= 이미지 저장: Canvas로 직접 그리기 (html2canvas 미사용) ================= */
-function roundRectPath(ctx,x,y,w,h,r){
-  ctx.beginPath();
-  ctx.moveTo(x+r,y);
-  ctx.arcTo(x+w,y,x+w,y+h,r);
-  ctx.arcTo(x+w,y+h,x,y+h,r);
-  ctx.arcTo(x,y+h,x,y,r);
-  ctx.arcTo(x,y,x+w,y,r);
-  ctx.closePath();
-}
-function drawCover(ctx,img,x,y,w,h,posY){
-  const ir=img.width/img.height, br=w/h; let sx,sy,sw,sh;
-  if(ir>br){ sh=img.height; sw=sh*br; sx=(img.width-sw)/2; sy=0; }
-  else { sw=img.width; sh=sw/br; sx=0; sy=(img.height-sh)*(posY==null?0.5:posY); }
-  ctx.drawImage(img,sx,sy,sw,sh,x,y,w,h);
-}
-function wrapLines(ctx,text,maxW){
-  const lines=[]; let line='';
-  for(const ch of String(text)){
-    if(ch==='\n'){ lines.push(line); line=''; continue; }
-    const test=line+ch;
-    if(ctx.measureText(test).width>maxW && line){ lines.push(line); line=ch; }
-    else line=test;
-  }
-  if(line!=='') lines.push(line);
-  return lines;
-}
-function loadCharImage(type){
-  return new Promise(resolve=>{
-    const srcs=['images/'+type.toLowerCase()+'.png','images/'+type+'.png'];
-    const tryLoad=i=>{
-      if(i>=srcs.length){ resolve(null); return; }
-      const im=new Image(); im.crossOrigin='anonymous';
-      im.onload=()=>resolve(im); im.onerror=()=>tryLoad(i+1); im.src=srcs[i];
-    };
-    tryLoad(0);
-  });
-}
-async function ensureFonts(){
-  if(!document.fonts) return;
-  try{ await Promise.all([
-    document.fonts.load('400 58px Jua'), document.fonts.load('400 30px Jua'), document.fonts.load('400 22px Jua'),
-    document.fonts.load('700 22px Gaegu'), document.fonts.load('700 18px Gaegu'),
-    document.fonts.load("400 17px 'Gowun Dodum'"), document.fonts.load("400 22px 'Gowun Dodum'")
-  ]); }catch(e){}
-  if(document.fonts.ready){ try{ await document.fonts.ready; }catch(e){} }
-}
-
-async function buildResultCanvas(){
-  const W=800,H=1000, cx=W/2;
-  const accent=currentAccentColor, tint=lightTint(accent), r=R[currentType];
-  const img=await loadCharImage(currentType);
-  const c=document.createElement('canvas'); c.width=W; c.height=H;
-  const ctx=c.getContext('2d'); ctx.textBaseline='top';
-  ctx.save(); roundRectPath(ctx,0,0,W,H,56); ctx.clip();
-  ctx.fillStyle=tint; ctx.fillRect(0,0,W,H);
-  if(img){ drawCover(ctx,img,0,0,W,H,0.13); }
-  else { ctx.save(); ctx.textAlign='center'; ctx.font='200px sans-serif'; ctx.fillText(r.e, cx, H*0.26); ctx.restore(); }
-  const g=ctx.createLinearGradient(0,H*0.46,0,H);
-  g.addColorStop(0,'rgba(20,15,25,0)'); g.addColorStop(0.5,'rgba(20,15,25,0.10)'); g.addColorStop(1,'rgba(20,15,25,0.60)');
-  ctx.fillStyle=g; ctx.fillRect(0,H*0.46,W,H*0.54);
-  const nm=firstName(userName);
-  const tagText = nm ? (nameSubj(nm)+' '+iyo(r.g)+'!') : r.g;
-  // sparkles
-  ctx.save(); ctx.font='34px sans-serif'; ctx.textAlign='center'; ctx.globalAlpha=.9;
-  ctx.fillText('✨',cx-190,772); ctx.fillText('✨',cx+190,772); ctx.restore();
-  // type pill
-  ctx.font='700 24px Gaegu'; const ts=currentType.split('').join(' '); const tw=ctx.measureText(ts).width;
-  const pw=tw+46, ph=44, px=cx-pw/2, py=756;
-  roundRectPath(ctx,px,py,pw,ph,ph/2); ctx.fillStyle='rgba(0,0,0,0.30)'; ctx.fill();
-  ctx.lineWidth=2; ctx.strokeStyle='rgba(255,255,255,0.55)'; ctx.stroke();
-  ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(ts,cx,py+ph/2+1); ctx.textBaseline='top';
-  // name
-  ctx.save(); ctx.font='400 60px Jua'; ctx.fillStyle='#fff'; ctx.textAlign='center';
-  ctx.shadowColor='rgba(0,0,0,0.5)'; ctx.shadowBlur=14; ctx.shadowOffsetY=3; ctx.fillText(r.n,cx,812); ctx.restore();
-  // tag
-  ctx.save(); ctx.font="400 26px 'Gowun Dodum'"; ctx.fillStyle='rgba(255,255,255,0.97)'; ctx.textAlign='center';
-  ctx.shadowColor='rgba(0,0,0,0.45)'; ctx.shadowBlur=8; ctx.shadowOffsetY=2; ctx.fillText(tagText,cx,900); ctx.restore();
-  ctx.restore();
-  return c;
-}
-
-async function buildStoryCanvas(){
-  const S=3, BW=360, P=24, cw=BW-2*P;
-  const accent=currentAccentColor, tint=lightTint(accent), r=R[currentType], s=STORY[currentType], type=currentType;
-  const grape='#9B6FE0', ink='#5A4A63', muted='#8a7d92', boxBg='#FBF7FE';
-  const img=await loadCharImage(type);
-
-  function render(ctx,draw){
-    let y=0; const HH=270, cx=BW/2, LH=26;
-    if(draw){
-      ctx.save(); roundRectPath(ctx,0,0,BW,HH,20); ctx.clip();
-      ctx.fillStyle=tint; ctx.fillRect(0,0,BW,HH);
-      if(img) drawCover(ctx,img,0,0,BW,HH,0.06);
-      else { ctx.save(); ctx.textAlign='center'; ctx.font='96px sans-serif'; ctx.fillText(r.e,cx,HH*0.10); ctx.restore(); }
-      const g=ctx.createLinearGradient(0,HH*0.42,0,HH);
-      g.addColorStop(0,'rgba(20,15,25,0)'); g.addColorStop(0.5,'rgba(20,15,25,0.10)'); g.addColorStop(1,'rgba(20,15,25,0.60)');
-      ctx.fillStyle=g; ctx.fillRect(0,HH*0.42,BW,HH*0.58);
-      ctx.font='700 15px Gaegu'; const ts=type.split('').join(' '); const tw=ctx.measureText(ts).width;
-      const pw=tw+26, ph=28, px=cx-pw/2, py=HH-96;
-      roundRectPath(ctx,px,py,pw,ph,ph/2); ctx.fillStyle='rgba(0,0,0,0.30)'; ctx.fill(); ctx.lineWidth=1.5; ctx.strokeStyle='rgba(255,255,255,0.55)'; ctx.stroke();
-      ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(ts,cx,py+ph/2+1); ctx.textBaseline='top';
-      ctx.save(); ctx.font='400 32px Jua'; ctx.fillStyle='#fff'; ctx.shadowColor='rgba(0,0,0,0.5)'; ctx.shadowBlur=8; ctx.shadowOffsetY=2; ctx.textAlign='center'; ctx.fillText(r.n,cx,HH-62); ctx.restore();
-      ctx.save(); ctx.font="400 15px 'Gowun Dodum'"; ctx.fillStyle='rgba(255,255,255,0.96)'; ctx.shadowColor='rgba(0,0,0,0.45)'; ctx.shadowBlur=6; ctx.textAlign='center'; ctx.fillText(r.g,cx,HH-28); ctx.restore();
-      ctx.textAlign='left'; ctx.restore();
-    }
-    y=HH+24;
-    function heading(txt){ if(draw){ ctx.font='400 19px Jua'; ctx.fillStyle=accent; ctx.textAlign='left'; ctx.fillText(txt,P,y); } y+=32; }
-    // 4글자 풀이
-    heading('🧩 내 성격 4글자 풀이');
-    const gap=8, chipW=(cw-3*gap)/4, chipH=96, chipY=y;
-    if(draw){
-      type.split('').forEach((L,i)=>{
-        const x=P+i*(chipW+gap);
-        roundRectPath(ctx,x,chipY,chipW,chipH,14); ctx.fillStyle=boxBg; ctx.fill(); ctx.lineWidth=1.5; ctx.strokeStyle='#EFE7F6'; ctx.stroke();
-        ctx.textAlign='center';
-        ctx.font='400 22px Jua'; ctx.fillStyle=accent; ctx.fillText(L,x+chipW/2,chipY+10);
-        ctx.font='700 13px Gaegu'; ctx.fillStyle=grape; ctx.fillText(LETTER[L].t,x+chipW/2,chipY+40);
-        ctx.font="400 10px 'Gowun Dodum'"; ctx.fillStyle=muted;
-        const dl=wrapLines(ctx,LETTER[L].d,chipW-10); let dy=chipY+58; dl.forEach(ln=>{ctx.fillText(ln,x+chipW/2,dy); dy+=14;});
-        ctx.textAlign='left';
-      });
-    }
-    y=chipY+chipH+26;
-    // 이야기
-    heading('📖 이 인물의 이야기');
-    const paras=s.story.split('\n\n');
-    paras.forEach((para,idx)=>{
-      if(idx===paras.length-1){
-        ctx.font='700 16px Gaegu'; const lines=wrapLines(ctx,para,cw-28); const boxH=lines.length*LH+24;
-        if(draw){ roundRectPath(ctx,P,y,cw,boxH,14); ctx.fillStyle=boxBg; ctx.fill(); ctx.fillStyle=grape; ctx.textAlign='left'; let ty=y+12; lines.forEach(ln=>{ctx.fillText(ln,P+14,ty); ty+=LH;}); }
-        y+=boxH+14;
-      } else {
-        ctx.font="400 15px 'Gowun Dodum'"; const lines=wrapLines(ctx,para,cw);
-        if(draw){ ctx.fillStyle=ink; ctx.textAlign='left'; let ty=y; lines.forEach(ln=>{ctx.fillText(ln,P,ty); ty+=LH;}); }
-        y+=lines.length*LH+12;
-      }
+  var header=document.getElementById('header'),last=0;
+  var toTop=document.getElementById('toTop');
+  window.addEventListener('scroll',function(){var y=window.scrollY;header.classList.toggle('hide',y>last&&y>200);last=y;toTop.classList.toggle('show',y>600);});
+  toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  var bg=document.getElementById('burger'),mm=document.getElementById('mobileMenu');
+  bg.addEventListener('click',function(){mm.classList.toggle('open');});
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');});});
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  document.querySelectorAll('#svcList .svc-head').forEach(function(head){
+    head.addEventListener('click',function(){
+      var item=head.parentElement,open=item.classList.contains('open');
+      document.querySelectorAll('#svcList .svc-item.open').forEach(function(o){o.classList.remove('open');});
+      if(!open){item.classList.add('open');}
     });
-    y+=6;
-    // 성격 해석
-    heading('💡 성격 해석');
-    ctx.font="400 15px 'Gowun Dodum'"; { const lines=wrapLines(ctx,s.interp,cw); if(draw){ ctx.fillStyle=ink; ctx.textAlign='left'; let ty=y; lines.forEach(ln=>{ctx.fillText(ln,P,ty); ty+=LH;}); } y+=lines.length*LH+22; }
-    // 대표 구절 박스
-    { const innerW=cw-32; ctx.font='700 17px Gaegu'; const qlines=wrapLines(ctx,'\u201C'+s.v+'\u201D',innerW);
-      const boxH=14+20+8+qlines.length*LH+14+20+14;
-      if(draw){
-        ctx.save(); roundRectPath(ctx,P,y,cw,boxH,16); ctx.fillStyle='#FBF3F8'; ctx.fill(); ctx.setLineDash([5,4]); ctx.lineWidth=1.5; ctx.strokeStyle=accent; ctx.stroke(); ctx.restore();
-        ctx.textAlign='center';
-        ctx.font='700 12px Gaegu'; ctx.fillStyle=grape; ctx.fillText(r.n+' 대표 성경 구절',cx,y+14);
-        ctx.font='700 17px Gaegu'; ctx.fillStyle='#6a4a63'; let qy=y+42; qlines.forEach(ln=>{ctx.fillText(ln,cx,qy); qy+=LH;});
-        ctx.font='400 14px Jua'; ctx.fillStyle=accent; ctx.fillText('— '+s.vref,cx,y+boxH-24);
-        ctx.textAlign='left';
-      }
-      y+=boxH+22;
-    }
-    // 성경에서 찾아보기
-    heading('🔍 성경에서 찾아보기');
-    { ctx.font='700 15px Gaegu'; const txt='👉 '+s.read+'을(를) 펼쳐 보세요!'; const lines=wrapLines(ctx,txt,cw-28); const boxH=lines.length*24+22;
-      if(draw){ roundRectPath(ctx,P,y,cw,boxH,14); ctx.fillStyle=boxBg; ctx.fill(); ctx.fillStyle=grape; ctx.textAlign='left'; let ty=y+11; lines.forEach(ln=>{ctx.fillText(ln,P+14,ty); ty+=24;}); }
-      y+=boxH+30;
-    }
-    return y;
-  }
-
-  const tmp=document.createElement('canvas'); tmp.width=BW; tmp.height=10;
-  const tctx=tmp.getContext('2d'); tctx.textBaseline='top';
-  const endY=Math.ceil(render(tctx,false));
-  const c=document.createElement('canvas'); c.width=BW*S; c.height=endY*S;
-  const ctx=c.getContext('2d'); ctx.scale(S,S); ctx.textBaseline='top';
-  ctx.save(); roundRectPath(ctx,0,0,BW,endY,20); ctx.fillStyle='#ffffff'; ctx.fill(); ctx.clip();
-  render(ctx,true); ctx.restore();
-  return c;
-}
-
-async function shareCanvas(canvas){
-  const blob=await new Promise(res=>canvas.toBlob(res,'image/png'));
-  if(!blob) throw new Error('no blob');
-  const filename=(R[currentType].n||'result')+'_성경인물카드.png';
-  const file=new File([blob],filename,{type:'image/png'});
-  if(navigator.canShare && navigator.canShare({files:[file]})){
-    try{ await navigator.share({files:[file],title:filename}); return; }
-    catch(e){ if(e && e.name==='AbortError') return; }
-  }
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a'); a.href=url; a.download=filename; document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),1500);
-}
-async function doSave(kind, btn){
-  const orig=btn.textContent; btn.textContent='저장 중이에요... ⏳'; btn.disabled=true;
-  try{
-    await ensureFonts();
-    const canvas = kind==='result' ? await buildResultCanvas() : await buildStoryCanvas();
-    await shareCanvas(canvas);
-  }catch(e){ console.error(e); alert('저장 중 문제가 생겼어요. 휴대폰 화면 캡처(스크린샷)로 저장해 주세요.'); }
-  btn.textContent=orig; btn.disabled=false;
-}
-document.getElementById('photoSaveBtn').onclick=function(){ doSave('result', this); };
-document.getElementById('saveBtn').onclick=function(){ doSave('story', this); };
+  });
+  (function(){
+    var roll=document.getElementById('heroRoll');if(!roll)return;
+    var imgs=roll.querySelectorAll('img'),dots=roll.querySelectorAll('.hd'),i=0,t;
+    function go(n){imgs[i].classList.remove('active');dots[i].classList.remove('active');i=(n+imgs.length)%imgs.length;imgs[i].classList.add('active');dots[i].classList.add('active');}
+    function start(){t=setInterval(function(){go(i+1);},4500);}
+    function stop(){clearInterval(t);}
+    dots.forEach(function(d,idx){d.addEventListener('click',function(){stop();go(idx);start();});});
+    roll.addEventListener('mouseenter',stop);roll.addEventListener('mouseleave',start);
+    start();
+  })();
 </script>
 </body>
 </html>
